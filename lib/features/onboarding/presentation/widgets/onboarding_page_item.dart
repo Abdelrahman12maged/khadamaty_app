@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
 
 class OnboardingPageItem extends StatelessWidget {
   final String image;
@@ -30,7 +31,10 @@ class OnboardingPageItem extends StatelessWidget {
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [Color(0xFF2196F3), Color(0xFF1976D2)],
+                      colors: [
+                        AppColors.primaryBlue,
+                        AppColors.primaryBlueDark
+                      ],
                     ),
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -51,7 +55,6 @@ class OnboardingPageItem extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
                   fontSize: 24,
                 ),
           ),
@@ -60,7 +63,9 @@ class OnboardingPageItem extends StatelessWidget {
             desc,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey[600],
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
                   fontSize: 16,
                 ),
           ),

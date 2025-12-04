@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
 
 class OnboardingDotsIndicator extends StatelessWidget {
   final int itemCount;
@@ -23,8 +24,10 @@ class OnboardingDotsIndicator extends StatelessWidget {
           width: currentIndex == index ? 24 : 8,
           decoration: BoxDecoration(
             color: currentIndex == index
-                ? Colors.blue
-                : Colors.grey.withOpacity(0.5),
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.textSecondaryDark.withOpacity(0.3)
+                    : AppColors.textSecondaryLight.withOpacity(0.5),
             borderRadius: BorderRadius.circular(4),
           ),
         ),
