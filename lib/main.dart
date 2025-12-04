@@ -4,9 +4,15 @@ import 'core/theme/app_theme.dart';
 import 'core/localization/app_localizations.dart';
 import 'features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
-  runApp(const KhadamatyApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const KhadamatyApp(),
+    ),
+  );
 }
 
 class KhadamatyApp extends StatelessWidget {
@@ -15,20 +21,24 @@ class KhadamatyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    
+      // DevicePreview configuration
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+
       title: 'Khadamaty',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: const OnboardingScreen(),
-     localizationsDelegates: [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
