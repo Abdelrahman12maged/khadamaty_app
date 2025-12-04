@@ -1,7 +1,11 @@
 {
-
-
-
-
-    
+  "onboardingTitle1": "Find Local Services",
+  "onboardingDesc1": "Get connected with the best local service providers in your area.",
+  "onboardingTitle2": "Book Easily",
+  "onboardingDesc2": "Book appointments with just a few taps.",
+  "onboardingTitle3": "Secure Payments",
+  "onboardingDesc3": "Pay securely through the app.",
+  "getStarted": "Get Started",
+  "skip": "Skip",
+  "next": "Next"
 }

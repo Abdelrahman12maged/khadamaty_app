@@ -1,1 +1,11 @@
-{}
+{
+  "onboardingTitle1": "اعثر على خدمات محلية",
+  "onboardingDesc1": "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
+  "onboardingTitle2": "حجز سهل",
+  "onboardingDesc2": "احجز مواعيدك بضغطة زر.",
+  "onboardingTitle3": "دفع آمن",
+  "onboardingDesc3": "ادفع بأمان من خلال التطبيق.",
+  "getStarted": "ابدأ الآن",
+  "skip": "تخطي",
+  "next": "التالي"
+}
