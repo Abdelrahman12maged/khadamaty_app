@@ -7,5 +7,19 @@
   "onboardingDesc3": "ادفع بأمان من خلال التطبيق.",
   "getStarted": "ابدأ الآن",
   "skip": "تخطي",
-  "next": "التالي"
+  "next": "التالي",
+  "welcomeBack": "مرحباً بعودتك",
+  "signInToContinue": "سجل الدخول للمتابعة",
+  "email": "البريد الإلكتروني",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "password": "كلمة المرور",
+  "enterYourPassword": "أدخل كلمة المرور",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "login": "تسجيل الدخول",
+  "dontHaveAccount": "ليس لديك حساب؟ ",
+  "signUp": "إنشاء حساب",
+  "pleaseEnterEmail": "الرجاء إدخال بريدك الإلكتروني",
+  "pleaseEnterValidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+  "pleaseEnterPassword": "الرجاء إدخال كلمة المرور",
+  "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل"
 }

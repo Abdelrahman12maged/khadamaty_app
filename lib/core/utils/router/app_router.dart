@@ -1,0 +1,47 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:io' show Platform;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:khadamaty_app/features/onboarding/presentation/pages/onboarding_screen.dart';
+import 'package:khadamaty_app/features/auth/presentation/pages/login_screen.dart';
+import 'package:khadamaty_app/features/auth/presentation/cubit/auth_cubit.dart';
+
+// Helper function to determine initial route based on platform
+String _getInitialLocation() {
+  // Skip onboarding on web or Windows
+  if (kIsWeb) {
+    return '/login';
+  }
+
+  // Check for Windows (desktop)
+  try {
+    if (Platform.isWindows) {
+      return '/login';
+    }
+  } catch (e) {
+    // Platform not available on web, already handled above
+  }
+
+  // Show onboarding on mobile (iOS/Android)
+  return '/onboarding';
+}
+
+final GoRouter appRouter = GoRouter(
+  initialLocation: _getInitialLocation(),
+  routes: [
+    GoRoute(
+      path: '/onboarding',
+      name: 'onboarding',
+      builder: (context, state) => const OnboardingScreen(),
+    ),
+    GoRoute(
+      path: '/login',
+      name: 'login',
+      builder: (context, state) => BlocProvider(
+        create: (context) => AuthCubit(),
+        child: const LoginScreen(),
+      ),
+    ),
+    // Add more routes here
+  ],
+);

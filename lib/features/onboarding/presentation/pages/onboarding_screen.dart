@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khadamaty_app/core/utils/assetsImages.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import '../../../auth/presentation/pages/login_screen.dart';
 import '../widgets/onboarding_page_item.dart';
 import '../widgets/onboarding_dots_indicator.dart';
 import '../widgets/onboarding_navigation_button.dart';
-import '../../domain/models/onboarding_model.dart';
+import '../../data/models/onboarding_model.dart';
 import '../cubit/onboarding_cubit.dart';
 import '../cubit/onboarding_state.dart';
 
@@ -30,17 +31,17 @@ class OnboardingView extends StatelessWidget {
 
     final List<OnboardingModel> onboardingData = [
       OnboardingModel(
-        image: "assets/images/onboarding1.png",
+        image: Assets.imagesOnboarding1,
         title: S.of(context).onboardingTitle1,
         description: S.of(context).onboardingDesc1,
       ),
       OnboardingModel(
-        image: "assets/images/onboarding2.png",
+        image:Assets.imagesOnboarding2,
         title: S.of(context).onboardingTitle2,
         description: S.of(context).onboardingDesc2,
       ),
       OnboardingModel(
-        image: "assets/images/onboarding3.png",
+        image:Assets.imagesOnboarding3,
         title: S.of(context).onboardingTitle3,
         description: S.of(context).onboardingDesc3,
       ),

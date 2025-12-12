@@ -22,7 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
+    "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "enterYourEmail": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الإلكتروني",
+    ),
+    "enterYourPassword": MessageLookupByLibrary.simpleMessage(
+      "أدخل كلمة المرور",
+    ),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
@@ -38,6 +48,24 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "onboardingTitle2": MessageLookupByLibrary.simpleMessage("حجز سهل"),
     "onboardingTitle3": MessageLookupByLibrary.simpleMessage("دفع آمن"),
+    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordMinLength": MessageLookupByLibrary.simpleMessage(
+      "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    ),
+    "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال بريدك الإلكتروني",
+    ),
+    "pleaseEnterPassword": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال كلمة المرور",
+    ),
+    "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال بريد إلكتروني صحيح",
+    ),
+    "signInToContinue": MessageLookupByLibrary.simpleMessage(
+      "سجل الدخول للمتابعة",
+    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
   };
 }

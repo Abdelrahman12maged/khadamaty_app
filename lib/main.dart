@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khadamaty_app/core/utils/router/app_router.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'core/theme/app_theme.dart';
 import 'core/localization/app_localizations.dart';
@@ -20,7 +21,7 @@ class KhadamatyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       // DevicePreview configuration
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
@@ -31,7 +32,7 @@ class KhadamatyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: const OnboardingScreen(),
+      routerConfig: appRouter,
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
