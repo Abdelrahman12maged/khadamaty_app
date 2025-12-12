@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
+import 'package:khadamaty_app/core/widgets/responsive_layout.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 import '../widgets/login_header.dart';
@@ -62,8 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
           builder: (context, state) {
             final isLoading = state is AuthLoading;
 
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+            // 🎯 Using ResponsiveLayout - handles all responsive logic!
+            return ResponsiveLayout(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
