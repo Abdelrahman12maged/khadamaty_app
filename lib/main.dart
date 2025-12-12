@@ -28,8 +28,8 @@ class KhadamatyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
 
       title: 'Khadamaty',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme(context), // 🎯 Now accepts context!
+      darkTheme: AppTheme.darkTheme(context), // 🎯 Now accepts context!
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,

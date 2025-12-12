@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khadamaty_app/core/utils/responsive_value.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
@@ -16,9 +17,16 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 🎯 Responsive button height based on screen size
+    final buttonHeight = context.responsive(
+      mobile: 70.0,
+      tablet: 56.0,
+      desktop: 52.0,
+    );
+
     return SizedBox(
       width: double.infinity,
-      height: 56,
+      height: buttonHeight,
       child: isOutlined
           ? OutlinedButton(
               onPressed: isLoading ? null : onPressed,
@@ -33,7 +41,12 @@ class AuthButton extends StatelessWidget {
                       width: 20,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : Text(text),
+                  : Text(
+                      text,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
             )
           : ElevatedButton(
               onPressed: isLoading ? null : onPressed,
@@ -51,7 +64,12 @@ class AuthButton extends StatelessWidget {
                         color: Colors.white,
                       ),
                     )
-                  : Text(text),
+                  : Text(
+                      text,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
             ),
     );
   }

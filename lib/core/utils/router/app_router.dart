@@ -42,6 +42,6 @@ final GoRouter appRouter = GoRouter(
         child: const LoginScreen(),
       ),
     ),
-    // Add more routes here
+
   ],
 );
