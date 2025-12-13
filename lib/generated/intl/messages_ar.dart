@@ -22,16 +22,29 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "لديك حساب بالفعل؟ ",
+    ),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage(
+      "تأكيد كلمة المرور",
+    ),
+    "confirmYourPassword": MessageLookupByLibrary.simpleMessage(
+      "أكد كلمة المرور",
+    ),
+    "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "enterYourEmail": MessageLookupByLibrary.simpleMessage(
       "أدخل بريدك الإلكتروني",
     ),
+    "enterYourName": MessageLookupByLibrary.simpleMessage("أدخل اسمك الكامل"),
     "enterYourPassword": MessageLookupByLibrary.simpleMessage(
       "أدخل كلمة المرور",
     ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+    "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+    "getStartedFree": MessageLookupByLibrary.simpleMessage("ابدأ مجاناً"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
@@ -52,8 +65,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordMinLength": MessageLookupByLibrary.simpleMessage(
       "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
     ),
+    "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
+      "كلمات المرور غير متطابقة",
+    ),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريدك الإلكتروني",
+    ),
+    "pleaseEnterName": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال اسمك",
     ),
     "pleaseEnterPassword": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال كلمة المرور",
@@ -61,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريد إلكتروني صحيح",
     ),
+    "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "سجل الدخول للمتابعة",
     ),

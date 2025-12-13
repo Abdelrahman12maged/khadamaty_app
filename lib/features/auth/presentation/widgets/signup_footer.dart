@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginFooter extends StatelessWidget {
-  const LoginFooter({super.key});
+class SignupFooter extends StatelessWidget {
+  const SignupFooter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +12,12 @@ class LoginFooter extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(s.dontHaveAccount),
+        Text(s.alreadyHaveAccount),
         TextButton(
           onPressed: () {
-            context.go('/signup');
+            context.go('/login');
           },
-          child: Text(s.signUp),
+          child: Text(s.signIn),
         ),
       ],
     );

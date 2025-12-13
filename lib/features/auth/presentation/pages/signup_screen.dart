@@ -4,32 +4,37 @@ import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/widgets/responsive_layout.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
-import '../widgets/login_header.dart';
-import '../widgets/login_form.dart';
-import '../widgets/login_footer.dart';
+import '../widgets/signup_header.dart';
+import '../widgets/signup_form.dart';
+import '../widgets/signup_footer.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  void _handleLogin() {
+  void _handleSignup() {
     if (_formKey.currentState!.validate()) {
-      context.read<AuthCubit>().login(
+      context.read<AuthCubit>().register(
+            name: _nameController.text,
             email: _emailController.text,
             password: _passwordController.text,
           );
@@ -57,25 +62,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Colors.green,
                 ),
               );
+              // TODO: Navigate to home screen
             }
           },
           builder: (context, state) {
             final isLoading = state is AuthLoading;
-//Responsivelayout  to handle varios screen sizes tablet,mobile,dektop
+
+            // 🎯 Using ResponsiveLayout - handles all responsive logic!
             return ResponsiveLayout(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const LoginHeader(),
-                  LoginForm(
+                  const SignupHeader(),
+                  SignupForm(
                     formKey: _formKey,
+                    nameController: _nameController,
                     emailController: _emailController,
                     passwordController: _passwordController,
-                    onLogin: _handleLogin,
+                    confirmPasswordController: _confirmPasswordController,
+                    onSignup: _handleSignup,
                     isLoading: isLoading,
                   ),
                   const SizedBox(height: 24),
-                  const LoginFooter(),
+                  const SignupFooter(),
                 ],
               ),
             );

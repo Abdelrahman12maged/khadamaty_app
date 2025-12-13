@@ -21,5 +21,15 @@
   "pleaseEnterEmail": "الرجاء إدخال بريدك الإلكتروني",
   "pleaseEnterValidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
   "pleaseEnterPassword": "الرجاء إدخال كلمة المرور",
-  "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل"
+  "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+  "createAccount": "إنشاء حساب",
+  "getStartedFree": "ابدأ مجاناً",
+  "fullName": "الاسم الكامل",
+  "enterYourName": "أدخل اسمك الكامل",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "confirmYourPassword": "أكد كلمة المرور",
+  "alreadyHaveAccount": "لديك حساب بالفعل؟ ",
+  "signIn": "تسجيل الدخول",
+  "passwordsDontMatch": "كلمات المرور غير متطابقة",
+  "pleaseEnterName": "الرجاء إدخال اسمك"
 }

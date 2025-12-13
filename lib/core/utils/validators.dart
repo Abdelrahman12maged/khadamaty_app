@@ -2,7 +2,7 @@ import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class Validators {
-  // Private constructor to prevent instantiation
+  
   Validators._();
 
   /// Validates email address

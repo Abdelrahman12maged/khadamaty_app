@@ -17,7 +17,6 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 🎯 Responsive button height based on screen size
     final buttonHeight = context.responsive(
       mobile: 70.0,
       tablet: 56.0,

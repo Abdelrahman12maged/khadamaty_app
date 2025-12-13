@@ -21,5 +21,15 @@
   "pleaseEnterEmail": "Please enter your email",
   "pleaseEnterValidEmail": "Please enter a valid email",
   "pleaseEnterPassword": "Please enter your password",
-  "passwordMinLength": "Password must be at least 6 characters"
+  "passwordMinLength": "Password must be at least 6 characters",
+  "createAccount": "Create Account",
+  "getStartedFree": "Get started for free",
+  "fullName": "Full Name",
+  "enterYourName": "Enter your full name",
+  "confirmPassword": "Confirm Password",
+  "confirmYourPassword": "Confirm your password",
+  "alreadyHaveAccount": "Already have an account? ",
+  "signIn": "Sign In",
+  "passwordsDontMatch": "Passwords don't match",
+  "pleaseEnterName": "Please enter your name"
 }

@@ -22,14 +22,14 @@ class KhadamatyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      // DevicePreview configuration
+      // DevicePreview package to test app in mobile,tablet and dektop
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
 
       title: 'Khadamaty',
-      theme: AppTheme.lightTheme(context), // 🎯 Now accepts context!
-      darkTheme: AppTheme.darkTheme(context), // 🎯 Now accepts context!
+      theme: AppTheme.lightTheme(context),
+      darkTheme: AppTheme.darkTheme(context), 
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,

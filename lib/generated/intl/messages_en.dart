@@ -22,16 +22,31 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account? ",
+    ),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "confirmYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Confirm your password",
+    ),
+    "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
+    "enterYourName": MessageLookupByLibrary.simpleMessage(
+      "Enter your full name",
+    ),
     "enterYourPassword": MessageLookupByLibrary.simpleMessage(
       "Enter your password",
     ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+    "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+    "getStartedFree": MessageLookupByLibrary.simpleMessage(
+      "Get started for free",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
@@ -52,8 +67,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordMinLength": MessageLookupByLibrary.simpleMessage(
       "Password must be at least 6 characters",
     ),
+    "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords don\'t match",
+    ),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter your email",
+    ),
+    "pleaseEnterName": MessageLookupByLibrary.simpleMessage(
+      "Please enter your name",
     ),
     "pleaseEnterPassword": MessageLookupByLibrary.simpleMessage(
       "Please enter your password",
@@ -61,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid email",
     ),
+    "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "Sign in to continue",
     ),

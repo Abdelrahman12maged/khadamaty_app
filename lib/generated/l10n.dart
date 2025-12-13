@@ -248,6 +248,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Create Account`
+  String get createAccount {
+    return Intl.message(
+      'Create Account',
+      name: 'createAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get started for free`
+  String get getStartedFree {
+    return Intl.message(
+      'Get started for free',
+      name: 'getStartedFree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Name`
+  String get fullName {
+    return Intl.message('Full Name', name: 'fullName', desc: '', args: []);
+  }
+
+  /// `Enter your full name`
+  String get enterYourName {
+    return Intl.message(
+      'Enter your full name',
+      name: 'enterYourName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm your password`
+  String get confirmYourPassword {
+    return Intl.message(
+      'Confirm your password',
+      name: 'confirmYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account? `
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'Already have an account? ',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get signIn {
+    return Intl.message('Sign In', name: 'signIn', desc: '', args: []);
+  }
+
+  /// `Passwords don't match`
+  String get passwordsDontMatch {
+    return Intl.message(
+      'Passwords don\'t match',
+      name: 'passwordsDontMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your name`
+  String get pleaseEnterName {
+    return Intl.message(
+      'Please enter your name',
+      name: 'pleaseEnterName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
