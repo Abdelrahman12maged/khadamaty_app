@@ -2,7 +2,6 @@ import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class Validators {
-  
   Validators._();
 
   /// Validates email address
@@ -52,8 +51,10 @@ class Validators {
 
   /// Validates phone number
   static String? phone(String? value, BuildContext context) {
+    final s = S.of(context);
+
     if (value == null || value.isEmpty) {
-      return 'Please enter your phone number';
+      return s.pleaseEnterPhone;
     }
 
     // Remove any spaces, dashes, or parentheses
@@ -61,20 +62,30 @@ class Validators {
 
     // Check if it contains only digits and has appropriate length
     if (!RegExp(r'^\+?[0-9]{10,15}$').hasMatch(cleanedNumber)) {
-      return 'Please enter a valid phone number';
+      return s.pleaseEnterValidPhone;
     }
 
     return null;
   }
 
-  /// Validates name (alphabetic characters only)
+  /// Validates name (requires full name: first + last)
   static String? name(String? value, BuildContext context) {
+    final s = S.of(context);
+
     if (value == null || value.isEmpty) {
-      return 'Please enter your name';
+      return s.pleaseEnterName;
     }
 
-    if (value.length < 2) {
-      return 'Name must be at least 2 characters';
+    // Trim and check minimum length
+    final trimmedValue = value.trim();
+    if (trimmedValue.length < 2) {
+      return s.pleaseEnterName;
+    }
+
+    // Check for at least 2 words (first name + last name)
+    final words = trimmedValue.split(RegExp(r'\s+'));
+    if (words.length < 2 || words.any((word) => word.isEmpty)) {
+      return s.pleaseEnterFullName;
     }
 
     return null;

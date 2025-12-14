@@ -31,5 +31,10 @@
   "alreadyHaveAccount": "لديك حساب بالفعل؟ ",
   "signIn": "تسجيل الدخول",
   "passwordsDontMatch": "كلمات المرور غير متطابقة",
-  "pleaseEnterName": "الرجاء إدخال اسمك"
+  "pleaseEnterName": "الرجاء إدخال اسمك",
+  "phoneNumber": "رقم الموبايل",
+  "enterYourPhone": "أدخل رقم موبايلك",
+  "pleaseEnterPhone": "الرجاء إدخال رقم الموبايل",
+  "pleaseEnterValidPhone": "الرجاء إدخال رقم موبايل صحيح",
+  "pleaseEnterFullName": "الرجاء إدخال اسمك الكامل (الاسم الأول والأخير)"
 }

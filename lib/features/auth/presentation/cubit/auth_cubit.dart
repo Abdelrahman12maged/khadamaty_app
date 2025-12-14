@@ -30,6 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> register({
     required String name,
+    required String phone, // NEW
     required String email,
     required String password,
   }) async {
@@ -44,6 +45,8 @@ class AuthCubit extends Cubit<AuthState> {
         id: '1',
         email: email,
         name: name,
+        phoneNumber: phone, // NEW
+        createdAt: DateTime.now(), // NEW
       );
 
       emit(AuthAuthenticated(user: user));

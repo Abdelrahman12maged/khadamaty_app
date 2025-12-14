@@ -18,6 +18,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();  // NEW
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -25,6 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   void dispose() {
     _nameController.dispose();
+    _phoneController.dispose();  // NEW
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -35,6 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
     if (_formKey.currentState!.validate()) {
       context.read<AuthCubit>().register(
             name: _nameController.text,
+            phone: _phoneController.text,  // NEW
             email: _emailController.text,
             password: _passwordController.text,
           );
@@ -77,6 +80,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   SignupForm(
                     formKey: _formKey,
                     nameController: _nameController,
+                    phoneController: _phoneController,  // NEW
                     emailController: _emailController,
                     passwordController: _passwordController,
                     confirmPasswordController: _confirmPasswordController,

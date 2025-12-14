@@ -41,6 +41,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourPassword": MessageLookupByLibrary.simpleMessage(
       "Enter your password",
     ),
+    "enterYourPhone": MessageLookupByLibrary.simpleMessage(
+      "Enter your phone number",
+    ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
@@ -70,8 +73,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
       "Passwords don\'t match",
     ),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter your email",
+    ),
+    "pleaseEnterFullName": MessageLookupByLibrary.simpleMessage(
+      "Please enter your full name (first and last name)",
     ),
     "pleaseEnterName": MessageLookupByLibrary.simpleMessage(
       "Please enter your name",
@@ -79,8 +86,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterPassword": MessageLookupByLibrary.simpleMessage(
       "Please enter your password",
     ),
+    "pleaseEnterPhone": MessageLookupByLibrary.simpleMessage(
+      "Please enter your phone number",
+    ),
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid email",
+    ),
+    "pleaseEnterValidPhone": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid phone number",
     ),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(

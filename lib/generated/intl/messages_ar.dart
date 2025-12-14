@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourPassword": MessageLookupByLibrary.simpleMessage(
       "أدخل كلمة المرور",
     ),
+    "enterYourPhone": MessageLookupByLibrary.simpleMessage("أدخل رقم موبايلك"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
@@ -68,8 +69,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
       "كلمات المرور غير متطابقة",
     ),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريدك الإلكتروني",
+    ),
+    "pleaseEnterFullName": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال اسمك الكامل (الاسم الأول والأخير)",
     ),
     "pleaseEnterName": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال اسمك",
@@ -77,8 +82,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterPassword": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال كلمة المرور",
     ),
+    "pleaseEnterPhone": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال رقم الموبايل",
+    ),
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريد إلكتروني صحيح",
+    ),
+    "pleaseEnterValidPhone": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال رقم موبايل صحيح",
     ),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(

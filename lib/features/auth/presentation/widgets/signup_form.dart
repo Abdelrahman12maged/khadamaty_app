@@ -7,6 +7,7 @@ import 'auth_button.dart';
 class SignupForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
+  final TextEditingController phoneController; // NEW
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
@@ -17,6 +18,7 @@ class SignupForm extends StatefulWidget {
     super.key,
     required this.formKey,
     required this.nameController,
+    required this.phoneController, // NEW
     required this.emailController,
     required this.passwordController,
     required this.confirmPasswordController,
@@ -47,15 +49,17 @@ class _SignupFormState extends State<SignupForm> {
             hint: s.enterYourName,
             prefixIcon: Icons.person_outlined,
             keyboardType: TextInputType.name,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return s.pleaseEnterName;
-              }
-              if (value.length < 2) {
-                return s.pleaseEnterName;
-              }
-              return null;
-            },
+            validator: (value) => Validators.name(value, context),
+          ),
+          const SizedBox(height: 24),
+          // Phone Number Field (NEW - after name, before email)
+          CustomTextField(
+            controller: widget.phoneController,
+            label: s.phoneNumber,
+            hint: s.enterYourPhone,
+            prefixIcon: Icons.phone_outlined,
+            keyboardType: TextInputType.phone,
+            validator: (value) => Validators.phone(value, context),
           ),
           const SizedBox(height: 24),
           CustomTextField(

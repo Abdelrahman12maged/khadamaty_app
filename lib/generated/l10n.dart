@@ -338,6 +338,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get enterYourPhone {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'enterYourPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number`
+  String get pleaseEnterPhone {
+    return Intl.message(
+      'Please enter your phone number',
+      name: 'pleaseEnterPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get pleaseEnterValidPhone {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'pleaseEnterValidPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your full name (first and last name)`
+  String get pleaseEnterFullName {
+    return Intl.message(
+      'Please enter your full name (first and last name)',
+      name: 'pleaseEnterFullName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

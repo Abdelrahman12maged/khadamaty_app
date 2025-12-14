@@ -31,5 +31,10 @@
   "alreadyHaveAccount": "Already have an account? ",
   "signIn": "Sign In",
   "passwordsDontMatch": "Passwords don't match",
-  "pleaseEnterName": "Please enter your name"
+  "pleaseEnterName": "Please enter your name",
+  "phoneNumber": "Phone Number",
+  "enterYourPhone": "Enter your phone number",
+  "pleaseEnterPhone": "Please enter your phone number",
+  "pleaseEnterValidPhone": "Please enter a valid phone number",
+  "pleaseEnterFullName": "Please enter your full name (first and last name)"
 }
