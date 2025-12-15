@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/login_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/signup_screen.dart';
-import 'package:khadamaty_app/features/auth/presentation/cubit/auth_cubit.dart';
 
 // Helper function to determine initial route based on platform
 String _getInitialLocation() {
@@ -38,18 +36,12 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/login',
       name: 'login',
-      builder: (context, state) => BlocProvider(
-        create: (context) => AuthCubit(),
-        child: const LoginScreen(),
-      ),
+      builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
       path: '/signup',
       name: 'signup',
-      builder: (context, state) => BlocProvider(
-        create: (context) => AuthCubit(),
-        child: const SignupScreen(),
-      ),
+      builder: (context, state) => const SignupScreen(),
     ),
   ],
 );
