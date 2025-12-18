@@ -388,6 +388,226 @@ class S {
       args: [],
     );
   }
+
+  /// `Verify Email`
+  String get verifyEmail {
+    return Intl.message(
+      'Verify Email',
+      name: 'verifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your email`
+  String get verifyEmailTitle {
+    return Intl.message(
+      'Check your email',
+      name: 'verifyEmailTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We've sent a verification link to`
+  String get verifyEmailDesc {
+    return Intl.message(
+      'We\'ve sent a verification link to',
+      name: 'verifyEmailDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend Email`
+  String get resendEmail {
+    return Intl.message(
+      'Resend Email',
+      name: 'resendEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification email sent!`
+  String get emailSent {
+    return Intl.message(
+      'Verification email sent!',
+      name: 'emailSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I've Verified My Email`
+  String get iVerified {
+    return Intl.message(
+      'I\'ve Verified My Email',
+      name: 'iVerified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email not verified yet. Please check your inbox.`
+  String get emailNotVerified {
+    return Intl.message(
+      'Email not verified yet. Please check your inbox.',
+      name: 'emailNotVerified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This email is already registered`
+  String get errorEmailAlreadyInUse {
+    return Intl.message(
+      'This email is already registered',
+      name: 'errorEmailAlreadyInUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email address`
+  String get errorInvalidEmail {
+    return Intl.message(
+      'Invalid email address',
+      name: 'errorInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is too weak`
+  String get errorWeakPassword {
+    return Intl.message(
+      'Password is too weak',
+      name: 'errorWeakPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No account found with this email`
+  String get errorUserNotFound {
+    return Intl.message(
+      'No account found with this email',
+      name: 'errorUserNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect password`
+  String get errorWrongPassword {
+    return Intl.message(
+      'Incorrect password',
+      name: 'errorWrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This account has been disabled`
+  String get errorUserDisabled {
+    return Intl.message(
+      'This account has been disabled',
+      name: 'errorUserDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too many attempts. Please try again later`
+  String get errorTooManyRequests {
+    return Intl.message(
+      'Too many attempts. Please try again later',
+      name: 'errorTooManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This operation is not allowed`
+  String get errorOperationNotAllowed {
+    return Intl.message(
+      'This operation is not allowed',
+      name: 'errorOperationNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Network error. Please check your connection`
+  String get errorNetworkRequestFailed {
+    return Intl.message(
+      'Network error. Please check your connection',
+      name: 'errorNetworkRequestFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An unknown error occurred`
+  String get errorUnknown {
+    return Intl.message(
+      'An unknown error occurred',
+      name: 'errorUnknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration failed. Please try again`
+  String get errorRegistrationFailed {
+    return Intl.message(
+      'Registration failed. Please try again',
+      name: 'errorRegistrationFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login failed. Please try again`
+  String get errorLoginFailed {
+    return Intl.message(
+      'Login failed. Please try again',
+      name: 'errorLoginFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data not found`
+  String get errorDataNotFound {
+    return Intl.message(
+      'Data not found',
+      name: 'errorDataNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permission denied`
+  String get errorPermissionDenied {
+    return Intl.message(
+      'Permission denied',
+      name: 'errorPermissionDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save data`
+  String get errorSaveFailed {
+    return Intl.message(
+      'Failed to save data',
+      name: 'errorSaveFailed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

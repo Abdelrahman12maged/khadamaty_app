@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/widgets/responsive_layout.dart';
+import 'package:khadamaty_app/core/utils/error_mapper.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 import '../widgets/login_header.dart';
@@ -43,12 +45,19 @@ class _LoginScreenState extends State<LoginScreen> {
         child: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthError) {
+              // Use ErrorMapper for localized error message
+              final message = state.failure != null
+                  ? ErrorMapper.getLocalizedMessage(context, state.failure!)
+                  : state.message;
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(state.message),
+                  content: Text(message),
                   backgroundColor: Colors.red,
                 ),
               );
+            } else if (state is AuthEmailVerificationPending) {
+              // Navigate to email verification screen
+              context.go('/email-verification?email=${state.user.email}');
             } else if (state is AuthAuthenticated) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -57,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Colors.green,
                 ),
               );
+              // TODO: Navigate to home screen
             }
           },
           builder: (context, state) {

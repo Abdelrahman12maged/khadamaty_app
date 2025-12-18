@@ -45,9 +45,10 @@ dependencies:
   go_router: ^14.6.2
 
   # Firebase
-  firebase_core: ^2.24.2
-  firebase_auth: ^4.16.0
-  cloud_firestore: ^4.14.0
+  firebase_core: ^3.3.0
+  firebase_auth: ^5.2.0
+  cloud_firestore: ^5.4.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

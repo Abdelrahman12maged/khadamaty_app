@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import '../../data/models/user_model.dart';
+import '../../../../core/error/failures.dart';
+import '../../domain/entities/user_entity.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -17,7 +18,7 @@ class AuthLoading extends AuthState {
 }
 
 class AuthAuthenticated extends AuthState {
-  final UserModel user;
+  final UserEntity user;
 
   const AuthAuthenticated({required this.user});
 
@@ -29,11 +30,25 @@ class AuthUnauthenticated extends AuthState {
   const AuthUnauthenticated();
 }
 
-class AuthError extends AuthState {
-  final String message;
+/// Email verification pending - user signed up but hasn't verified email yet
+class AuthEmailVerificationPending extends AuthState {
+  final UserEntity user;
 
-  const AuthError({required this.message});
+  const AuthEmailVerificationPending({required this.user});
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [user];
+}
+
+class AuthError extends AuthState {
+  final String message;
+  final Failure? failure;
+
+  const AuthError({
+    required this.message,
+    this.failure,
+  });
+
+  @override
+  List<Object?> get props => [message, failure];
 }

@@ -34,6 +34,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "emailNotVerified": MessageLookupByLibrary.simpleMessage(
+      "لم يتم تأكيد البريد الإلكتروني بعد. يرجى التحقق من صندوق الوارد.",
+    ),
+    "emailSent": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال رسالة التأكيد!",
+    ),
     "enterYourEmail": MessageLookupByLibrary.simpleMessage(
       "أدخل بريدك الإلكتروني",
     ),
@@ -42,10 +48,54 @@ class MessageLookup extends MessageLookupByLibrary {
       "أدخل كلمة المرور",
     ),
     "enterYourPhone": MessageLookupByLibrary.simpleMessage("أدخل رقم موبايلك"),
+    "errorDataNotFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على البيانات",
+    ),
+    "errorEmailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
+      "هذا البريد الإلكتروني مسجل بالفعل",
+    ),
+    "errorInvalidEmail": MessageLookupByLibrary.simpleMessage(
+      "عنوان بريد إلكتروني غير صالح",
+    ),
+    "errorLoginFailed": MessageLookupByLibrary.simpleMessage(
+      "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى",
+    ),
+    "errorNetworkRequestFailed": MessageLookupByLibrary.simpleMessage(
+      "خطأ في الشبكة. يرجى التحقق من اتصالك",
+    ),
+    "errorOperationNotAllowed": MessageLookupByLibrary.simpleMessage(
+      "هذه العملية غير مسموح بها",
+    ),
+    "errorPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "الصلاحية مرفوضة",
+    ),
+    "errorRegistrationFailed": MessageLookupByLibrary.simpleMessage(
+      "فشل التسجيل. يرجى المحاولة مرة أخرى",
+    ),
+    "errorSaveFailed": MessageLookupByLibrary.simpleMessage("فشل حفظ البيانات"),
+    "errorTooManyRequests": MessageLookupByLibrary.simpleMessage(
+      "محاولات كثيرة. يرجى المحاولة لاحقاً",
+    ),
+    "errorUnknown": MessageLookupByLibrary.simpleMessage("حدث خطأ غير معروف"),
+    "errorUserDisabled": MessageLookupByLibrary.simpleMessage(
+      "تم تعطيل هذا الحساب",
+    ),
+    "errorUserNotFound": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد حساب بهذا البريد الإلكتروني",
+    ),
+    "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور ضعيفة جداً",
+    ),
+    "errorWrongPassword": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور غير صحيحة",
+    ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "getStartedFree": MessageLookupByLibrary.simpleMessage("ابدأ مجاناً"),
+    "iVerified": MessageLookupByLibrary.simpleMessage(
+      "لقد أكدت بريدي الإلكتروني",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
@@ -91,12 +141,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterValidPhone": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال رقم موبايل صحيح",
     ),
+    "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "سجل الدخول للمتابعة",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "verifyEmail": MessageLookupByLibrary.simpleMessage(
+      "تأكيد البريد الإلكتروني",
+    ),
+    "verifyEmailDesc": MessageLookupByLibrary.simpleMessage(
+      "لقد أرسلنا رابط تأكيد إلى",
+    ),
+    "verifyEmailTitle": MessageLookupByLibrary.simpleMessage(
+      "تأكد من بريدك الإلكتروني",
+    ),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
   };
 }

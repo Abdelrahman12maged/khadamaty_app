@@ -1,73 +1,168 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'auth_state.dart';
-import '../../data/models/user_model.dart';
+import '../../domain/usecases/register_usecase.dart';
+import '../../domain/usecases/login_usecase.dart';
+import '../../domain/usecases/logout_usecase.dart';
+import '../../domain/usecases/verify_email_usecase.dart';
+import '../../domain/usecases/reset_password_usecase.dart';
+import '../../data/repositories/auth_repository_impl.dart';
+import '../../data/repositories/user_repository_impl.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(const AuthInitial());
+  final RegisterUseCase _registerUseCase;
+  final LoginUseCase _loginUseCase;
+  final LogoutUseCase _logoutUseCase;
+  final VerifyEmailUseCase _verifyEmailUseCase;
+  final ResetPasswordUseCase _resetPasswordUseCase;
 
+  AuthCubit({
+    RegisterUseCase? registerUseCase,
+    LoginUseCase? loginUseCase,
+    LogoutUseCase? logoutUseCase,
+    VerifyEmailUseCase? verifyEmailUseCase,
+    ResetPasswordUseCase? resetPasswordUseCase,
+  })  : _registerUseCase = registerUseCase ?? _createDefaultRegisterUseCase(),
+        _loginUseCase = loginUseCase ?? _createDefaultLoginUseCase(),
+        _logoutUseCase = logoutUseCase ?? _createDefaultLogoutUseCase(),
+        _verifyEmailUseCase =
+            verifyEmailUseCase ?? _createDefaultVerifyEmailUseCase(),
+        _resetPasswordUseCase =
+            resetPasswordUseCase ?? _createDefaultResetPasswordUseCase(),
+        super(const AuthInitial());
+
+  // Factory methods to create default use cases
+  static RegisterUseCase _createDefaultRegisterUseCase() {
+    return RegisterUseCase(
+      authRepository: AuthRepositoryImpl(),
+      userRepository: UserRepositoryImpl(),
+    );
+  }
+
+  static LoginUseCase _createDefaultLoginUseCase() {
+    return LoginUseCase(
+      authRepository: AuthRepositoryImpl(),
+      userRepository: UserRepositoryImpl(),
+    );
+  }
+
+  static LogoutUseCase _createDefaultLogoutUseCase() {
+    return LogoutUseCase(authRepository: AuthRepositoryImpl());
+  }
+
+  static VerifyEmailUseCase _createDefaultVerifyEmailUseCase() {
+    return VerifyEmailUseCase(
+      authRepository: AuthRepositoryImpl(),
+      userRepository: UserRepositoryImpl(),
+    );
+  }
+
+  static ResetPasswordUseCase _createDefaultResetPasswordUseCase() {
+    return ResetPasswordUseCase(authRepository: AuthRepositoryImpl());
+  }
+
+  /// Login with email and password
   Future<void> login({
     required String email,
     required String password,
   }) async {
-    try {
-      emit(const AuthLoading());
+    emit(const AuthLoading());
 
-      // TODO: Implement actual login logic with API
-      await Future.delayed(const Duration(seconds: 2)); // Simulating API call
+    final result = await _loginUseCase(
+      email: email,
+      password: password,
+    );
 
-      // Mock user data
-      const user = UserModel(
-        id: '1',
-        email: 'user@example.com',
-        name: 'John Doe',
-      );
-
-      emit(AuthAuthenticated(user: user));
-    } catch (e) {
-      emit(AuthError(message: e.toString()));
-    }
+    result.fold(
+      (failure) => emit(AuthError(message: failure.message, failure: failure)),
+      (loginResult) {
+        if (!loginResult.isEmailVerified) {
+          emit(AuthEmailVerificationPending(user: loginResult.user));
+        } else {
+          emit(AuthAuthenticated(user: loginResult.user));
+        }
+      },
+    );
   }
 
+  /// Register a new user
   Future<void> register({
     required String name,
-    required String phone, // NEW
+    required String phone,
     required String email,
     required String password,
   }) async {
-    try {
-      emit(const AuthLoading());
+    emit(const AuthLoading());
 
-      // TODO: Implement actual registration logic with API
-      await Future.delayed(const Duration(seconds: 2)); // Simulating API call
+    final result = await _registerUseCase(
+      name: name,
+      phone: phone,
+      email: email,
+      password: password,
+    );
 
-      // Mock user data
-      final user = UserModel(
-        id: '1',
-        email: email,
-        name: name,
-        phoneNumber: phone, // NEW
-        createdAt: DateTime.now(), // NEW
-      );
-
-      emit(AuthAuthenticated(user: user));
-    } catch (e) {
-      emit(AuthError(message: e.toString()));
-    }
+    result.fold(
+      (failure) => emit(AuthError(message: failure.message, failure: failure)),
+      (user) => emit(AuthEmailVerificationPending(user: user)),
+    );
   }
 
+  /// Logout the current user
   Future<void> logout() async {
-    try {
-      emit(const AuthLoading());
+    emit(const AuthLoading());
 
-      // TODO: Implement actual logout logic
-      await Future.delayed(const Duration(seconds: 1));
+    final result = await _logoutUseCase();
 
-      emit(const AuthUnauthenticated());
-    } catch (e) {
-      emit(AuthError(message: e.toString()));
-    }
+    result.fold(
+      (failure) => emit(AuthError(message: failure.message, failure: failure)),
+      (_) => emit(const AuthUnauthenticated()),
+    );
   }
 
+  /// Resend email verification
+  Future<void> resendEmailVerification() async {
+    final result = await _verifyEmailUseCase.resendVerificationEmail();
+
+    result.fold(
+      (failure) => emit(AuthError(message: failure.message, failure: failure)),
+      (_) {
+        // Success - no state change needed, just show snackbar
+      },
+    );
+  }
+
+  /// Check if email is verified and update state
+  Future<void> checkEmailVerification() async {
+    emit(const AuthLoading());
+
+    final result = await _verifyEmailUseCase();
+
+    result.fold(
+      (failure) => emit(AuthError(message: failure.message, failure: failure)),
+      (verificationResult) {
+        if (verificationResult.isVerified && verificationResult.user != null) {
+          emit(AuthAuthenticated(user: verificationResult.user!));
+        } else if (verificationResult.user != null) {
+          emit(AuthEmailVerificationPending(user: verificationResult.user!));
+        } else {
+          emit(const AuthUnauthenticated());
+        }
+      },
+    );
+  }
+
+  /// Send password reset email
+  Future<void> sendPasswordResetEmail(String email) async {
+    emit(const AuthLoading());
+
+    final result = await _resetPasswordUseCase(email);
+
+    result.fold(
+      (failure) => emit(AuthError(message: failure.message, failure: failure)),
+      (_) => emit(const AuthInitial()),
+    );
+  }
+
+  /// Reset state
   void reset() {
     emit(const AuthInitial());
   }

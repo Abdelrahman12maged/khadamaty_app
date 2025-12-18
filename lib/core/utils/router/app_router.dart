@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/login_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/signup_screen.dart';
+import 'package:khadamaty_app/features/auth/presentation/pages/email_verification_screen.dart';
 
 // Helper function to determine initial route based on platform
 String _getInitialLocation() {
@@ -42,6 +43,14 @@ final GoRouter appRouter = GoRouter(
       path: '/signup',
       name: 'signup',
       builder: (context, state) => const SignupScreen(),
+    ),
+    GoRoute(
+      path: '/email-verification',
+      name: 'emailVerification',
+      builder: (context, state) {
+        final email = state.uri.queryParameters['email'] ?? '';
+        return EmailVerificationScreen(email: email);
+      },
     ),
   ],
 );

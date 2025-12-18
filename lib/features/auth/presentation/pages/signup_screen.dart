@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/widgets/responsive_layout.dart';
+import 'package:khadamaty_app/core/utils/error_mapper.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 import '../widgets/signup_header.dart';
@@ -18,7 +20,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
-  final _phoneController = TextEditingController();  // NEW
+  final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -26,7 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   void dispose() {
     _nameController.dispose();
-    _phoneController.dispose();  // NEW
+    _phoneController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -37,7 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
     if (_formKey.currentState!.validate()) {
       context.read<AuthCubit>().register(
             name: _nameController.text,
-            phone: _phoneController.text,  // NEW
+            phone: _phoneController.text,
             email: _emailController.text,
             password: _passwordController.text,
           );
@@ -51,12 +53,19 @@ class _SignupScreenState extends State<SignupScreen> {
         child: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthError) {
+              // Use ErrorMapper for localized error message
+              final message = state.failure != null
+                  ? ErrorMapper.getLocalizedMessage(context, state.failure!)
+                  : state.message;
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(state.message),
+                  content: Text(message),
                   backgroundColor: Colors.red,
                 ),
               );
+            } else if (state is AuthEmailVerificationPending) {
+              // Navigate to email verification screen
+              context.go('/email-verification?email=${state.user.email}');
             } else if (state is AuthAuthenticated) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -80,7 +89,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   SignupForm(
                     formKey: _formKey,
                     nameController: _nameController,
-                    phoneController: _phoneController,  // NEW
+                    phoneController: _phoneController, // NEW
                     emailController: _emailController,
                     passwordController: _passwordController,
                     confirmPasswordController: _confirmPasswordController,

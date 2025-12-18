@@ -34,6 +34,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Don\'t have an account? ",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailNotVerified": MessageLookupByLibrary.simpleMessage(
+      "Email not verified yet. Please check your inbox.",
+    ),
+    "emailSent": MessageLookupByLibrary.simpleMessage(
+      "Verification email sent!",
+    ),
     "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
     "enterYourName": MessageLookupByLibrary.simpleMessage(
       "Enter your full name",
@@ -44,11 +50,57 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourPhone": MessageLookupByLibrary.simpleMessage(
       "Enter your phone number",
     ),
+    "errorDataNotFound": MessageLookupByLibrary.simpleMessage("Data not found"),
+    "errorEmailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
+      "This email is already registered",
+    ),
+    "errorInvalidEmail": MessageLookupByLibrary.simpleMessage(
+      "Invalid email address",
+    ),
+    "errorLoginFailed": MessageLookupByLibrary.simpleMessage(
+      "Login failed. Please try again",
+    ),
+    "errorNetworkRequestFailed": MessageLookupByLibrary.simpleMessage(
+      "Network error. Please check your connection",
+    ),
+    "errorOperationNotAllowed": MessageLookupByLibrary.simpleMessage(
+      "This operation is not allowed",
+    ),
+    "errorPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "Permission denied",
+    ),
+    "errorRegistrationFailed": MessageLookupByLibrary.simpleMessage(
+      "Registration failed. Please try again",
+    ),
+    "errorSaveFailed": MessageLookupByLibrary.simpleMessage(
+      "Failed to save data",
+    ),
+    "errorTooManyRequests": MessageLookupByLibrary.simpleMessage(
+      "Too many attempts. Please try again later",
+    ),
+    "errorUnknown": MessageLookupByLibrary.simpleMessage(
+      "An unknown error occurred",
+    ),
+    "errorUserDisabled": MessageLookupByLibrary.simpleMessage(
+      "This account has been disabled",
+    ),
+    "errorUserNotFound": MessageLookupByLibrary.simpleMessage(
+      "No account found with this email",
+    ),
+    "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
+      "Password is too weak",
+    ),
+    "errorWrongPassword": MessageLookupByLibrary.simpleMessage(
+      "Incorrect password",
+    ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
     "getStartedFree": MessageLookupByLibrary.simpleMessage(
       "Get started for free",
+    ),
+    "iVerified": MessageLookupByLibrary.simpleMessage(
+      "I\'ve Verified My Email",
     ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -95,12 +147,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterValidPhone": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid phone number",
     ),
+    "resendEmail": MessageLookupByLibrary.simpleMessage("Resend Email"),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "Sign in to continue",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "verifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email"),
+    "verifyEmailDesc": MessageLookupByLibrary.simpleMessage(
+      "We\'ve sent a verification link to",
+    ),
+    "verifyEmailTitle": MessageLookupByLibrary.simpleMessage(
+      "Check your email",
+    ),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
   };
 }

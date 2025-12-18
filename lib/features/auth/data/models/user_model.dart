@@ -1,15 +1,18 @@
 import 'package:equatable/equatable.dart';
+import '../../domain/entities/user_entity.dart';
 
+/// User model for data layer - extends UserEntity
+/// Handles JSON serialization/deserialization
 class UserModel extends Equatable {
   final String id;
   final String email;
   final String name;
   final String? phoneNumber;
   final String? profileImageUrl;
-  final bool isEmailVerified; // For verification system
-  final bool isPhoneVerified; // For verification system
-  final String? location; // For service location matching
-  final DateTime? createdAt; // For reputation/trust score
+  final bool isEmailVerified;
+  final bool isPhoneVerified;
+  final String? location;
+  final DateTime? createdAt;
 
   const UserModel({
     required this.id,
@@ -23,6 +26,7 @@ class UserModel extends Equatable {
     this.createdAt,
   });
 
+  /// Create from JSON
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'] as String,
@@ -39,6 +43,22 @@ class UserModel extends Equatable {
     );
   }
 
+  /// Create from UserEntity
+  factory UserModel.fromEntity(UserEntity entity) {
+    return UserModel(
+      id: entity.id,
+      email: entity.email,
+      name: entity.name,
+      phoneNumber: entity.phoneNumber,
+      profileImageUrl: entity.profileImageUrl,
+      isEmailVerified: entity.isEmailVerified,
+      isPhoneVerified: entity.isPhoneVerified,
+      location: entity.location,
+      createdAt: entity.createdAt,
+    );
+  }
+
+  /// Convert to JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -51,6 +71,46 @@ class UserModel extends Equatable {
       'location': location,
       'createdAt': createdAt?.toIso8601String(),
     };
+  }
+
+  /// Convert to UserEntity
+  UserEntity toEntity() {
+    return UserEntity(
+      id: id,
+      email: email,
+      name: name,
+      phoneNumber: phoneNumber,
+      profileImageUrl: profileImageUrl,
+      isEmailVerified: isEmailVerified,
+      isPhoneVerified: isPhoneVerified,
+      location: location,
+      createdAt: createdAt,
+    );
+  }
+
+  /// Create a copy with updated fields
+  UserModel copyWith({
+    String? id,
+    String? email,
+    String? name,
+    String? phoneNumber,
+    String? profileImageUrl,
+    bool? isEmailVerified,
+    bool? isPhoneVerified,
+    String? location,
+    DateTime? createdAt,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      name: name ?? this.name,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      profileImageUrl: profileImageUrl ?? this.profileImageUrl,
+      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
+      isPhoneVerified: isPhoneVerified ?? this.isPhoneVerified,
+      location: location ?? this.location,
+      createdAt: createdAt ?? this.createdAt,
+    );
   }
 
   @override
