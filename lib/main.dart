@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:khadamaty_app/core/utils/router/app_router.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'core/theme/app_theme.dart';
-import 'core/localization/app_localizations.dart';
 import 'features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'firebase_options.dart';

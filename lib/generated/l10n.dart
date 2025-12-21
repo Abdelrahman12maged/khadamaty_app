@@ -608,6 +608,236 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get home {
+    return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Explore`
+  String get explore {
+    return Intl.message('Explore', name: 'explore', desc: '', args: []);
+  }
+
+  /// `Bookings`
+  String get bookings {
+    return Intl.message('Bookings', name: 'bookings', desc: '', args: []);
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
+  }
+
+  /// `Search for services...`
+  String get searchServices {
+    return Intl.message(
+      'Search for services...',
+      name: 'searchServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categories {
+    return Intl.message('Categories', name: 'categories', desc: '', args: []);
+  }
+
+  /// `Featured Services`
+  String get featuredServices {
+    return Intl.message(
+      'Featured Services',
+      name: 'featuredServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular Providers`
+  String get popularProviders {
+    return Intl.message(
+      'Popular Providers',
+      name: 'popularProviders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See All`
+  String get seeAll {
+    return Intl.message('See All', name: 'seeAll', desc: '', args: []);
+  }
+
+  /// `No services available`
+  String get noServices {
+    return Intl.message(
+      'No services available',
+      name: 'noServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From`
+  String get from {
+    return Intl.message('From', name: 'from', desc: '', args: []);
+  }
+
+  /// `per hour`
+  String get perHour {
+    return Intl.message('per hour', name: 'perHour', desc: '', args: []);
+  }
+
+  /// `per visit`
+  String get perVisit {
+    return Intl.message('per visit', name: 'perVisit', desc: '', args: []);
+  }
+
+  /// `Rating`
+  String get rating {
+    return Intl.message('Rating', name: 'rating', desc: '', args: []);
+  }
+
+  /// `reviews`
+  String get reviews {
+    return Intl.message('reviews', name: 'reviews', desc: '', args: []);
+  }
+
+  /// `View Details`
+  String get viewDetails {
+    return Intl.message(
+      'View Details',
+      name: 'viewDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filters`
+  String get filters {
+    return Intl.message('Filters', name: 'filters', desc: '', args: []);
+  }
+
+  /// `Sort By`
+  String get sortBy {
+    return Intl.message('Sort By', name: 'sortBy', desc: '', args: []);
+  }
+
+  /// `Price Range`
+  String get priceRange {
+    return Intl.message('Price Range', name: 'priceRange', desc: '', args: []);
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message('Location', name: 'location', desc: '', args: []);
+  }
+
+  /// `Availability`
+  String get availability {
+    return Intl.message(
+      'Availability',
+      name: 'availability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply Filters`
+  String get applyFilters {
+    return Intl.message(
+      'Apply Filters',
+      name: 'applyFilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear Filters`
+  String get clearFilters {
+    return Intl.message(
+      'Clear Filters',
+      name: 'clearFilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Results`
+  String get searchResults {
+    return Intl.message(
+      'Search Results',
+      name: 'searchResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results found`
+  String get noResultsFound {
+    return Intl.message(
+      'No results found',
+      name: 'noResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try a different search term`
+  String get tryDifferentSearch {
+    return Intl.message(
+      'Try a different search term',
+      name: 'tryDifferentSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Categories`
+  String get allCategories {
+    return Intl.message(
+      'All Categories',
+      name: 'allCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price: Low to High`
+  String get priceLowToHigh {
+    return Intl.message(
+      'Price: Low to High',
+      name: 'priceLowToHigh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price: High to Low`
+  String get priceHighToLow {
+    return Intl.message(
+      'Price: High to Low',
+      name: 'priceHighToLow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top Rated`
+  String get topRated {
+    return Intl.message('Top Rated', name: 'topRated', desc: '', args: []);
+  }
+
+  /// `Most Popular`
+  String get mostPopular {
+    return Intl.message(
+      'Most Popular',
+      name: 'mostPopular',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

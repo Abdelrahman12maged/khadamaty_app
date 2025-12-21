@@ -58,5 +58,21 @@
   "errorLoginFailed": "Login failed. Please try again",
   "errorDataNotFound": "Data not found",
   "errorPermissionDenied": "Permission denied",
-  "errorSaveFailed": "Failed to save data"
+  "errorSaveFailed": "Failed to save data",
+  "home": "Home",
+  "explore": "Explore",
+  "bookings": "Bookings",
+  "profile": "Profile",
+  "searchServices": "Search for services...",
+  "categories": "Categories",
+  "featuredServices": "Featured Services",
+  "popularProviders": "Popular Providers",
+  "seeAll": "See All",
+  "noServices": "No services available",
+  "from": "From",
+  "perHour": "per hour",
+  "perVisit": "per visit",
+  "rating": "Rating",
+  "reviews": "reviews",
+  "viewDetails": "View Details"
 }

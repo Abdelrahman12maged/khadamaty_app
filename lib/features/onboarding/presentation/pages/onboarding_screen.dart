@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:khadamaty_app/core/utils/assetsImages.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../../../auth/presentation/pages/login_screen.dart';
 import '../widgets/onboarding_page_item.dart';
 import '../widgets/onboarding_dots_indicator.dart';
 import '../widgets/onboarding_navigation_button.dart';
@@ -25,6 +26,14 @@ class OnboardingScreen extends StatelessWidget {
 class OnboardingView extends StatelessWidget {
   const OnboardingView({super.key});
 
+  Future<void> _completeOnboarding(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('hasSeenOnboarding', true);
+    if (context.mounted) {
+      context.go('/login');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final PageController pageController = PageController();
@@ -36,12 +45,12 @@ class OnboardingView extends StatelessWidget {
         description: S.of(context).onboardingDesc1,
       ),
       OnboardingModel(
-        image:Assets.imagesOnboarding2,
+        image: Assets.imagesOnboarding2,
         title: S.of(context).onboardingTitle2,
         description: S.of(context).onboardingDesc2,
       ),
       OnboardingModel(
-        image:Assets.imagesOnboarding3,
+        image: Assets.imagesOnboarding3,
         title: S.of(context).onboardingTitle3,
         description: S.of(context).onboardingDesc3,
       ),
@@ -53,12 +62,7 @@ class OnboardingView extends StatelessWidget {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
-            },
+            onPressed: () => _completeOnboarding(context),
             child: Text(
               S.of(context).skip,
               style: TextStyle(
@@ -100,11 +104,7 @@ class OnboardingView extends StatelessWidget {
                   isLastPage: state.isLastPage,
                   onPressed: () {
                     if (state.isLastPage) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()),
-                      );
+                      _completeOnboarding(context);
                     } else {
                       pageController.nextPage(
                         duration: const Duration(milliseconds: 300),

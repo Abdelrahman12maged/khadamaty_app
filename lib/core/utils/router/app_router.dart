@@ -1,33 +1,74 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
 import 'package:go_router/go_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:khadamaty_app/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/login_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/signup_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/email_verification_screen.dart';
-
-// Helper function to determine initial route based on platform
-String _getInitialLocation() {
-  // Skip onboarding on web or Windows
-  if (kIsWeb) {
-    return '/login';
-  }
-
-  // Check for Windows (desktop)
-  try {
-    if (Platform.isWindows) {
-      return '/login';
-    }
-  } catch (e) {
-    // Platform not available on web, already handled above
-  }
-
-  // Show onboarding on mobile (iOS/Android)
-  return '/onboarding';
-}
+import 'package:khadamaty_app/features/home/presentation/pages/main_screen.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: _getInitialLocation(),
+  initialLocation: '/onboarding',
+  redirect: (context, state) async {
+    final auth = FirebaseAuth.instance;
+    final user = auth.currentUser;
+    final prefs = await SharedPreferences.getInstance();
+    final hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+
+    // Check if user is authenticated
+    final isAuthenticated = user != null;
+    final isEmailVerified = user?.emailVerified ?? false;
+
+    final isGoingToOnboarding = state.matchedLocation == '/onboarding';
+    final isGoingToLogin = state.matchedLocation == '/login';
+    final isGoingToSignup = state.matchedLocation == '/signup';
+    final isGoingToEmailVerification =
+        state.matchedLocation == '/email-verification';
+    final isGoingToMain = state.matchedLocation == '/main';
+
+    // If user is authenticated and email is verified, go to main screen
+    if (isAuthenticated && isEmailVerified) {
+      if (isGoingToOnboarding ||
+          isGoingToLogin ||
+          isGoingToSignup ||
+          isGoingToEmailVerification) {
+        return '/main';
+      }
+      return null; // Allow navigation to current destination
+    }
+
+    // If user is authenticated but email not verified, go to email verification
+    if (isAuthenticated && !isEmailVerified) {
+      if (isGoingToOnboarding ||
+          isGoingToLogin ||
+          isGoingToSignup ||
+          isGoingToMain) {
+        return '/email-verification?email=${user!.email}';
+      }
+      return null;
+    }
+
+    // User is not authenticated
+    // Check if should skip onboarding
+    final shouldSkipOnboarding = kIsWeb || hasSeenOnboarding || _isDesktop();
+
+    if (shouldSkipOnboarding) {
+      // Skip onboarding, show login or current destination
+      if (isGoingToOnboarding) {
+        return '/login';
+      }
+      return null;
+    }
+
+    // Show onboarding on first launch for mobile
+    if (isGoingToMain) {
+      return '/onboarding';
+    }
+
+    return null;
+  },
   routes: [
     GoRoute(
       path: '/onboarding',
@@ -52,5 +93,19 @@ final GoRouter appRouter = GoRouter(
         return EmailVerificationScreen(email: email);
       },
     ),
+    GoRoute(
+      path: '/main',
+      name: 'main',
+      builder: (context, state) => const MainScreen(),
+    ),
   ],
 );
+
+// Helper to check if platform is desktop
+bool _isDesktop() {
+  try {
+    return Platform.isWindows || Platform.isMacOS || Platform.isLinux;
+  } catch (e) {
+    return false;
+  }
+}

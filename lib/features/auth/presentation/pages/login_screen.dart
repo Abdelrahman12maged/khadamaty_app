@@ -66,7 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Colors.green,
                 ),
               );
-              // TODO: Navigate to home screen
+              // Navigate to main screen
+              context.go('/main');
             }
           },
           builder: (context, state) {

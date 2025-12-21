@@ -42,4 +42,9 @@ class AppColors {
   static const Color rating = Color(0xFFFFC107);
   static const Color verified = Color(0xFF4CAF50);
   static const Color premium = Color(0xFFFFD700);
+
+  // Dark theme helpers (aliases for easier access)
+  static const Color darkSurface = surfaceDark;
+  static const Color darkBorder = dividerDark;
+  static const Color darkTextSecondary = textSecondaryDark;
 }

@@ -58,5 +58,21 @@
   "errorLoginFailed": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى",
   "errorDataNotFound": "لم يتم العثور على البيانات",
   "errorPermissionDenied": "الصلاحية مرفوضة",
-  "errorSaveFailed": "فشل حفظ البيانات"
+  "errorSaveFailed": "فشل حفظ البيانات",
+  "home": "الرئيسية",
+  "explore": "استكشف",
+  "bookings": "الحجوزات",
+  "profile": "الملف الشخصي",
+  "searchServices": "ابحث عن خدمة...",
+  "categories": "الفئات",
+  "featuredServices": "الخدمات المميزة",
+  "popularProviders": "مقدمو الخدمات المشهورون",
+  "seeAll": "عرض الكل",
+  "noServices": "لا توجد خدمات متاحة",
+  "from": "من",
+  "perHour": "في الساعة",
+  "perVisit": "لكل زيارة",
+  "rating": "التقييم",
+  "reviews": "تقييم",
+  "viewDetails": "عرض التفاصيل"
 }

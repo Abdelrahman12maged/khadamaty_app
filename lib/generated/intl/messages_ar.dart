@@ -22,9 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "allCategories": MessageLookupByLibrary.simpleMessage("جميع الفئات"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
     ),
+    "applyFilters": MessageLookupByLibrary.simpleMessage("تطبيق الفلاتر"),
+    "availability": MessageLookupByLibrary.simpleMessage("التوفر"),
+    "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
+    "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
+    "clearFilters": MessageLookupByLibrary.simpleMessage("مسح الفلاتر"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
@@ -89,15 +95,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorWrongPassword": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور غير صحيحة",
     ),
+    "explore": MessageLookupByLibrary.simpleMessage("استكشف"),
+    "featuredServices": MessageLookupByLibrary.simpleMessage("الخدمات المميزة"),
+    "filters": MessageLookupByLibrary.simpleMessage("الفلاتر"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+    "from": MessageLookupByLibrary.simpleMessage("من"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "getStartedFree": MessageLookupByLibrary.simpleMessage("ابدأ مجاناً"),
+    "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "لقد أكدت بريدي الإلكتروني",
     ),
+    "location": MessageLookupByLibrary.simpleMessage("الموقع"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "mostPopular": MessageLookupByLibrary.simpleMessage("الأكثر شعبية"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
+    "noResultsFound": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
+    "noServices": MessageLookupByLibrary.simpleMessage("لا توجد خدمات متاحة"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
     ),
@@ -119,6 +134,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
       "كلمات المرور غير متطابقة",
     ),
+    "perHour": MessageLookupByLibrary.simpleMessage("في الساعة"),
+    "perVisit": MessageLookupByLibrary.simpleMessage("لكل زيارة"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريدك الإلكتروني",
@@ -141,13 +158,34 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterValidPhone": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال رقم موبايل صحيح",
     ),
+    "popularProviders": MessageLookupByLibrary.simpleMessage(
+      "مقدمو الخدمات المشهورون",
+    ),
+    "priceHighToLow": MessageLookupByLibrary.simpleMessage(
+      "السعر: من الأعلى للأقل",
+    ),
+    "priceLowToHigh": MessageLookupByLibrary.simpleMessage(
+      "السعر: من الأقل للأعلى",
+    ),
+    "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
+    "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
+    "reviews": MessageLookupByLibrary.simpleMessage("تقييم"),
+    "searchResults": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
+    "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
+    "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "سجل الدخول للمتابعة",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
+    "topRated": MessageLookupByLibrary.simpleMessage("الأعلى تقييماً"),
+    "tryDifferentSearch": MessageLookupByLibrary.simpleMessage(
+      "جرب كلمة بحث مختلفة",
+    ),
     "verifyEmail": MessageLookupByLibrary.simpleMessage(
       "تأكيد البريد الإلكتروني",
     ),
@@ -157,6 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyEmailTitle": MessageLookupByLibrary.simpleMessage(
       "تأكد من بريدك الإلكتروني",
     ),
+    "viewDetails": MessageLookupByLibrary.simpleMessage("عرض التفاصيل"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
   };
 }

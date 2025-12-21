@@ -77,7 +77,7 @@ class ResponsiveLayout extends StatelessWidget {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: maxWidth),
-        child: SingleChildScrollView(
+        child: Padding(
           padding: EdgeInsets.all(padding),
           child: useCard && !isMobile
               ? Card(
