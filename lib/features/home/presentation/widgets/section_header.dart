@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khadamaty_app/core/utils/responsive_font_size.dart';
 
 /// Section header with title and optional "See All" action
 class SectionHeader extends StatelessWidget {
@@ -19,13 +18,15 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        // Title
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
-                fontSize: ResponsiveFontSize.titleLarge(context),
               ),
         ),
+
+        // See All button
         if (onSeeAllTap != null && seeAllText != null)
           TextButton(
             onPressed: onSeeAllTap,

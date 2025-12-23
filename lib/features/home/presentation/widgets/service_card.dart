@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:khadamaty_app/generated/l10n.dart';
-import 'package:khadamaty_app/core/utils/responsive_font_size.dart';
 import 'package:khadamaty_app/core/theme/app_colors.dart';
+import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import 'service_card_image.dart';
+import 'provider_info.dart';
+import 'price_display.dart';
+import 'rating_badge.dart';
 
-/// Service card widget for displaying service information
-/// Works in both horizontal ListView and Grid
+/// Clean, modular service card widget
+/// Composed of smaller, reusable widgets
 class ServiceCard extends StatelessWidget {
   final String title;
   final String description;
@@ -35,17 +38,26 @@ class ServiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
+    // Responsive values
+    final cardWidth =
+        context.responsive(mobile: 280.0, tablet: 300.0, desktop: 320.0);
+    final cardPadding =
+        context.responsive(mobile: 10.0, tablet: 12.0, desktop: 14.0);
+    final borderRadius =
+        context.responsive(mobile: 12.0, tablet: 14.0, desktop: 16.0);
+    final titleSpacing =
+        context.responsive(mobile: 2.0, tablet: 3.0, desktop: 4.0);
+    final descSpacing =
+        context.responsive(mobile: 4.0, tablet: 6.0, desktop: 8.0);
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        // Only set width for horizontal scroll
-        width: isInGrid
-            ? null
-            : (MediaQuery.of(context).size.width > 600 ? 300.0 : 280.0),
+        width: isInGrid ? null : cardWidth,
         margin: isInGrid ? EdgeInsets.zero : const EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
           color: isDark ? AppColors.surfaceDark : Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: [
             BoxShadow(
               color: isDark
@@ -59,174 +71,53 @@ class ServiceCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Service Image
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
-              child: imageUrl != null
-                  ? Image.network(
-                      imageUrl!,
-                      height: 140,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          _buildPlaceholderImage(context),
-                    )
-                  : _buildPlaceholderImage(context),
-            ),
-
+            ServiceImage(imageUrl: imageUrl),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(cardPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Service Title
+                    // Title
                     Text(
                       title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: ResponsiveFontSize.titleMedium(context),
                           ),
                     ),
-
-                    const SizedBox(height: 2),
+                    SizedBox(height: titleSpacing),
 
                     // Description
                     Text(
                       description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: isDark
-                                ? AppColors.textSecondaryDark
-                                : Colors.grey.shade600,
-                            fontSize: ResponsiveFontSize.bodySmall(context),
-                          ),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
+                    SizedBox(height: descSpacing),
 
-                    const SizedBox(height: 4),
-
-                    // Provider name
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.person_outline,
-                          size: 16,
-                          color: isDark
-                              ? AppColors.textSecondaryDark
-                              : Colors.grey.shade600,
-                        ),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            providerName,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: isDark
-                                          ? AppColors.textSecondaryDark
-                                          : Colors.grey.shade600,
-                                      fontSize:
-                                          ResponsiveFontSize.bodySmall(context),
-                                    ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Provider
+                    ProviderInfo(providerName: providerName),
 
                     const Spacer(),
 
-                    // Price and Rating
+                    // Price & Rating
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        // Price
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                '${S.of(context).from} \$${price.toStringAsFixed(0)}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: ResponsiveFontSize.titleMedium(
-                                          context),
-                                    ),
-                              ),
-                              Text(
-                                priceUnit,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(
-                                      color: isDark
-                                          ? AppColors.textSecondaryDark
-                                          : Colors.grey.shade600,
-                                      fontSize: ResponsiveFontSize.labelSmall(
-                                          context),
-                                    ),
-                              ),
-                            ],
+                          child: PriceDisplay(
+                            price: price,
+                            priceUnit: priceUnit,
                           ),
                         ),
-
-                        // Rating
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.amber.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                size: 16,
-                                color: Colors.amber,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                rating.toStringAsFixed(1),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: ResponsiveFontSize.labelSmall(
-                                          context),
-                                    ),
-                              ),
-                              Text(
-                                ' ($reviewCount)',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(
-                                      color: isDark
-                                          ? AppColors.textSecondaryDark
-                                          : Colors.grey.shade600,
-                                      fontSize: ResponsiveFontSize.labelSmall(
-                                          context),
-                                    ),
-                              ),
-                            ],
-                          ),
+                        RatingBadge(
+                          rating: rating,
+                          reviewCount: reviewCount,
                         ),
                       ],
                     ),
@@ -236,21 +127,6 @@ class ServiceCard extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildPlaceholderImage(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Container(
-      height: 140,
-      width: double.infinity,
-      color: isDark ? AppColors.dividerDark : Colors.grey.shade200,
-      child: Icon(
-        Icons.image_outlined,
-        size: 48,
-        color: isDark ? AppColors.textSecondaryDark : Colors.grey.shade400,
       ),
     );
   }

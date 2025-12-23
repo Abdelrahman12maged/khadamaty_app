@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khadamaty_app/core/utils/responsive_font_size.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 
 /// Category card widget with icon, name, and service count
@@ -23,12 +22,15 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Responsive values
     final padding =
         context.responsive(mobile: 16.0, tablet: 18.0, desktop: 20.0);
     final iconSize =
         context.responsive(mobile: 28.0, tablet: 30.0, desktop: 32.0);
     final spacing =
         context.responsive(mobile: 8.0, tablet: 10.0, desktop: 12.0);
+    final borderRadius =
+        context.responsive(mobile: 14.0, tablet: 16.0, desktop: 18.0);
 
     return GestureDetector(
       onTap: onTap,
@@ -39,7 +41,7 @@ class CategoryCard extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: [
             BoxShadow(
               color: gradientStartColor.withOpacity(0.3),
@@ -78,7 +80,6 @@ class CategoryCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
-                      fontSize: ResponsiveFontSize.bodyMedium(context),
                     ),
               ),
 
@@ -89,7 +90,6 @@ class CategoryCard extends StatelessWidget {
                 '$serviceCount services',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Colors.white.withOpacity(0.9),
-                      fontSize: ResponsiveFontSize.bodySmall(context),
                     ),
               ),
             ],
