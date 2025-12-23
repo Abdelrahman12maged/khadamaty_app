@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:khadamaty_app/generated/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import '../cubit/navigation_cubit.dart';
+import '../widgets/side_navigation_rail.dart';
+import '../widgets/app_bottom_navigation_bar.dart';
 import 'home_screen.dart';
 import 'explore_page.dart';
 import 'bookings_page.dart';
 import 'profile_page.dart';
 
-/// Main screen with bottom navigation bar
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+/// Main screen with adaptive navigation:
+/// - Desktop: Side NavigationRail
+/// - Mobile/Tablet: Bottom NavigationBar
+class MainScreen extends StatelessWidget {
+  final int initialTab;
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
+  const MainScreen({super.key, this.initialTab = 0});
 
-class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-
-  final List<Widget> _pages = const [
+  static final List<Widget> _pages = const [
     HomeScreen(),
     ExplorePage(),
     BookingsPage(),
@@ -25,58 +26,46 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return BlocProvider(
+      create: (context) => NavigationCubit(initialIndex: initialTab),
+      child: BlocBuilder<NavigationCubit, NavigationState>(
+        builder: (context, state) {
+          final navigationCubit = context.read<NavigationCubit>();
 
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: isDark
-                  ? Colors.black.withOpacity(0.3)
-                  : Colors.grey.withOpacity(0.2),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: 12,
-          unselectedFontSize: 12,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.home_outlined),
-              activeIcon: const Icon(Icons.home),
-              label: S.of(context).home,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.explore_outlined),
-              activeIcon: const Icon(Icons.explore),
-              label: S.of(context).explore,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.calendar_today_outlined),
-              activeIcon: const Icon(Icons.calendar_today),
-              label: S.of(context).bookings,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.person_outline),
-              activeIcon: const Icon(Icons.person),
-              label: S.of(context).profile,
-            ),
-          ],
-        ),
+          return Scaffold(
+            body: context.isDesktop
+                ? Row(
+                    children: [
+                      // Side Navigation Rail for Desktop
+                      SideNavigationRail(
+                        selectedIndex: state.selectedIndex,
+                        onDestinationSelected: navigationCubit.selectPage,
+                      ),
+
+                      // Vertical divider
+                      const VerticalDivider(thickness: 1, width: 1),
+
+                      // Main content
+                      Expanded(
+                        child: IndexedStack(
+                          index: state.selectedIndex,
+                          children: _pages,
+                        ),
+                      ),
+                    ],
+                  )
+                : IndexedStack(
+                    index: state.selectedIndex,
+                    children: _pages,
+                  ),
+            bottomNavigationBar: context.isDesktop
+                ? null
+                : AppBottomNavigationBar(
+                    currentIndex: state.selectedIndex,
+                    onTap: navigationCubit.selectPage,
+                  ),
+          );
+        },
       ),
     );
   }

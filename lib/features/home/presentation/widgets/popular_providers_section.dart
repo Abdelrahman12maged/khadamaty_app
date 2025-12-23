@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../widgets/service_card.dart';
+import '../cubit/mock_home_data.dart';
+import 'service_card.dart';
 
 /// Popular Providers Section Widget
 class PopularProvidersSection extends StatelessWidget {
@@ -9,65 +11,40 @@ class PopularProvidersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mock providers data
-    final providers = [
-      {
-        'title': 'Premium Home Care',
-        'description': '5+ years experience in professional cleaning',
-        'provider': 'Fatima Al-Sayed',
-        'price': 120.0,
-        'priceUnit': S.of(context).perVisit,
-        'rating': 5.0,
-        'reviews': 250,
-      },
-      {
-        'title': 'Expert Plumber 24/7',
-        'description': 'Emergency plumbing services available',
-        'provider': 'Khaled Mahmoud',
-        'price': 100.0,
-        'priceUnit': S.of(context).perHour,
-        'rating': 4.9,
-        'reviews': 180,
-      },
-      {
-        'title': 'Master Electrician',
-        'description': 'Licensed electrician with 10+ years experience',
-        'provider': 'Ahmed Saleh',
-        'price': 90.0,
-        'priceUnit': S.of(context).perHour,
-        'rating': 4.8,
-        'reviews': 165,
-      },
-    ];
+    // Get providers from centralized mock data
+    final providers = MockHomeData.getPopularProviders(context);
 
-    // On desktop/tablet, show grid
+    // Desktop/tablet: show grid
     if (!context.isMobile) {
       final crossAxisCount =
           context.responsive(mobile: 2, tablet: 2, desktop: 3);
+      final spacing = AppSpacing.md(context);
 
       return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+          crossAxisSpacing: spacing,
+          mainAxisSpacing: spacing,
           childAspectRatio: 0.85,
         ),
         itemCount: providers.length,
         itemBuilder: (context, index) {
           final provider = providers[index];
           return ServiceCard(
-            title: provider['title'] as String,
-            description: provider['description'] as String,
-            providerName: provider['provider'] as String,
-            price: provider['price'] as double,
-            priceUnit: provider['priceUnit'] as String,
-            rating: provider['rating'] as double,
-            reviewCount: provider['reviews'] as int,
+            title: provider.title,
+            description: provider.description,
+            providerName: provider.providerName,
+            price: provider.price,
+            priceUnit: _getLocalizedPriceUnit(context, provider.priceUnit),
+            rating: provider.rating,
+            reviewCount: provider.reviewCount,
+            imageUrl: provider.imageUrl,
             isInGrid: true,
             onTap: () {
-              // TODO: Navigate to provider profile
+              // TODO: Navigate to provider profile (/provider/${provider.id})
+              // Will implement when provider profile page is created
             },
           );
         },
@@ -75,28 +52,40 @@ class PopularProvidersSection extends StatelessWidget {
     }
 
     // Mobile: horizontal scroll
+    final cardHeight =
+        context.responsive(mobile: 280.0, tablet: 300.0, desktop: 320.0);
+
     return SizedBox(
-      height: 280,
+      height: cardHeight,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: providers.length,
         itemBuilder: (context, index) {
           final provider = providers[index];
           return ServiceCard(
-            title: provider['title'] as String,
-            description: provider['description'] as String,
-            providerName: provider['provider'] as String,
-            price: provider['price'] as double,
-            priceUnit: provider['priceUnit'] as String,
-            rating: provider['rating'] as double,
-            reviewCount: provider['reviews'] as int,
+            title: provider.title,
+            description: provider.description,
+            providerName: provider.providerName,
+            price: provider.price,
+            priceUnit: _getLocalizedPriceUnit(context, provider.priceUnit),
+            rating: provider.rating,
+            reviewCount: provider.reviewCount,
+            imageUrl: provider.imageUrl,
             isInGrid: false,
             onTap: () {
-              // TODO: Navigate to provider profile
+              // TODO: Navigate to provider profile (/provider/${provider.id})
+              // Will implement when provider profile page is created
             },
           );
         },
       ),
     );
+  }
+
+  // Helper to get localized price unit
+  String _getLocalizedPriceUnit(BuildContext context, String unit) {
+    if (unit == 'per visit') return S.of(context).perVisit;
+    if (unit == 'per hour') return S.of(context).perHour;
+    return unit;
   }
 }

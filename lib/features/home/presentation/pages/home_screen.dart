@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/widgets/responsive_layout.dart';
+import 'package:khadamaty_app/core/widgets/loading_indicator.dart';
+import 'package:khadamaty_app/core/widgets/error_display.dart';
+import 'package:khadamaty_app/core/utils/app_spacing.dart';
+import 'package:go_router/go_router.dart';
+import '../cubit/home_cubit.dart';
+import '../cubit/home_state.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/search_bar_widget.dart';
 import '../widgets/section_header.dart';
@@ -13,91 +20,110 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const HomeAppBar(),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          // TODO: Implement refresh logic
-          await Future.delayed(const Duration(seconds: 1));
-        },
-        child: ResponsiveLayout(
-          useCard: false,
-          mobileMaxWidth: double.infinity,
-          tabletMaxWidth: 900.0,
-          desktopMaxWidth: 1200.0,
-          mobilePadding: 10.0,
-          tabletPadding: 32.0,
-          desktopPadding: 40.0,
-          child: Column(
-            children: [
-               SearchBarWidget(
-                        onTap: () {
+    return BlocProvider(
+      create: (context) => HomeCubit()..loadHomeData(context),
+      child: Scaffold(
+        appBar: const HomeAppBar(),
+        body: BlocConsumer<HomeCubit, HomeState>(
+          listener: (context, state) {
+            // Show snackbar on error
+            if (state.error != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.error!),
+                  backgroundColor: Colors.red,
+                  action: SnackBarAction(
+                    label: 'Retry',
+                    textColor: Colors.white,
+                    onPressed: () {
+                      context.read<HomeCubit>().loadHomeData(context);
+                    },
+                  ),
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            // Show loading on initial load
+            if (state.isLoading && state.categories.isEmpty) {
+              return const LoadingIndicator(message: 'Loading home data...');
+            }
 
+            // Show error if no data and has error
+            if (state.error != null && state.categories.isEmpty) {
+              return ErrorDisplay(
+                message: state.error!,
+                onRetry: () => context.read<HomeCubit>().loadHomeData(context),
+              );
+            }
 
-                          // TODO: Navigate to explore/search screen
-                        },
-                      ),
-
-                 
-              Expanded(
+            // Show content
+            return RefreshIndicator(
+              onRefresh: () =>
+                  context.read<HomeCubit>().refreshHomeData(context),
+              child: ResponsiveLayout(
+                useCard: false,
+                mobileMaxWidth: double.infinity,
+                tabletMaxWidth: 900.0,
+                desktopMaxWidth: 1200.0,
+                mobilePadding: 16.0,
+                tabletPadding: 32.0,
+                desktopPadding: 40.0,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Search Bar
-                     
-                      const SizedBox(height: 16),
-                
+                      SearchBarWidget(
+                        onTap: () => context.go('/explore'),
+                      ),
+
+                      SizedBox(height: AppSpacing.lg(context)),
+
                       // Categories Section
                       SectionHeader(
                         title: S.of(context).categories,
                         seeAllText: S.of(context).seeAll,
-                        onSeeAllTap: () {
-                          // TODO: Navigate to all categories
-                        },
+                        onSeeAllTap: () => context.go('/explore'),
                       ),
-                
-                      const SizedBox(height: 12),
-                
+
+                      SizedBox(height: AppSpacing.header(context)),
+
                       const CategoriesSection(),
-                
-                      const SizedBox(height: 32),
-                
+
+                      SizedBox(height: AppSpacing.section(context)),
+
                       // Featured Services Section
                       SectionHeader(
                         title: S.of(context).featuredServices,
                         seeAllText: S.of(context).seeAll,
-                        onSeeAllTap: () {
-                          // TODO: Navigate to all featured services
-                        },
+                        onSeeAllTap: () => context.go('/explore'),
                       ),
-                
-                      const SizedBox(height: 12),
-                
+
+                      SizedBox(height: AppSpacing.header(context)),
+
                       const FeaturedServicesSection(),
-                
-                      const SizedBox(height: 32),
-                
+
+                      SizedBox(height: AppSpacing.section(context)),
+
                       // Popular Providers Section
                       SectionHeader(
                         title: S.of(context).popularProviders,
                         seeAllText: S.of(context).seeAll,
-                        onSeeAllTap: () {
-                          // TODO: Navigate to all providers
-                        },
+                        onSeeAllTap: () => context.go('/explore'),
                       ),
-                
-                      const SizedBox(height: 12),
-                
+
+                      SizedBox(height: AppSpacing.header(context)),
+
                       const PopularProvidersSection(),
-                
-                      const SizedBox(height: 32),
+
+                      SizedBox(height: AppSpacing.section(context)),
                     ],
                   ),
                 ),
               ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

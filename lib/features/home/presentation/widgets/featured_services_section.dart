@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../widgets/service_card.dart';
+import '../cubit/mock_home_data.dart';
+import 'service_card.dart';
 
 /// Featured Services Section Widget
 class FeaturedServicesSection extends StatelessWidget {
@@ -9,74 +11,40 @@ class FeaturedServicesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mock featured services data
-    final services = [
-      {
-        'title': 'House Deep Cleaning',
-        'description': 'Professional deep cleaning for your entire house',
-        'provider': 'Ahmed Hassan',
-        'price': 150.0,
-        'priceUnit': S.of(context).perVisit,
-        'rating': 4.8,
-        'reviews': 120,
-      },
-      {
-        'title': 'AC Installation',
-        'description': 'Expert AC installation and maintenance service',
-        'provider': 'Mohamed Ali',
-        'price': 200.0,
-        'priceUnit': S.of(context).perVisit,
-        'rating': 4.9,
-        'reviews': 85,
-      },
-      {
-        'title': 'Electrical Wiring',
-        'description': 'Complete electrical wiring and repair services',
-        'provider': 'Sara Ibrahim',
-        'price': 80.0,
-        'priceUnit': S.of(context).perHour,
-        'rating': 4.7,
-        'reviews': 95,
-      },
-      {
-        'title': 'Home Painting',
-        'description': 'Professional painting services for all rooms',
-        'provider': 'Khaled Ahmed',
-        'price': 120.0,
-        'priceUnit': S.of(context).perVisit,
-        'rating': 4.6,
-        'reviews': 75,
-      },
-    ];
+    // Get services from centralized mock data
+    final services = MockHomeData.getFeaturedServices(context);
 
-    // On desktop/tablet, show grid instead of horizontal scroll
+    // Desktop/tablet: show grid
     if (!context.isMobile) {
       final crossAxisCount =
           context.responsive(mobile: 2, tablet: 2, desktop: 3);
+      final spacing = AppSpacing.md(context);
 
       return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+          crossAxisSpacing: spacing,
+          mainAxisSpacing: spacing,
           childAspectRatio: 0.85,
         ),
         itemCount: services.length,
         itemBuilder: (context, index) {
           final service = services[index];
           return ServiceCard(
-            title: service['title'] as String,
-            description: service['description'] as String,
-            providerName: service['provider'] as String,
-            price: service['price'] as double,
-            priceUnit: service['priceUnit'] as String,
-            rating: service['rating'] as double,
-            reviewCount: service['reviews'] as int,
+            title: service.title,
+            description: service.description,
+            providerName: service.providerName,
+            price: service.price,
+            priceUnit: _getLocalizedPriceUnit(context, service.priceUnit),
+            rating: service.rating,
+            reviewCount: service.reviewCount,
+            imageUrl: service.imageUrl,
             isInGrid: true,
             onTap: () {
-              // TODO: Navigate to service details
+              // TODO: Navigate to service details (/service/${service.id})
+              // Will implement when service detail page is created
             },
           );
         },
@@ -84,28 +52,40 @@ class FeaturedServicesSection extends StatelessWidget {
     }
 
     // Mobile: horizontal scroll
+    final cardHeight =
+        context.responsive(mobile: 280.0, tablet: 300.0, desktop: 320.0);
+
     return SizedBox(
-      height: 280,
+      height: cardHeight,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: services.length,
         itemBuilder: (context, index) {
           final service = services[index];
           return ServiceCard(
-            title: service['title'] as String,
-            description: service['description'] as String,
-            providerName: service['provider'] as String,
-            price: service['price'] as double,
-            priceUnit: service['priceUnit'] as String,
-            rating: service['rating'] as double,
-            reviewCount: service['reviews'] as int,
+            title: service.title,
+            description: service.description,
+            providerName: service.providerName,
+            price: service.price,
+            priceUnit: _getLocalizedPriceUnit(context, service.priceUnit),
+            rating: service.rating,
+            reviewCount: service.reviewCount,
+            imageUrl: service.imageUrl,
             isInGrid: false,
             onTap: () {
-              // TODO: Navigate to service details
+              // TODO: Navigate to service details (/service/${service.id})
+              // Will implement when service detail page is created
             },
           );
         },
       ),
     );
+  }
+
+  // Helper to get localized price unit
+  String _getLocalizedPriceUnit(BuildContext context, String unit) {
+    if (unit == 'per visit') return S.of(context).perVisit;
+    if (unit == 'per hour') return S.of(context).perHour;
+    return unit;
   }
 }

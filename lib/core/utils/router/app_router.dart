@@ -98,6 +98,11 @@ final GoRouter appRouter = GoRouter(
       name: 'main',
       builder: (context, state) => const MainScreen(),
     ),
+    GoRoute(
+      path: '/explore',
+      name: 'explore',
+      builder: (context, state) => const MainScreen(initialTab: 1),
+    ),
   ],
 );
 
