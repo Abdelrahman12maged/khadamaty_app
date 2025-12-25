@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_state.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 
 /// Mock data for home screen
 /// TODO: Replace with actual data from repository

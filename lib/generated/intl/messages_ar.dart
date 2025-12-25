@@ -26,17 +26,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
     ),
+    "appName": MessageLookupByLibrary.simpleMessage("خدماتي"),
     "applyFilters": MessageLookupByLibrary.simpleMessage("تطبيق الفلاتر"),
+    "bookingDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
     "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
+    "cancelled": MessageLookupByLibrary.simpleMessage("الملغاة"),
     "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("مسح الفلاتر"),
+    "completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
     "confirmYourPassword": MessageLookupByLibrary.simpleMessage(
       "أكد كلمة المرور",
     ),
+    "confirmed": MessageLookupByLibrary.simpleMessage("مؤكد"),
     "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "currency": MessageLookupByLibrary.simpleMessage("جنيه"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailNotVerified": MessageLookupByLibrary.simpleMessage(
@@ -106,14 +112,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "لقد أكدت بريدي الإلكتروني",
     ),
+    "loadingBookings": MessageLookupByLibrary.simpleMessage(
+      "جاري تحميل الحجوزات...",
+    ),
+    "loadingHomeData": MessageLookupByLibrary.simpleMessage(
+      "جاري تحميل البيانات...",
+    ),
+    "loadingServices": MessageLookupByLibrary.simpleMessage(
+      "جاري تحميل الخدمات...",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "minimumRating": MessageLookupByLibrary.simpleMessage(
       "الحد الأدنى للتقييم",
     ),
     "mostPopular": MessageLookupByLibrary.simpleMessage("الأكثر شعبية"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
+    "noCancelledBookings": MessageLookupByLibrary.simpleMessage(
+      "لا توجد حجوزات ملغاة",
+    ),
+    "noPastBookings": MessageLookupByLibrary.simpleMessage(
+      "لا توجد حجوزات سابقة",
+    ),
     "noResultsFor": MessageLookupByLibrary.simpleMessage("لا توجد نتائج لـ"),
     "noServices": MessageLookupByLibrary.simpleMessage("لا توجد خدمات متاحة"),
+    "noUpcomingBookings": MessageLookupByLibrary.simpleMessage(
+      "لا توجد حجوزات قادمة",
+    ),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
     ),
@@ -135,6 +159,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
       "كلمات المرور غير متطابقة",
     ),
+    "past": MessageLookupByLibrary.simpleMessage("السابقة"),
+    "pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "perHour": MessageLookupByLibrary.simpleMessage("في الساعة"),
     "perVisit": MessageLookupByLibrary.simpleMessage("لكل زيارة"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
@@ -182,10 +208,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
+    "timeSlot": MessageLookupByLibrary.simpleMessage("الوقت"),
     "topRated": MessageLookupByLibrary.simpleMessage("الأعلى تقييماً"),
     "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
       "جرب كلمات مختلفة أو امسح الفلاتر",
     ),
+    "upcoming": MessageLookupByLibrary.simpleMessage("القادمة"),
     "verifyEmail": MessageLookupByLibrary.simpleMessage(
       "تأكيد البريد الإلكتروني",
     ),

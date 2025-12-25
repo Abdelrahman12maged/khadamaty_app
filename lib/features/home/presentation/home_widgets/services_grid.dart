@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../cubits/home_state.dart';
 import 'service_card.dart';
 
 /// Reusable services grid widget

@@ -1,4 +1,5 @@
 {
+  "@@locale": "ar",
   "onboardingTitle1": "اعثر على خدمات محلية",
   "onboardingDesc1": "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
   "onboardingTitle2": "حجز سهل",
@@ -87,5 +88,21 @@
   "filters": "الفلاتر",
   "priceRange": "نطاق السعر",
   "minimumRating": "الحد الأدنى للتقييم",
-  "applyFilters": "تطبيق الفلاتر"
+  "applyFilters": "تطبيق الفلاتر",
+  "upcoming": "القادمة",
+  "past": "السابقة",
+  "cancelled": "الملغاة",
+  "pending": "قيد الانتظار",
+  "confirmed": "مؤكد",
+  "completed": "مكتمل",
+  "noUpcomingBookings": "لا توجد حجوزات قادمة",
+  "noPastBookings": "لا توجد حجوزات سابقة",
+  "noCancelledBookings": "لا توجد حجوزات ملغاة",
+  "loadingBookings": "جاري تحميل الحجوزات...",
+  "bookingDetails": "تفاصيل الحجز",
+  "timeSlot": "الوقت",
+  "currency": "جنيه",
+  "loadingHomeData": "جاري تحميل البيانات...",
+  "loadingServices": "جاري تحميل الخدمات...",
+  "appName": "خدماتي"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khadamaty_app/generated/l10n.dart';
 
 /// App bar for home screen
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -9,7 +10,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Row(
         children: [
-          Text('Khadamaty', style: Theme.of(context).textTheme.headlineSmall),
+          Text(S.of(context).appName,
+              style: Theme.of(context).textTheme.headlineSmall),
         ],
       ),
       actions: [

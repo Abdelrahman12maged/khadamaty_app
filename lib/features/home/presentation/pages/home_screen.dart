@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/widgets/responsive_layout.dart';
 import 'package:khadamaty_app/core/widgets/loading_indicator.dart';
 import 'package:khadamaty_app/core/widgets/error_display.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:go_router/go_router.dart';
-import '../cubits/home_cubit.dart';
-import '../cubits/home_state.dart';
+import '../cubits/home_cubit/home_cubit.dart';
 import '../home_widgets/home_app_bar.dart';
 import '../home_widgets/search_bar_widget.dart';
 import '../home_widgets/section_header.dart';
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
           builder: (context, state) {
             // Show loading on initial load
             if (state.isLoading && state.categories.isEmpty) {
-              return const LoadingIndicator(message: 'Loading home data...');
+              return LoadingIndicator(message: S.of(context).loadingHomeData);
             }
 
             // Show error if no data and has error

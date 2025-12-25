@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'explore_state.dart';
-import '../home_state.dart';
-import '../mock_home_data.dart';
+import '../home_cubit/mock_home_data.dart';
 
 /// Explore cubit for managing search, filter, and sort functionality
 class ExploreCubit extends Cubit<ExploreState> {

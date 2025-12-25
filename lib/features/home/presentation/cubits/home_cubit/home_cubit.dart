@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'home_state.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'mock_home_data.dart';
 
 /// Home cubit for managing home screen data

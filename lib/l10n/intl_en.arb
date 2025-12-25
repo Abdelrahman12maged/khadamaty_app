@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "onboardingTitle1": "Find Local Services",
   "onboardingDesc1": "Get connected with the best local service providers in your area.",
   "onboardingTitle2": "Book Easily",
@@ -87,5 +88,21 @@
   "filters": "Filters",
   "priceRange": "Price Range",
   "minimumRating": "Minimum Rating",
-  "applyFilters": "Apply Filters"
+  "applyFilters": "Apply Filters",
+  "upcoming": "Upcoming",
+  "past": "Past",
+  "cancelled": "Cancelled",
+  "pending": "Pending",
+  "confirmed": "Confirmed",
+  "completed": "Completed",
+  "noUpcomingBookings": "No upcoming bookings",
+  "noPastBookings": "No past bookings",
+  "noCancelledBookings": "No cancelled bookings",
+  "loadingBookings": "Loading bookings...",
+  "bookingDetails": "Booking Details",
+  "timeSlot": "Time Slot",
+  "currency": "EGP",
+  "loadingHomeData": "Loading home data...",
+  "loadingServices": "Loading services...",
+  "appName": "Khadamaty"
 }

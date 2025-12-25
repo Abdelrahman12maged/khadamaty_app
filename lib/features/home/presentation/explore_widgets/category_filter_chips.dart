@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../cubits/home_state.dart';
 
 /// Category filter chips for explore page
 class CategoryFilterChips extends StatelessWidget {

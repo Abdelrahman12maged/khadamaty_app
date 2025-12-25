@@ -82,23 +82,25 @@ class _SignupScreenState extends State<SignupScreen> {
 
             // 🎯 Using ResponsiveLayout - handles all responsive logic!
             return ResponsiveLayout(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SignupHeader(),
-                  SignupForm(
-                    formKey: _formKey,
-                    nameController: _nameController,
-                    phoneController: _phoneController, // NEW
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                    confirmPasswordController: _confirmPasswordController,
-                    onSignup: _handleSignup,
-                    isLoading: isLoading,
-                  ),
-                  const SizedBox(height: 24),
-                  const SignupFooter(),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SignupHeader(),
+                    SignupForm(
+                      formKey: _formKey,
+                      nameController: _nameController,
+                      phoneController: _phoneController, // NEW
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                      confirmPasswordController: _confirmPasswordController,
+                      onSignup: _handleSignup,
+                      isLoading: isLoading,
+                    ),
+                    const SizedBox(height: 24),
+                    const SignupFooter(),
+                  ],
+                ),
               ),
             );
           },

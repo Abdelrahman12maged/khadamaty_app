@@ -7,7 +7,7 @@ import 'package:khadamaty_app/core/widgets/error_display.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import '../cubits/explore_cubit/explore_cubit.dart';
 import '../cubits/explore_cubit/explore_state.dart';
-import '../cubits/mock_home_data.dart';
+import '../cubits/home_cubit/mock_home_data.dart';
 import '../explore_widgets/explore_search_field.dart';
 import '../explore_widgets/category_filter_chips.dart';
 import '../explore_widgets/sort_dropdown.dart';
@@ -48,7 +48,7 @@ class ExplorePage extends StatelessWidget {
           builder: (context, state) {
             // Show loading on initial load
             if (state.isLoading && state.allServices.isEmpty) {
-              return const LoadingIndicator(message: 'Loading services...');
+              return LoadingIndicator(message: S.of(context).loadingServices);
             }
 
             // Show error if no data and has error

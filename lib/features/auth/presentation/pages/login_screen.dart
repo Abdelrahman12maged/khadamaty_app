@@ -74,20 +74,22 @@ class _LoginScreenState extends State<LoginScreen> {
             final isLoading = state is AuthLoading;
 //Responsivelayout  to handle varios screen sizes tablet,mobile,dektop
             return ResponsiveLayout(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const LoginHeader(),
-                  LoginForm(
-                    formKey: _formKey,
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                    onLogin: _handleLogin,
-                    isLoading: isLoading,
-                  ),
-                  const SizedBox(height: 24),
-                  const LoginFooter(),
-                ],
+              child:SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const LoginHeader(),
+                    LoginForm(
+                      formKey: _formKey,
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                      onLogin: _handleLogin,
+                      isLoading: isLoading,
+                    ),
+                    const SizedBox(height: 24),
+                    const LoginFooter(),
+                  ],
+                ),
               ),
             );
           },

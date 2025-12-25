@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../cubits/mock_home_data.dart';
+import '../cubits/home_cubit/mock_home_data.dart';
 import 'service_card.dart';
 
 /// Popular Providers Section Widget

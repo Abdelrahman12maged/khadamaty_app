@@ -818,6 +818,121 @@ class S {
       args: [],
     );
   }
+
+  /// `Upcoming`
+  String get upcoming {
+    return Intl.message('Upcoming', name: 'upcoming', desc: '', args: []);
+  }
+
+  /// `Past`
+  String get past {
+    return Intl.message('Past', name: 'past', desc: '', args: []);
+  }
+
+  /// `Cancelled`
+  String get cancelled {
+    return Intl.message('Cancelled', name: 'cancelled', desc: '', args: []);
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message('Pending', name: 'pending', desc: '', args: []);
+  }
+
+  /// `Confirmed`
+  String get confirmed {
+    return Intl.message('Confirmed', name: 'confirmed', desc: '', args: []);
+  }
+
+  /// `Completed`
+  String get completed {
+    return Intl.message('Completed', name: 'completed', desc: '', args: []);
+  }
+
+  /// `No upcoming bookings`
+  String get noUpcomingBookings {
+    return Intl.message(
+      'No upcoming bookings',
+      name: 'noUpcomingBookings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No past bookings`
+  String get noPastBookings {
+    return Intl.message(
+      'No past bookings',
+      name: 'noPastBookings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No cancelled bookings`
+  String get noCancelledBookings {
+    return Intl.message(
+      'No cancelled bookings',
+      name: 'noCancelledBookings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading bookings...`
+  String get loadingBookings {
+    return Intl.message(
+      'Loading bookings...',
+      name: 'loadingBookings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Details`
+  String get bookingDetails {
+    return Intl.message(
+      'Booking Details',
+      name: 'bookingDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time Slot`
+  String get timeSlot {
+    return Intl.message('Time Slot', name: 'timeSlot', desc: '', args: []);
+  }
+
+  /// `EGP`
+  String get currency {
+    return Intl.message('EGP', name: 'currency', desc: '', args: []);
+  }
+
+  /// `Loading home data...`
+  String get loadingHomeData {
+    return Intl.message(
+      'Loading home data...',
+      name: 'loadingHomeData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading services...`
+  String get loadingServices {
+    return Intl.message(
+      'Loading services...',
+      name: 'loadingServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Khadamaty`
+  String get appName {
+    return Intl.message('Khadamaty', name: 'appName', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

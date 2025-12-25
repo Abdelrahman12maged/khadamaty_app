@@ -26,15 +26,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
+    "appName": MessageLookupByLibrary.simpleMessage("Khadamaty"),
     "applyFilters": MessageLookupByLibrary.simpleMessage("Apply Filters"),
+    "bookingDetails": MessageLookupByLibrary.simpleMessage("Booking Details"),
     "bookings": MessageLookupByLibrary.simpleMessage("Bookings"),
+    "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
+    "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "confirmYourPassword": MessageLookupByLibrary.simpleMessage(
       "Confirm your password",
     ),
+    "confirmed": MessageLookupByLibrary.simpleMessage("Confirmed"),
     "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
+    "currency": MessageLookupByLibrary.simpleMessage("EGP"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
@@ -114,12 +120,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "I\'ve Verified My Email",
     ),
+    "loadingBookings": MessageLookupByLibrary.simpleMessage(
+      "Loading bookings...",
+    ),
+    "loadingHomeData": MessageLookupByLibrary.simpleMessage(
+      "Loading home data...",
+    ),
+    "loadingServices": MessageLookupByLibrary.simpleMessage(
+      "Loading services...",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "minimumRating": MessageLookupByLibrary.simpleMessage("Minimum Rating"),
     "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "noCancelledBookings": MessageLookupByLibrary.simpleMessage(
+      "No cancelled bookings",
+    ),
+    "noPastBookings": MessageLookupByLibrary.simpleMessage("No past bookings"),
     "noResultsFor": MessageLookupByLibrary.simpleMessage("No results for"),
     "noServices": MessageLookupByLibrary.simpleMessage("No services available"),
+    "noUpcomingBookings": MessageLookupByLibrary.simpleMessage(
+      "No upcoming bookings",
+    ),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "Get connected with the best local service providers in your area.",
     ),
@@ -141,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
       "Passwords don\'t match",
     ),
+    "past": MessageLookupByLibrary.simpleMessage("Past"),
+    "pending": MessageLookupByLibrary.simpleMessage("Pending"),
     "perHour": MessageLookupByLibrary.simpleMessage("per hour"),
     "perVisit": MessageLookupByLibrary.simpleMessage("per visit"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
@@ -190,10 +214,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
+    "timeSlot": MessageLookupByLibrary.simpleMessage("Time Slot"),
     "topRated": MessageLookupByLibrary.simpleMessage("Top Rated"),
     "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
       "Try different keywords or clear filters",
     ),
+    "upcoming": MessageLookupByLibrary.simpleMessage("Upcoming"),
     "verifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email"),
     "verifyEmailDesc": MessageLookupByLibrary.simpleMessage(
       "We\'ve sent a verification link to",

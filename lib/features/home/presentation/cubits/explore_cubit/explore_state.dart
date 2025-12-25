@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../home_state.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 
 /// Sort options for explore page
 enum SortOption {
