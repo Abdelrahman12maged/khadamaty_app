@@ -15,7 +15,6 @@ class RatingBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final iconSize = context.responsive(
       mobile: 14.0,
       tablet: 16.0,
@@ -61,9 +60,7 @@ class RatingBadge extends StatelessWidget {
           Text(
             ' ($reviewCount)',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondaryDark
-                      : Colors.grey.shade600,
+                  color: AppColors.textSecondary(context),
                 ),
           ),
         ],

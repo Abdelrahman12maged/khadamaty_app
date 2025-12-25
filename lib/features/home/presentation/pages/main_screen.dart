@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
-import '../cubit/navigation_cubit.dart';
-import '../widgets/side_navigation_rail.dart';
-import '../widgets/app_bottom_navigation_bar.dart';
+import '../cubits/navigation_cubit.dart';
+import '../home_widgets/side_navigation_rail.dart';
+import '../home_widgets/app_bottom_navigation_bar.dart';
 import 'home_screen.dart';
 import 'explore_page.dart';
 import 'bookings_page.dart';

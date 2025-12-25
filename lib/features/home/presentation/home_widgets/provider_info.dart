@@ -10,7 +10,6 @@ class ProviderInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final iconSize = context.responsive(
       mobile: 14.0,
       tablet: 16.0,
@@ -22,7 +21,7 @@ class ProviderInfo extends StatelessWidget {
         Icon(
           Icons.person_outline,
           size: iconSize,
-          color: isDark ? AppColors.textSecondaryDark : Colors.grey.shade600,
+          color: AppColors.textSecondary(context),
         ),
         const SizedBox(width: 4),
         Expanded(

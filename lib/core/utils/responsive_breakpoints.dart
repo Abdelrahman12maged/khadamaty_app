@@ -16,7 +16,7 @@ class Breakpoints {
 
   // Breakpoint values (in logical pixels)
   static const double mobile = 600; // Below this = mobile
-  static const double tablet = 1240; // Between mobile & tablet = tablet
+  static const double tablet = 1280; // Between mobile & tablet = tablet
   // Above tablet = desktop
 
   /// Gets the current screen type based on width

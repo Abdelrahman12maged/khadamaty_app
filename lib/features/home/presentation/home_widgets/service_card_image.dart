@@ -5,16 +5,21 @@ import 'package:khadamaty_app/core/utils/responsive_value.dart';
 /// Service image widget with placeholder support
 class ServiceImage extends StatelessWidget {
   final String? imageUrl;
+  final bool isInGrid;
 
-  const ServiceImage({super.key, this.imageUrl});
+  const ServiceImage({
+    super.key,
+    this.imageUrl,
+    this.isInGrid = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final imageHeight = context.responsive(
-      mobile: 120.0,
-      tablet: 140.0,
-      desktop: 160.0,
-    );
+    // Smaller image in grid to leave more space for content
+    final imageHeight = isInGrid
+        ? context.responsive(mobile: 80.0, tablet: 90.0, desktop: 100.0)
+        : context.responsive(mobile: 120.0, tablet: 140.0, desktop: 160.0);
+
     final borderRadius = context.responsive(
       mobile: 12.0,
       tablet: 14.0,
@@ -44,7 +49,6 @@ class _PlaceholderImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final iconSize = context.responsive(
       mobile: 40.0,
       tablet: 48.0,
@@ -54,11 +58,11 @@ class _PlaceholderImage extends StatelessWidget {
     return Container(
       height: height,
       width: double.infinity,
-      color: isDark ? AppColors.dividerDark : Colors.grey.shade200,
+      color: AppColors.divider(context),
       child: Icon(
         Icons.image_outlined,
         size: iconSize,
-        color: isDark ? AppColors.textSecondaryDark : Colors.grey.shade400,
+        color: AppColors.textSecondary(context),
       ),
     );
   }

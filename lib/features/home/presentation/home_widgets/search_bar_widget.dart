@@ -15,8 +15,6 @@ class SearchBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     // Responsive values
     final borderRadius =
         context.responsive(mobile: 10.0, tablet: 12.0, desktop: 14.0);
@@ -28,12 +26,10 @@ class SearchBarWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withOpacity(0.5)
-              : Colors.grey.shade100,
+          color: AppColors.surface(context).withOpacity(0.5),
           borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
-            color: isDark ? AppColors.dividerDark : Colors.grey.shade300,
+            color: AppColors.divider(context),
             width: 1,
           ),
         ),
@@ -41,8 +37,7 @@ class SearchBarWidget extends StatelessWidget {
           children: [
             Icon(
               Icons.search,
-              color:
-                  isDark ? AppColors.textSecondaryDark : Colors.grey.shade600,
+              color: AppColors.textSecondary(context),
               size: iconSize,
             ),
             const SizedBox(width: 12),
@@ -54,8 +49,7 @@ class SearchBarWidget extends StatelessWidget {
             ),
             Icon(
               Icons.tune,
-              color:
-                  isDark ? AppColors.textSecondaryDark : Colors.grey.shade600,
+              color: AppColors.textSecondary(context),
               size: iconSize - 2,
             ),
           ],

@@ -714,94 +714,29 @@ class S {
     );
   }
 
-  /// `Filters`
-  String get filters {
-    return Intl.message('Filters', name: 'filters', desc: '', args: []);
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
   }
 
-  /// `Sort By`
+  /// `Sort by`
   String get sortBy {
-    return Intl.message('Sort By', name: 'sortBy', desc: '', args: []);
+    return Intl.message('Sort by', name: 'sortBy', desc: '', args: []);
   }
 
-  /// `Price Range`
-  String get priceRange {
-    return Intl.message('Price Range', name: 'priceRange', desc: '', args: []);
-  }
-
-  /// `Location`
-  String get location {
-    return Intl.message('Location', name: 'location', desc: '', args: []);
-  }
-
-  /// `Availability`
-  String get availability {
+  /// `Most Popular`
+  String get mostPopular {
     return Intl.message(
-      'Availability',
-      name: 'availability',
+      'Most Popular',
+      name: 'mostPopular',
       desc: '',
       args: [],
     );
   }
 
-  /// `Apply Filters`
-  String get applyFilters {
-    return Intl.message(
-      'Apply Filters',
-      name: 'applyFilters',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Clear Filters`
-  String get clearFilters {
-    return Intl.message(
-      'Clear Filters',
-      name: 'clearFilters',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Search Results`
-  String get searchResults {
-    return Intl.message(
-      'Search Results',
-      name: 'searchResults',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No results found`
-  String get noResultsFound {
-    return Intl.message(
-      'No results found',
-      name: 'noResultsFound',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Try a different search term`
-  String get tryDifferentSearch {
-    return Intl.message(
-      'Try a different search term',
-      name: 'tryDifferentSearch',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All Categories`
-  String get allCategories {
-    return Intl.message(
-      'All Categories',
-      name: 'allCategories',
-      desc: '',
-      args: [],
-    );
+  /// `Top Rated`
+  String get topRated {
+    return Intl.message('Top Rated', name: 'topRated', desc: '', args: []);
   }
 
   /// `Price: Low to High`
@@ -824,16 +759,61 @@ class S {
     );
   }
 
-  /// `Top Rated`
-  String get topRated {
-    return Intl.message('Top Rated', name: 'topRated', desc: '', args: []);
+  /// `No results for`
+  String get noResultsFor {
+    return Intl.message(
+      'No results for',
+      name: 'noResultsFor',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Most Popular`
-  String get mostPopular {
+  /// `Try different keywords or clear filters`
+  String get tryDifferentKeywords {
     return Intl.message(
-      'Most Popular',
-      name: 'mostPopular',
+      'Try different keywords or clear filters',
+      name: 'tryDifferentKeywords',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear Filters`
+  String get clearFilters {
+    return Intl.message(
+      'Clear Filters',
+      name: 'clearFilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filters`
+  String get filters {
+    return Intl.message('Filters', name: 'filters', desc: '', args: []);
+  }
+
+  /// `Price Range`
+  String get priceRange {
+    return Intl.message('Price Range', name: 'priceRange', desc: '', args: []);
+  }
+
+  /// `Minimum Rating`
+  String get minimumRating {
+    return Intl.message(
+      'Minimum Rating',
+      name: 'minimumRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply Filters`
+  String get applyFilters {
+    return Intl.message(
+      'Apply Filters',
+      name: 'applyFilters',
       desc: '',
       args: [],
     );

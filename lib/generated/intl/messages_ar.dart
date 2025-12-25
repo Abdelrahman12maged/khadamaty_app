@@ -22,12 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "allCategories": MessageLookupByLibrary.simpleMessage("جميع الفئات"),
+    "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
     ),
     "applyFilters": MessageLookupByLibrary.simpleMessage("تطبيق الفلاتر"),
-    "availability": MessageLookupByLibrary.simpleMessage("التوفر"),
     "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
     "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("مسح الفلاتر"),
@@ -107,11 +106,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "لقد أكدت بريدي الإلكتروني",
     ),
-    "location": MessageLookupByLibrary.simpleMessage("الموقع"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "minimumRating": MessageLookupByLibrary.simpleMessage(
+      "الحد الأدنى للتقييم",
+    ),
     "mostPopular": MessageLookupByLibrary.simpleMessage("الأكثر شعبية"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
-    "noResultsFound": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
+    "noResultsFor": MessageLookupByLibrary.simpleMessage("لا توجد نتائج لـ"),
     "noServices": MessageLookupByLibrary.simpleMessage("لا توجد خدمات متاحة"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
@@ -172,7 +173,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "reviews": MessageLookupByLibrary.simpleMessage("تقييم"),
-    "searchResults": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
     "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -183,8 +183,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "topRated": MessageLookupByLibrary.simpleMessage("الأعلى تقييماً"),
-    "tryDifferentSearch": MessageLookupByLibrary.simpleMessage(
-      "جرب كلمة بحث مختلفة",
+    "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
+      "جرب كلمات مختلفة أو امسح الفلاتر",
     ),
     "verifyEmail": MessageLookupByLibrary.simpleMessage(
       "تأكيد البريد الإلكتروني",

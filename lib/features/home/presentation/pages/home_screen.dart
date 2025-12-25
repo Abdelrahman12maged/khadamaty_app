@@ -6,14 +6,14 @@ import 'package:khadamaty_app/core/widgets/loading_indicator.dart';
 import 'package:khadamaty_app/core/widgets/error_display.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:go_router/go_router.dart';
-import '../cubit/home_cubit.dart';
-import '../cubit/home_state.dart';
-import '../widgets/home_app_bar.dart';
-import '../widgets/search_bar_widget.dart';
-import '../widgets/section_header.dart';
-import '../widgets/categories_section.dart';
-import '../widgets/featured_services_section.dart';
-import '../widgets/popular_providers_section.dart';
+import '../cubits/home_cubit.dart';
+import '../cubits/home_state.dart';
+import '../home_widgets/home_app_bar.dart';
+import '../home_widgets/search_bar_widget.dart';
+import '../home_widgets/section_header.dart';
+import '../home_widgets/categories_section.dart';
+import '../home_widgets/featured_services_section.dart';
+import '../home_widgets/popular_providers_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

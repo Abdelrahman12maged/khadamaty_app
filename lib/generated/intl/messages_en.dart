@@ -22,12 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "allCategories": MessageLookupByLibrary.simpleMessage("All Categories"),
+    "all": MessageLookupByLibrary.simpleMessage("All"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
     "applyFilters": MessageLookupByLibrary.simpleMessage("Apply Filters"),
-    "availability": MessageLookupByLibrary.simpleMessage("Availability"),
     "bookings": MessageLookupByLibrary.simpleMessage("Bookings"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
@@ -115,11 +114,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "I\'ve Verified My Email",
     ),
-    "location": MessageLookupByLibrary.simpleMessage("Location"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "minimumRating": MessageLookupByLibrary.simpleMessage("Minimum Rating"),
     "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
-    "noResultsFound": MessageLookupByLibrary.simpleMessage("No results found"),
+    "noResultsFor": MessageLookupByLibrary.simpleMessage("No results for"),
     "noServices": MessageLookupByLibrary.simpleMessage("No services available"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "Get connected with the best local service providers in your area.",
@@ -180,7 +179,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "rating": MessageLookupByLibrary.simpleMessage("Rating"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("Resend Email"),
     "reviews": MessageLookupByLibrary.simpleMessage("reviews"),
-    "searchResults": MessageLookupByLibrary.simpleMessage("Search Results"),
     "searchServices": MessageLookupByLibrary.simpleMessage(
       "Search for services...",
     ),
@@ -191,10 +189,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
-    "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
+    "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
     "topRated": MessageLookupByLibrary.simpleMessage("Top Rated"),
-    "tryDifferentSearch": MessageLookupByLibrary.simpleMessage(
-      "Try a different search term",
+    "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
+      "Try different keywords or clear filters",
     ),
     "verifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email"),
     "verifyEmailDesc": MessageLookupByLibrary.simpleMessage(

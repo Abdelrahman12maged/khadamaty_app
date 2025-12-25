@@ -74,5 +74,18 @@
   "perVisit": "per visit",
   "rating": "Rating",
   "reviews": "reviews",
-  "viewDetails": "View Details"
+  "viewDetails": "View Details",
+  "all": "All",
+  "sortBy": "Sort by",
+  "mostPopular": "Most Popular",
+  "topRated": "Top Rated",
+  "priceLowToHigh": "Price: Low to High",
+  "priceHighToLow": "Price: High to Low",
+  "noResultsFor": "No results for",
+  "tryDifferentKeywords": "Try different keywords or clear filters",
+  "clearFilters": "Clear Filters",
+  "filters": "Filters",
+  "priceRange": "Price Range",
+  "minimumRating": "Minimum Rating",
+  "applyFilters": "Apply Filters"
 }

@@ -74,5 +74,18 @@
   "perVisit": "لكل زيارة",
   "rating": "التقييم",
   "reviews": "تقييم",
-  "viewDetails": "عرض التفاصيل"
+  "viewDetails": "عرض التفاصيل",
+  "all": "الكل",
+  "sortBy": "ترتيب حسب",
+  "mostPopular": "الأكثر شعبية",
+  "topRated": "الأعلى تقييماً",
+  "priceLowToHigh": "السعر: من الأقل للأعلى",
+  "priceHighToLow": "السعر: من الأعلى للأقل",
+  "noResultsFor": "لا توجد نتائج لـ",
+  "tryDifferentKeywords": "جرب كلمات مختلفة أو امسح الفلاتر",
+  "clearFilters": "مسح الفلاتر",
+  "filters": "الفلاتر",
+  "priceRange": "نطاق السعر",
+  "minimumRating": "الحد الأدنى للتقييم",
+  "applyFilters": "تطبيق الفلاتر"
 }

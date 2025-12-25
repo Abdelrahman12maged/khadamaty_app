@@ -47,4 +47,40 @@ class AppColors {
   static const Color darkSurface = surfaceDark;
   static const Color darkBorder = dividerDark;
   static const Color darkTextSecondary = textSecondaryDark;
+
+  // Theme-aware helper methods
+  /// Get background color based on current theme
+  static Color background(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? backgroundDark
+        : backgroundLight;
+  }
+
+  /// Get surface color based on current theme
+  static Color surface(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? surfaceDark
+        : surfaceLight;
+  }
+
+  /// Get primary text color based on current theme
+  static Color textPrimary(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? textPrimaryDark
+        : textPrimaryLight;
+  }
+
+  /// Get secondary text color based on current theme
+  static Color textSecondary(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? textSecondaryDark
+        : textSecondaryLight;
+  }
+
+  /// Get divider color based on current theme
+  static Color divider(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? dividerDark
+        : dividerLight;
+  }
 }
