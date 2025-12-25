@@ -8,12 +8,12 @@ import 'package:khadamaty_app/core/widgets/error_display.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:go_router/go_router.dart';
 import '../cubits/home_cubit/home_cubit.dart';
-import '../home_widgets/home_app_bar.dart';
-import '../home_widgets/search_bar_widget.dart';
-import '../home_widgets/section_header.dart';
-import '../home_widgets/categories_section.dart';
-import '../home_widgets/featured_services_section.dart';
-import '../home_widgets/popular_providers_section.dart';
+import '../widgets/home_widgets/home_app_bar.dart';
+import '../widgets/home_widgets/search_bar_widget.dart';
+import '../widgets/home_widgets/section_header.dart';
+import '../widgets/home_widgets/categories_section.dart';
+import '../widgets/home_widgets/featured_services_section.dart';
+import '../widgets/home_widgets/popular_providers_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

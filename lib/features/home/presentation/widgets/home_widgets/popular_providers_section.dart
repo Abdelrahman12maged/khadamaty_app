@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../cubits/home_cubit/mock_home_data.dart';
+import '../../cubits/home_cubit/mock_home_data.dart';
 import 'service_card.dart';
 
-/// Featured Services Section Widget
-class FeaturedServicesSection extends StatelessWidget {
-  const FeaturedServicesSection({super.key});
+/// Popular Providers Section Widget
+class PopularProvidersSection extends StatelessWidget {
+  const PopularProvidersSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Get services from centralized mock data
-    final services = MockHomeData.getFeaturedServices(context);
+    // Get providers from centralized mock data
+    final providers = MockHomeData.getPopularProviders(context);
 
     // Desktop/tablet: show grid
     if (!context.isMobile) {
@@ -29,22 +29,22 @@ class FeaturedServicesSection extends StatelessWidget {
           mainAxisSpacing: spacing,
           childAspectRatio: 0.85,
         ),
-        itemCount: services.length,
+        itemCount: providers.length,
         itemBuilder: (context, index) {
-          final service = services[index];
+          final provider = providers[index];
           return ServiceCard(
-            title: service.title,
-            description: service.description,
-            providerName: service.providerName,
-            price: service.price,
-            priceUnit: _getLocalizedPriceUnit(context, service.priceUnit),
-            rating: service.rating,
-            reviewCount: service.reviewCount,
-            imageUrl: service.imageUrl,
+            title: provider.title,
+            description: provider.description,
+            providerName: provider.providerName,
+            price: provider.price,
+            priceUnit: _getLocalizedPriceUnit(context, provider.priceUnit),
+            rating: provider.rating,
+            reviewCount: provider.reviewCount,
+            imageUrl: provider.imageUrl,
             isInGrid: true,
             onTap: () {
-              // TODO: Navigate to service details (/service/${service.id})
-              // Will implement when service detail page is created
+              // TODO: Navigate to provider profile (/provider/${provider.id})
+              // Will implement when provider profile page is created
             },
           );
         },
@@ -59,22 +59,22 @@ class FeaturedServicesSection extends StatelessWidget {
       height: cardHeight,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: services.length,
+        itemCount: providers.length,
         itemBuilder: (context, index) {
-          final service = services[index];
+          final provider = providers[index];
           return ServiceCard(
-            title: service.title,
-            description: service.description,
-            providerName: service.providerName,
-            price: service.price,
-            priceUnit: _getLocalizedPriceUnit(context, service.priceUnit),
-            rating: service.rating,
-            reviewCount: service.reviewCount,
-            imageUrl: service.imageUrl,
+            title: provider.title,
+            description: provider.description,
+            providerName: provider.providerName,
+            price: provider.price,
+            priceUnit: _getLocalizedPriceUnit(context, provider.priceUnit),
+            rating: provider.rating,
+            reviewCount: provider.reviewCount,
+            imageUrl: provider.imageUrl,
             isInGrid: false,
             onTap: () {
-              // TODO: Navigate to service details (/service/${service.id})
-              // Will implement when service detail page is created
+              // TODO: Navigate to provider profile (/provider/${provider.id})
+              // Will implement when provider profile page is created
             },
           );
         },

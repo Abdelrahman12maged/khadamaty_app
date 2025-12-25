@@ -21,7 +21,7 @@ class ServicesGrid extends StatelessWidget {
     final crossAxisCount = context.responsive(mobile: 2, tablet: 3, desktop: 4);
     final spacing = AppSpacing.md(context);
     // Taller cards than home screen to fit all content without overflow
-    final aspectRatio = 0.75;
+    final aspectRatio = 0.73;
 
     return GridView.builder(
       shrinkWrap: true,

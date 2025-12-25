@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/widgets/loading_indicator.dart';
 import 'package:khadamaty_app/core/widgets/error_display.dart';
-import '../cubits/bookings_cubit/bookings_cubit.dart';
-import '../cubits/bookings_cubit/bookings_state.dart';
+import '../../cubits/bookings_cubit/bookings_cubit.dart';
+import '../../cubits/bookings_cubit/bookings_state.dart';
 import 'bookings_list_view.dart';
 import 'empty_bookings_state.dart';
 

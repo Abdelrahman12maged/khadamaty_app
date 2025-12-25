@@ -933,6 +933,191 @@ class S {
   String get appName {
     return Intl.message('Khadamaty', name: 'appName', desc: '', args: []);
   }
+
+  /// `Edit Profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Bookings`
+  String get totalBookings {
+    return Intl.message(
+      'Total Bookings',
+      name: 'totalBookings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get completedServices {
+    return Intl.message(
+      'Completed',
+      name: 'completedServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Spent`
+  String get totalSpent {
+    return Intl.message('Total Spent', name: 'totalSpent', desc: '', args: []);
+  }
+
+  /// `Member Since`
+  String get memberSince {
+    return Intl.message(
+      'Member Since',
+      name: 'memberSince',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick Actions`
+  String get quickActions {
+    return Intl.message(
+      'Quick Actions',
+      name: 'quickActions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Bookings`
+  String get myBookings {
+    return Intl.message('My Bookings', name: 'myBookings', desc: '', args: []);
+  }
+
+  /// `Favorite Services`
+  String get favoriteServices {
+    return Intl.message(
+      'Favorite Services',
+      name: 'favoriteServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Methods`
+  String get paymentMethods {
+    return Intl.message(
+      'Payment Methods',
+      name: 'paymentMethods',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Addresses`
+  String get myAddresses {
+    return Intl.message(
+      'My Addresses',
+      name: 'myAddresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help & Support`
+  String get helpSupport {
+    return Intl.message(
+      'Help & Support',
+      name: 'helpSupport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark Mode`
+  String get darkMode {
+    return Intl.message('Dark Mode', name: 'darkMode', desc: '', args: []);
+  }
+
+  /// `Account Settings`
+  String get accountSettings {
+    return Intl.message(
+      'Account Settings',
+      name: 'accountSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Service`
+  String get termsOfService {
+    return Intl.message(
+      'Terms of Service',
+      name: 'termsOfService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to logout?`
+  String get logoutConfirmation {
+    return Intl.message(
+      'Are you sure you want to logout?',
+      name: 'logoutConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
-import '../cubits/bookings_cubit/bookings_state.dart';
+import '../../cubits/bookings_cubit/bookings_state.dart';
 import 'booking_card.dart';
 
 /// Responsive bookings list widget

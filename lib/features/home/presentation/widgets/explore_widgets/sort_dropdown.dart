@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../cubits/explore_cubit/explore_state.dart';
+import '../../cubits/explore_cubit/explore_state.dart';
 
 /// Sort dropdown widget for explore page
 class SortDropdown extends StatelessWidget {

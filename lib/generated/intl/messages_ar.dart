@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "accountSettings": MessageLookupByLibrary.simpleMessage("إعدادات الحساب"),
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
@@ -30,10 +31,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "applyFilters": MessageLookupByLibrary.simpleMessage("تطبيق الفلاتر"),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
     "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
+    "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "cancelled": MessageLookupByLibrary.simpleMessage("الملغاة"),
     "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("مسح الفلاتر"),
     "completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
+    "completedServices": MessageLookupByLibrary.simpleMessage("مكتملة"),
+    "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
@@ -43,7 +48,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmed": MessageLookupByLibrary.simpleMessage("مؤكد"),
     "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "currency": MessageLookupByLibrary.simpleMessage("جنيه"),
+    "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
+    "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailNotVerified": MessageLookupByLibrary.simpleMessage(
       "لم يتم تأكيد البريد الإلكتروني بعد. يرجى التحقق من صندوق الوارد.",
@@ -101,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمة المرور غير صحيحة",
     ),
     "explore": MessageLookupByLibrary.simpleMessage("استكشف"),
+    "favoriteServices": MessageLookupByLibrary.simpleMessage("الخدمات المفضلة"),
     "featuredServices": MessageLookupByLibrary.simpleMessage("الخدمات المميزة"),
     "filters": MessageLookupByLibrary.simpleMessage("الفلاتر"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
@@ -108,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "getStartedFree": MessageLookupByLibrary.simpleMessage("ابدأ مجاناً"),
+    "helpSupport": MessageLookupByLibrary.simpleMessage("المساعدة والدعم"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "لقد أكدت بريدي الإلكتروني",
@@ -122,10 +131,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "جاري تحميل الخدمات...",
     ),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد من تسجيل الخروج؟",
+    ),
+    "memberSince": MessageLookupByLibrary.simpleMessage("عضو منذ"),
     "minimumRating": MessageLookupByLibrary.simpleMessage(
       "الحد الأدنى للتقييم",
     ),
     "mostPopular": MessageLookupByLibrary.simpleMessage("الأكثر شعبية"),
+    "myAddresses": MessageLookupByLibrary.simpleMessage("عناويني"),
+    "myBookings": MessageLookupByLibrary.simpleMessage("حجوزاتي"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "noCancelledBookings": MessageLookupByLibrary.simpleMessage(
       "لا توجد حجوزات ملغاة",
@@ -138,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noUpcomingBookings": MessageLookupByLibrary.simpleMessage(
       "لا توجد حجوزات قادمة",
     ),
+    "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
     ),
@@ -160,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمات المرور غير متطابقة",
     ),
     "past": MessageLookupByLibrary.simpleMessage("السابقة"),
+    "paymentMethods": MessageLookupByLibrary.simpleMessage("طرق الدفع"),
     "pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "perHour": MessageLookupByLibrary.simpleMessage("في الساعة"),
     "perVisit": MessageLookupByLibrary.simpleMessage("لكل زيارة"),
@@ -195,12 +213,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "السعر: من الأقل للأعلى",
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "quickActions": MessageLookupByLibrary.simpleMessage("إجراءات سريعة"),
     "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "reviews": MessageLookupByLibrary.simpleMessage("تقييم"),
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
     "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+    "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "سجل الدخول للمتابعة",
@@ -208,8 +229,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
+    "termsOfService": MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
     "timeSlot": MessageLookupByLibrary.simpleMessage("الوقت"),
     "topRated": MessageLookupByLibrary.simpleMessage("الأعلى تقييماً"),
+    "totalBookings": MessageLookupByLibrary.simpleMessage("إجمالي الحجوزات"),
+    "totalSpent": MessageLookupByLibrary.simpleMessage("إجمالي الإنفاق"),
     "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
       "جرب كلمات مختلفة أو امسح الفلاتر",
     ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/theme/app_colors.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../cubits/bookings_cubit/bookings_state.dart';
+import '../../cubits/bookings_cubit/bookings_state.dart';
 
 /// Status badge for booking cards
 class BookingStatusBadge extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
-import '../cubits/home_cubit/mock_home_data.dart';
+import '../../cubits/home_cubit/mock_home_data.dart';
 import 'category_card.dart';
 
 /// Categories Grid Section Widget

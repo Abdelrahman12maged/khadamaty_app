@@ -8,11 +8,11 @@ import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import '../cubits/explore_cubit/explore_cubit.dart';
 import '../cubits/explore_cubit/explore_state.dart';
 import '../cubits/home_cubit/mock_home_data.dart';
-import '../explore_widgets/explore_search_field.dart';
-import '../explore_widgets/category_filter_chips.dart';
-import '../explore_widgets/sort_dropdown.dart';
-import '../explore_widgets/empty_search_state.dart';
-import '../home_widgets/services_grid.dart';
+import '../widgets/explore_widgets/explore_search_field.dart';
+import '../widgets/explore_widgets/category_filter_chips.dart';
+import '../widgets/explore_widgets/sort_dropdown.dart';
+import '../widgets/explore_widgets/empty_search_state.dart';
+import '../widgets/home_widgets/services_grid.dart';
 
 /// Explore page for searching and filtering services
 class ExplorePage extends StatelessWidget {

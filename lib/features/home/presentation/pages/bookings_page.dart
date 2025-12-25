@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import '../cubits/bookings_cubit/bookings_cubit.dart';
 import '../cubits/bookings_cubit/bookings_state.dart';
-import '../bookings_widgets/bookings_tab_content.dart';
+import '../widgets/bookings_widgets/bookings_tab_content.dart';
 
 /// Bookings page with tab navigation
 class BookingsPage extends StatefulWidget {
