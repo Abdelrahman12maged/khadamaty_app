@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accountSettings": MessageLookupByLibrary.simpleMessage("Account Settings"),
+    "active": MessageLookupByLibrary.simpleMessage("Active"),
+    "addService": MessageLookupByLibrary.simpleMessage("Add Service"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
@@ -47,9 +49,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
     "currency": MessageLookupByLibrary.simpleMessage("EGP"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleteService": MessageLookupByLibrary.simpleMessage("Delete Service"),
+    "deleteServiceConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete this service?",
+    ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailNotVerified": MessageLookupByLibrary.simpleMessage(
@@ -131,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "I\'ve Verified My Email",
     ),
+    "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
     "loadingBookings": MessageLookupByLibrary.simpleMessage(
       "Loading bookings...",
     ),
@@ -150,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
     "myBookings": MessageLookupByLibrary.simpleMessage("My Bookings"),
+    "myServicesTitle": MessageLookupByLibrary.simpleMessage("My Services"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
     "noCancelledBookings": MessageLookupByLibrary.simpleMessage(
       "No cancelled bookings",
@@ -157,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPastBookings": MessageLookupByLibrary.simpleMessage("No past bookings"),
     "noResultsFor": MessageLookupByLibrary.simpleMessage("No results for"),
     "noServices": MessageLookupByLibrary.simpleMessage("No services available"),
+    "noServicesYet": MessageLookupByLibrary.simpleMessage("No services yet"),
     "noUpcomingBookings": MessageLookupByLibrary.simpleMessage(
       "No upcoming bookings",
     ),
@@ -229,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search for services...",
     ),
     "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
+    "serviceActive": MessageLookupByLibrary.simpleMessage("Active"),
+    "serviceInactive": MessageLookupByLibrary.simpleMessage("Inactive"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
@@ -237,6 +250,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
+    "startAddingServices": MessageLookupByLibrary.simpleMessage(
+      "Start adding your services to reach customers",
+    ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
     "timeSlot": MessageLookupByLibrary.simpleMessage("Time Slot"),
     "topRated": MessageLookupByLibrary.simpleMessage("Top Rated"),

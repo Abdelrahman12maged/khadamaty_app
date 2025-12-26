@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accountSettings": MessageLookupByLibrary.simpleMessage("إعدادات الحساب"),
+    "active": MessageLookupByLibrary.simpleMessage("نشطة"),
+    "addService": MessageLookupByLibrary.simpleMessage("إضافة خدمة"),
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
@@ -49,7 +51,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "currency": MessageLookupByLibrary.simpleMessage("جنيه"),
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+    "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "deleteService": MessageLookupByLibrary.simpleMessage("حذف الخدمة"),
+    "deleteServiceConfirmation": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد من حذف هذه الخدمة؟",
+    ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
+    "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailNotVerified": MessageLookupByLibrary.simpleMessage(
@@ -121,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "لقد أكدت بريدي الإلكتروني",
     ),
+    "inactive": MessageLookupByLibrary.simpleMessage("غير نشطة"),
     "loadingBookings": MessageLookupByLibrary.simpleMessage(
       "جاري تحميل الحجوزات...",
     ),
@@ -142,6 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "mostPopular": MessageLookupByLibrary.simpleMessage("الأكثر شعبية"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("عناويني"),
     "myBookings": MessageLookupByLibrary.simpleMessage("حجوزاتي"),
+    "myServicesTitle": MessageLookupByLibrary.simpleMessage("خدماتي"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "noCancelledBookings": MessageLookupByLibrary.simpleMessage(
       "لا توجد حجوزات ملغاة",
@@ -151,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noResultsFor": MessageLookupByLibrary.simpleMessage("لا توجد نتائج لـ"),
     "noServices": MessageLookupByLibrary.simpleMessage("لا توجد خدمات متاحة"),
+    "noServicesYet": MessageLookupByLibrary.simpleMessage("لا توجد خدمات بعد"),
     "noUpcomingBookings": MessageLookupByLibrary.simpleMessage(
       "لا توجد حجوزات قادمة",
     ),
@@ -221,6 +232,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "reviews": MessageLookupByLibrary.simpleMessage("تقييم"),
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
     "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+    "serviceActive": MessageLookupByLibrary.simpleMessage("نشطة"),
+    "serviceInactive": MessageLookupByLibrary.simpleMessage("غير نشطة"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
@@ -229,6 +242,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
+    "startAddingServices": MessageLookupByLibrary.simpleMessage(
+      "ابدأ بإضافة خدماتك للوصول للعملاء",
+    ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
     "timeSlot": MessageLookupByLibrary.simpleMessage("الوقت"),
     "topRated": MessageLookupByLibrary.simpleMessage("الأعلى تقييماً"),

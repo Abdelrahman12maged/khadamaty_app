@@ -13,6 +13,7 @@ import '../widgets/profile_widgets/profile_stats_card.dart';
 import '../widgets/profile_widgets/profile_action_item.dart';
 import '../widgets/profile_widgets/profile_setting_item.dart';
 import '../widgets/profile_widgets/profile_section.dart';
+import '../../../provider/presentation/pages/my_services_page.dart';
 
 /// Profile page with user information and settings
 class ProfilePage extends StatelessWidget {
@@ -74,6 +75,20 @@ class ProfilePage extends StatelessWidget {
                           title: S.of(context).myBookings,
                           onTap: () {
                             // TODO: Navigate to bookings
+                          },
+                        ),
+                        Divider(height: 1, color: AppColors.divider(context)),
+                        ProfileActionItem(
+                          icon: Icons.work_outline,
+                          title: S.of(context).myServicesTitle,
+                          onTap: () {
+                            // TODO: Navigate to my services
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MyServicesPage(),
+                              ),
+                            );
                           },
                         ),
                         Divider(height: 1, color: AppColors.divider(context)),

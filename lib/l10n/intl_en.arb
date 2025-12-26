@@ -126,5 +126,17 @@
   "logout": "Logout",
   "logoutConfirmation": "Are you sure you want to logout?",
   "cancel": "Cancel",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "myServicesTitle": "My Services",
+  "addService": "Add Service",
+  "noServicesYet": "No services yet",
+  "startAddingServices": "Start adding your services to reach customers",
+  "serviceActive": "Active",
+  "serviceInactive": "Inactive",
+  "edit": "Edit",
+  "delete": "Delete",
+  "deleteService": "Delete Service",
+  "deleteServiceConfirmation": "Are you sure you want to delete this service?",
+  "active": "Active",
+  "inactive": "Inactive"
 }

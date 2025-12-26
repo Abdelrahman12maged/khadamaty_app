@@ -198,6 +198,94 @@ class SomeWidget extends StatelessWidget {
 
 ---
 
+## 🔄 Reusable Components & Utilities
+
+### ✅ Use UIHelpers Instead of Direct Calls
+
+**❌ DON'T Repeat:**
+```dart
+// ❌ NO! Repeating dialog code everywhere
+showDialog(
+  context: context,
+  builder: (dialogContext) => AlertDialog(
+    title: Text('Delete?'),
+    content: Text('Are you sure?'),
+    actions: [
+      TextButton(...),
+      ElevatedButton(...),
+    ],
+  ),
+);
+
+// ❌ NO! Repeating snackbar code
+ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: Text('Success!'),
+    backgroundColor: Colors.green,
+  ),
+);
+```
+
+**✅ DO Use UIHelpers:**
+```dart
+// ✅ YES! Use UIHelpers utility
+import 'package:khadamaty_app/core/utils/ui_helpers.dart';
+
+// Confirmation Dialog
+final confirmed = await UIHelpers.showConfirmDialog(
+  context: context,
+  title: 'Delete Service',
+  message: 'Are you sure?',
+  confirmText: 'Delete',
+  isDangerous: true,
+);
+
+// Success Snackbar
+UIHelpers.showSuccessSnackbar(
+  context: context,
+  message: 'Service deleted successfully',
+);
+
+// Error Snackbar
+UIHelpers.showErrorSnackbar(
+  context: context,
+  message: 'Failed to delete service',
+);
+
+// Info Snackbar
+UIHelpers.showInfoSnackbar(
+  context: context,
+  message: 'Feature coming soon',
+);
+
+// Delete with Confirmation (all-in-one)
+await UIHelpers.deleteWithConfirmation(
+  context: context,
+  title: 'Delete Service',
+  message: 'Are you sure you want to delete this service?',
+  itemName: service.title,
+  confirmText: 'Delete',
+  cancelText: 'Cancel',
+  onDelete: () => cubit.deleteService(service.id),
+);
+```
+
+**Benefits:**
+- ✅ Consistent UI across the app
+- ✅ Less code duplication
+- ✅ Easy to change styling in one place
+- ✅ Type-safe parameters
+- ✅ Built-in best practices
+
+**Available Utilities:**
+- `UIHelpers.showConfirmDialog()` - Yes/No dialogs
+- `UIHelpers.showSuccessSnackbar()` - Green success messages
+- `UIHelpers.showErrorSnackbar()` - Red error messages
+- `UIHelpers.showInfoSnackbar()` - Default info messages
+- `UIHelpers.deleteWithConfirmation()` - Complete delete flow with confirmation + success/error handling
+
+---
+
 ## 🌍 Localization
 
 ### ✅ Always Use:

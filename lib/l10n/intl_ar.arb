@@ -126,5 +126,17 @@
   "logout": "تسجيل الخروج",
   "logoutConfirmation": "هل أنت متأكد من تسجيل الخروج؟",
   "cancel": "إلغاء",
-  "confirm": "تأكيد"
+  "confirm": "تأكيد",
+  "myServicesTitle": "خدماتي",
+  "addService": "إضافة خدمة",
+  "noServicesYet": "لا توجد خدمات بعد",
+  "startAddingServices": "ابدأ بإضافة خدماتك للوصول للعملاء",
+  "serviceActive": "نشطة",
+  "serviceInactive": "غير نشطة",
+  "edit": "تعديل",
+  "delete": "حذف",
+  "deleteService": "حذف الخدمة",
+  "deleteServiceConfirmation": "هل أنت متأكد من حذف هذه الخدمة؟",
+  "active": "نشطة",
+  "inactive": "غير نشطة"
 }

@@ -1118,6 +1118,96 @@ class S {
   String get confirm {
     return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
   }
+
+  /// `My Services`
+  String get myServicesTitle {
+    return Intl.message(
+      'My Services',
+      name: 'myServicesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Service`
+  String get addService {
+    return Intl.message('Add Service', name: 'addService', desc: '', args: []);
+  }
+
+  /// `No services yet`
+  String get noServicesYet {
+    return Intl.message(
+      'No services yet',
+      name: 'noServicesYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start adding your services to reach customers`
+  String get startAddingServices {
+    return Intl.message(
+      'Start adding your services to reach customers',
+      name: 'startAddingServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get serviceActive {
+    return Intl.message('Active', name: 'serviceActive', desc: '', args: []);
+  }
+
+  /// `Inactive`
+  String get serviceInactive {
+    return Intl.message(
+      'Inactive',
+      name: 'serviceInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message('Edit', name: 'edit', desc: '', args: []);
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Delete Service`
+  String get deleteService {
+    return Intl.message(
+      'Delete Service',
+      name: 'deleteService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this service?`
+  String get deleteServiceConfirmation {
+    return Intl.message(
+      'Are you sure you want to delete this service?',
+      name: 'deleteServiceConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message('Active', name: 'active', desc: '', args: []);
+  }
+
+  /// `Inactive`
+  String get inactive {
+    return Intl.message('Inactive', name: 'inactive', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
