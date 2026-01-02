@@ -8,6 +8,7 @@ import 'package:khadamaty_app/features/auth/presentation/pages/login_screen.dart
 import 'package:khadamaty_app/features/auth/presentation/pages/signup_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/email_verification_screen.dart';
 import 'package:khadamaty_app/features/home/presentation/pages/main_screen.dart';
+import 'package:khadamaty_app/features/provider/presentation/pages/add_service_page.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/onboarding',
@@ -102,6 +103,11 @@ final GoRouter appRouter = GoRouter(
       path: '/explore',
       name: 'explore',
       builder: (context, state) => const MainScreen(initialTab: 1),
+    ),
+    GoRoute(
+      path: '/add-service',
+      name: 'addService',
+      builder: (context, state) => const AddServicePage(),
     ),
   ],
 );

@@ -1,0 +1,258 @@
+Session Summary - Khadamaty App
+Last Updated: 2026-01-01
+Project: Khadamaty - Local Services Marketplace (Diyarout, Asyut)
+
+🎯 Project Vision
+Two-sided marketplace where users can both:
+
+👤 Request services (customer)
+🛠️ Provide services (provider)
+Target Location: Diyarout, Asyut, Egypt (27.5693°, 30.8418°)
+
+✅ Completed Features
+1. Bookings Page ✅
+State management (BookingsCubit + BookingsState)
+3 tabs: Upcoming, Past, Cancelled
+Responsive grid (desktop/tablet) and list (mobile)
+Pull-to-refresh
+6 reusable widgets extracted
+Fully localized
+Files:
+
+lib/features/home/presentation/pages/bookings_page.dart
+lib/features/home/presentation/widgets/bookings_widgets/
+lib/features/home/presentation/cubits/bookings_cubit/
+2. Profile Page ✅
+State management (ProfileCubit + ProfileState)
+Profile header with avatar
+4 stats cards (responsive grid)
+Quick actions (My Bookings, My Services, etc.)
+Settings toggles (notifications, dark mode)
+Account settings & logout
+5 reusable widgets
+Files:
+
+lib/features/home/presentation/pages/profile_page.dart
+lib/features/home/presentation/widgets/profile_widgets/
+lib/features/home/presentation/cubits/profile_cubit/
+3. My Services Page ✅
+State management (MyServicesCubit)
+List of user's services
+Edit/Delete actions with confirmation
+Empty state
+FAB for adding service
+Pull-to-refresh
+Uses UIHelpers for all dialogs/snackbars
+Files:
+
+lib/features/provider/presentation/pages/my_services_page.dart
+lib/features/provider/presentation/widgets/
+lib/features/provider/presentation/cubits/my_services_cubit/
+4. UIHelpers Utility ✅
+Reusable UI components to avoid code duplication:
+
+UIHelpers.showConfirmDialog() - confirmation dialogs
+UIHelpers.showSuccessSnackbar() - success messages
+UIHelpers.showErrorSnackbar() - error messages
+UIHelpers.showInfoSnackbar() - info messages
+UIHelpers.deleteWithConfirmation() - complete delete flow
+File: lib/core/utils/ui_helpers.dart
+
+5. CODING_GUIDELINES.md ✅
+Comprehensive guidelines covering:
+
+Responsive System (context.responsive, AppSpacing)
+Theme System (when to use theme vs AppColors)
+Widget Extraction (StatelessWidget, not methods)
+Localization (no hardcoded strings)
+Reusable Components (UIHelpers)
+File: CODING_GUIDELINES.md (root)
+
+6. Location Service ⚠️ (In Progress)
+Created location_service.dart
+Added packages: geolocator, geocoding
+Waiting for: Maps implementation decision
+File: lib/core/utils/location_service.dart
+
+🔧 Key Design Decisions
+1. No isProvider Flag
+❌ Don't use bool isProvider
+✅ User is provider if myServices.isNotEmpty
+✅ User is customer if totalBookings > 0
+✅ Users can be BOTH simultaneously
+2. Reusable Components Pattern
+❌ Don't repeat dialog/snackbar code
+✅ Use UIHelpers for all UI interactions
+✅ Keep pages clean, logic in utilities
+3. Widget Extraction
+❌ Don't use _buildXxx() methods
+✅ Extract to StatelessWidget
+✅ Place in feature-specific widgets/ folder
+4. Responsive System
+✅ Use context.isDesktop/isTablet/isMobile
+✅ Use AppSpacing for all spacing
+✅ Use context.responsive() for values
+❌ Don't use manual MediaQuery checks
+5. Localization
+✅ All user-facing strings in intl_en.arb & intl_ar.arb
+✅ Use S.of(context).key
+❌ No hardcoded strings
+🗺️ Maps Integration - Decision Pending
+Option 1: Google Maps (requires credit card)
+Packages: google_maps_flutter
+Needs API key from Google Cloud
+Free tier: 28,000 loads/month
+Blocked: No credit card available
+Option 2: OpenStreetMap (FREE - RECOMMENDED)
+Package: flutter_map
+No API key needed
+Unlimited free usage
+Has all needed features:
+✅ Map display
+✅ Markers
+✅ Current location
+✅ Location picker
+✅ Clustering
+❌ No Street View
+❌ No built-in traffic data
+Current Status: Packages added but not configured yet
+
+📱 Planned Features (Not Started)
+Phase 1: Service Provider Features
+Add Service Form (HIGH PRIORITY)
+
+Form with location picker
+Image upload
+Price & description
+Category selection
+Incoming Requests Page
+
+View booking requests
+Accept/Reject
+Link to chat
+Phase 2: Chat System
+Chat for Price Negotiation
+Real-time messaging
+Price offer messages
+Accept/counter offer flow
+Phase 3: Payment
+Paymob Integration
+Egyptian payment gateway
+Visa/Mastercard
+Mobile wallets
+Guide ready: payment_learning_guide.md
+Phase 4: Enhanced UX
+Maps integration (location-based search)
+Reviews & Ratings
+Notifications
+Distance filtering
+📁 Project Structure
+lib/
+├── core/
+│   ├── theme/
+│   │   ├── app_theme.dart
+│   │   └── app_colors.dart
+│   ├── utils/
+│   │   ├── app_spacing.dart
+│   │   ├── responsive_value.dart
+│   │   ├── ui_helpers.dart ✅ NEW
+│   │   └── location_service.dart ✅ NEW
+│   └── widgets/
+│       ├── loading_indicator.dart
+│       └── error_display.dart
+├── features/
+│   ├── home/
+│   │   └── presentation/
+│   │       ├── pages/
+│   │       │   ├── bookings_page.dart ✅
+│   │       │   ├── profile_page.dart ✅
+│   │       │   ├── home_screen.dart
+│   │       │   └── explore_page.dart
+│   │       ├── widgets/
+│   │       │   ├── bookings_widgets/ ✅
+│   │       │   ├── profile_widgets/ ✅
+│   │       │   ├── home_widgets/
+│   │       │   └── explore_widgets/
+│   │       └── cubits/
+│   │           ├── bookings_cubit/ ✅
+│   │           ├── profile_cubit/ ✅
+│   │           └── home_cubit/
+│   └── provider/ ✅ NEW
+│       └── presentation/
+│           ├── pages/
+│           │   └── my_services_page.dart ✅
+│           ├── widgets/
+│           │   ├── my_service_card.dart ✅
+│           │   └── empty_services_state.dart ✅
+│           └── cubits/
+│               └── my_services_cubit/ ✅
+└── l10n/
+    ├── intl_en.arb (142 keys)
+    └── intl_ar.arb (142 keys)
+🎨 Packages Used
+dependencies:
+  # State Management
+  flutter_bloc: ^8.1.3
+  equatable: ^2.0.5
+  
+  # Routing
+  go_router: ^14.6.2
+  
+  # Firebase
+  firebase_core: ^3.3.0
+  firebase_auth: ^5.2.0
+  cloud_firestore: ^5.4.0
+  
+  # Maps & Location ✅ ADDED
+  google_maps_flutter: ^2.5.0
+  geolocator: ^10.1.0
+  geocoding: ^2.1.1
+  permission_handler: ^11.0.1
+🚀 Next Steps (For New Session)
+Immediate Priority:
+Decide on Maps:
+
+Option A: Use OpenStreetMap (flutter_map) - FREE
+Option B: Get credit card for Google Maps
+Implement Add Service Form:
+
+Create form with validation
+Add location picker (maps)
+Image upload (placeholder)
+Connect to MyServicesCubit
+Create Incoming Requests Page:
+
+View booking requests for provider's services
+Accept/Reject actions
+Status management
+Medium Priority:
+Chat system (price negotiation)
+Payment gateway (Paymob)
+Long-term:
+Reviews & ratings
+Notifications
+Search & filters
+📝 Important Notes
+For Next Session:
+Read this summary first
+Check CODING_GUIDELINES.md for patterns
+Check implementation_plan.md for full roadmap
+All learning guides in artifacts:
+maps_learning_guide.md
+payment_learning_guide.md
+Git Status:
+Last commit: "adding profile page" (fb50e40)
+Branch: main
+All changes committed ✅
+Testing:
+Manual testing only (no automated tests yet)
+Hot restart to test changes
+Mock data for all features
+💡 Key Learnings Applied
+✅ Reusable components reduce duplication
+✅ Widget extraction improves performance
+✅ Consistent spacing with AppSpacing
+✅ Responsive design with context.responsive()
+✅ Localization-first approach
+✅ Clean Architecture with feature folders
+Session ended for RAM optimization. Continue in new session! 🚀

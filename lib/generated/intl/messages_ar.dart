@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "accountSettings": MessageLookupByLibrary.simpleMessage("إعدادات الحساب"),
     "active": MessageLookupByLibrary.simpleMessage("نشطة"),
     "addService": MessageLookupByLibrary.simpleMessage("إضافة خدمة"),
+    "addServiceImage": MessageLookupByLibrary.simpleMessage("صورة الخدمة"),
+    "addServiceTitle": MessageLookupByLibrary.simpleMessage("إضافة خدمة جديدة"),
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
@@ -36,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "cancelled": MessageLookupByLibrary.simpleMessage("الملغاة"),
     "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
+    "category": MessageLookupByLibrary.simpleMessage("الفئة"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("مسح الفلاتر"),
     "completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
@@ -65,6 +68,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "emailSent": MessageLookupByLibrary.simpleMessage(
       "تم إرسال رسالة التأكيد!",
+    ),
+    "enterCategory": MessageLookupByLibrary.simpleMessage(
+      "أدخل الفئة (مثل: سباكة، تنظيف)",
+    ),
+    "enterDescription": MessageLookupByLibrary.simpleMessage("صف خدمتك"),
+    "enterPrice": MessageLookupByLibrary.simpleMessage("أدخل السعر"),
+    "enterServiceTitle": MessageLookupByLibrary.simpleMessage(
+      "أدخل اسم الخدمة",
     ),
     "enterYourEmail": MessageLookupByLibrary.simpleMessage(
       "أدخل بريدك الإلكتروني",
@@ -129,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "لقد أكدت بريدي الإلكتروني",
     ),
+    "imageComingSoon": MessageLookupByLibrary.simpleMessage("رفع الصور قريباً"),
+    "imageSubtitle": MessageLookupByLibrary.simpleMessage("أضف صور لأعمالك"),
     "inactive": MessageLookupByLibrary.simpleMessage("غير نشطة"),
     "loadingBookings": MessageLookupByLibrary.simpleMessage(
       "جاري تحميل الحجوزات...",
@@ -139,10 +152,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "loadingServices": MessageLookupByLibrary.simpleMessage(
       "جاري تحميل الخدمات...",
     ),
+    "locationSubtitle": MessageLookupByLibrary.simpleMessage(
+      "أين تقدم هذه الخدمة",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد من تسجيل الخروج؟",
+    ),
+    "mapConfirmLocation": MessageLookupByLibrary.simpleMessage("تأكيد الموقع"),
+    "mapLoadingLocation": MessageLookupByLibrary.simpleMessage(
+      "جاري تحميل العنوان...",
+    ),
+    "mapPickLocation": MessageLookupByLibrary.simpleMessage("اختر الموقع"),
+    "mapUseCurrentLocation": MessageLookupByLibrary.simpleMessage(
+      "استخدم موقعي الحالي",
     ),
     "memberSince": MessageLookupByLibrary.simpleMessage("عضو منذ"),
     "minimumRating": MessageLookupByLibrary.simpleMessage(
@@ -193,6 +217,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "perHour": MessageLookupByLibrary.simpleMessage("في الساعة"),
     "perVisit": MessageLookupByLibrary.simpleMessage("لكل زيارة"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
+    "pleaseEnterCategory": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال الفئة",
+    ),
+    "pleaseEnterDescription": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال الوصف",
+    ),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريدك الإلكتروني",
     ),
@@ -208,15 +238,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterPhone": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال رقم الموبايل",
     ),
+    "pleaseEnterPrice": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال السعر",
+    ),
+    "pleaseEnterTitle": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال اسم الخدمة",
+    ),
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريد إلكتروني صحيح",
     ),
     "pleaseEnterValidPhone": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال رقم موبايل صحيح",
     ),
+    "pleaseSelectLocation": MessageLookupByLibrary.simpleMessage(
+      "الرجاء اختيار الموقع",
+    ),
     "popularProviders": MessageLookupByLibrary.simpleMessage(
       "مقدمو الخدمات المشهورون",
     ),
+    "price": MessageLookupByLibrary.simpleMessage("السعر"),
     "priceHighToLow": MessageLookupByLibrary.simpleMessage(
       "السعر: من الأعلى للأقل",
     ),
@@ -224,16 +264,30 @@ class MessageLookup extends MessageLookupByLibrary {
       "السعر: من الأقل للأعلى",
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
+    "priceUnit": MessageLookupByLibrary.simpleMessage("وحدة السعر"),
+    "pricingSubtitle": MessageLookupByLibrary.simpleMessage("حدد سعر خدمتك"),
+    "pricingTitle": MessageLookupByLibrary.simpleMessage("التسعير"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "quickActions": MessageLookupByLibrary.simpleMessage("إجراءات سريعة"),
     "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "reviews": MessageLookupByLibrary.simpleMessage("تقييم"),
+    "saveService": MessageLookupByLibrary.simpleMessage("حفظ الخدمة"),
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
     "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "serviceActive": MessageLookupByLibrary.simpleMessage("نشطة"),
+    "serviceAdded": MessageLookupByLibrary.simpleMessage(
+      "تمت إضافة الخدمة بنجاح",
+    ),
+    "serviceDescription": MessageLookupByLibrary.simpleMessage("الوصف"),
     "serviceInactive": MessageLookupByLibrary.simpleMessage("غير نشطة"),
+    "serviceInfo": MessageLookupByLibrary.simpleMessage("معلومات الخدمة"),
+    "serviceInfoSubtitle": MessageLookupByLibrary.simpleMessage(
+      "التفاصيل الأساسية عن خدمتك",
+    ),
+    "serviceLocation": MessageLookupByLibrary.simpleMessage("موقع الخدمة"),
+    "serviceTitle": MessageLookupByLibrary.simpleMessage("اسم الخدمة"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
@@ -244,6 +298,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "startAddingServices": MessageLookupByLibrary.simpleMessage(
       "ابدأ بإضافة خدماتك للوصول للعملاء",
+    ),
+    "tapToSelectLocation": MessageLookupByLibrary.simpleMessage(
+      "اضغط لاختيار الموقع",
     ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
     "timeSlot": MessageLookupByLibrary.simpleMessage("الوقت"),

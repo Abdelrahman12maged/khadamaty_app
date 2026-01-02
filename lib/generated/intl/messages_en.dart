@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "accountSettings": MessageLookupByLibrary.simpleMessage("Account Settings"),
     "active": MessageLookupByLibrary.simpleMessage("Active"),
     "addService": MessageLookupByLibrary.simpleMessage("Add Service"),
+    "addServiceImage": MessageLookupByLibrary.simpleMessage("Service Image"),
+    "addServiceTitle": MessageLookupByLibrary.simpleMessage("Add New Service"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
@@ -36,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
+    "category": MessageLookupByLibrary.simpleMessage("Category"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
@@ -65,6 +68,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "emailSent": MessageLookupByLibrary.simpleMessage(
       "Verification email sent!",
+    ),
+    "enterCategory": MessageLookupByLibrary.simpleMessage(
+      "Enter category (e.g., Plumbing, Cleaning)",
+    ),
+    "enterDescription": MessageLookupByLibrary.simpleMessage(
+      "Describe your service",
+    ),
+    "enterPrice": MessageLookupByLibrary.simpleMessage("Enter price"),
+    "enterServiceTitle": MessageLookupByLibrary.simpleMessage(
+      "Enter service title",
     ),
     "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
     "enterYourName": MessageLookupByLibrary.simpleMessage(
@@ -139,6 +152,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "iVerified": MessageLookupByLibrary.simpleMessage(
       "I\'ve Verified My Email",
     ),
+    "imageComingSoon": MessageLookupByLibrary.simpleMessage(
+      "Image upload coming soon",
+    ),
+    "imageSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Add photos of your work",
+    ),
     "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
     "loadingBookings": MessageLookupByLibrary.simpleMessage(
       "Loading bookings...",
@@ -149,10 +168,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "loadingServices": MessageLookupByLibrary.simpleMessage(
       "Loading services...",
     ),
+    "locationSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Where you provide this service",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to logout?",
+    ),
+    "mapConfirmLocation": MessageLookupByLibrary.simpleMessage(
+      "Confirm Location",
+    ),
+    "mapLoadingLocation": MessageLookupByLibrary.simpleMessage(
+      "Loading address...",
+    ),
+    "mapPickLocation": MessageLookupByLibrary.simpleMessage("Pick Location"),
+    "mapUseCurrentLocation": MessageLookupByLibrary.simpleMessage(
+      "Use Current Location",
     ),
     "memberSince": MessageLookupByLibrary.simpleMessage("Member Since"),
     "minimumRating": MessageLookupByLibrary.simpleMessage("Minimum Rating"),
@@ -199,6 +231,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "perHour": MessageLookupByLibrary.simpleMessage("per hour"),
     "perVisit": MessageLookupByLibrary.simpleMessage("per visit"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "pleaseEnterCategory": MessageLookupByLibrary.simpleMessage(
+      "Please enter a category",
+    ),
+    "pleaseEnterDescription": MessageLookupByLibrary.simpleMessage(
+      "Please enter a description",
+    ),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter your email",
     ),
@@ -214,15 +252,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterPhone": MessageLookupByLibrary.simpleMessage(
       "Please enter your phone number",
     ),
+    "pleaseEnterPrice": MessageLookupByLibrary.simpleMessage(
+      "Please enter a price",
+    ),
+    "pleaseEnterTitle": MessageLookupByLibrary.simpleMessage(
+      "Please enter a title",
+    ),
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid email",
     ),
     "pleaseEnterValidPhone": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid phone number",
     ),
+    "pleaseSelectLocation": MessageLookupByLibrary.simpleMessage(
+      "Please select a location",
+    ),
     "popularProviders": MessageLookupByLibrary.simpleMessage(
       "Popular Providers",
     ),
+    "price": MessageLookupByLibrary.simpleMessage("Price"),
     "priceHighToLow": MessageLookupByLibrary.simpleMessage(
       "Price: High to Low",
     ),
@@ -230,18 +278,34 @@ class MessageLookup extends MessageLookupByLibrary {
       "Price: Low to High",
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("Price Range"),
+    "priceUnit": MessageLookupByLibrary.simpleMessage("Price Unit"),
+    "pricingSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Set your service rate",
+    ),
+    "pricingTitle": MessageLookupByLibrary.simpleMessage("Pricing"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "quickActions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
     "rating": MessageLookupByLibrary.simpleMessage("Rating"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("Resend Email"),
     "reviews": MessageLookupByLibrary.simpleMessage("reviews"),
+    "saveService": MessageLookupByLibrary.simpleMessage("Save Service"),
     "searchServices": MessageLookupByLibrary.simpleMessage(
       "Search for services...",
     ),
     "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
     "serviceActive": MessageLookupByLibrary.simpleMessage("Active"),
+    "serviceAdded": MessageLookupByLibrary.simpleMessage(
+      "Service added successfully",
+    ),
+    "serviceDescription": MessageLookupByLibrary.simpleMessage("Description"),
     "serviceInactive": MessageLookupByLibrary.simpleMessage("Inactive"),
+    "serviceInfo": MessageLookupByLibrary.simpleMessage("Service Information"),
+    "serviceInfoSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Basic details about your service",
+    ),
+    "serviceLocation": MessageLookupByLibrary.simpleMessage("Service Location"),
+    "serviceTitle": MessageLookupByLibrary.simpleMessage("Service Title"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
@@ -252,6 +316,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
     "startAddingServices": MessageLookupByLibrary.simpleMessage(
       "Start adding your services to reach customers",
+    ),
+    "tapToSelectLocation": MessageLookupByLibrary.simpleMessage(
+      "Tap to select location",
     ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
     "timeSlot": MessageLookupByLibrary.simpleMessage("Time Slot"),

@@ -1208,6 +1208,291 @@ class S {
   String get inactive {
     return Intl.message('Inactive', name: 'inactive', desc: '', args: []);
   }
+
+  /// `Pick Location`
+  String get mapPickLocation {
+    return Intl.message(
+      'Pick Location',
+      name: 'mapPickLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Current Location`
+  String get mapUseCurrentLocation {
+    return Intl.message(
+      'Use Current Location',
+      name: 'mapUseCurrentLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Location`
+  String get mapConfirmLocation {
+    return Intl.message(
+      'Confirm Location',
+      name: 'mapConfirmLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading address...`
+  String get mapLoadingLocation {
+    return Intl.message(
+      'Loading address...',
+      name: 'mapLoadingLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Service`
+  String get addServiceTitle {
+    return Intl.message(
+      'Add New Service',
+      name: 'addServiceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Title`
+  String get serviceTitle {
+    return Intl.message(
+      'Service Title',
+      name: 'serviceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter service title`
+  String get enterServiceTitle {
+    return Intl.message(
+      'Enter service title',
+      name: 'enterServiceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get serviceDescription {
+    return Intl.message(
+      'Description',
+      name: 'serviceDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Describe your service`
+  String get enterDescription {
+    return Intl.message(
+      'Describe your service',
+      name: 'enterDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message('Category', name: 'category', desc: '', args: []);
+  }
+
+  /// `Enter category (e.g., Plumbing, Cleaning)`
+  String get enterCategory {
+    return Intl.message(
+      'Enter category (e.g., Plumbing, Cleaning)',
+      name: 'enterCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message('Price', name: 'price', desc: '', args: []);
+  }
+
+  /// `Enter price`
+  String get enterPrice {
+    return Intl.message('Enter price', name: 'enterPrice', desc: '', args: []);
+  }
+
+  /// `Price Unit`
+  String get priceUnit {
+    return Intl.message('Price Unit', name: 'priceUnit', desc: '', args: []);
+  }
+
+  /// `Service Location`
+  String get serviceLocation {
+    return Intl.message(
+      'Service Location',
+      name: 'serviceLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to select location`
+  String get tapToSelectLocation {
+    return Intl.message(
+      'Tap to select location',
+      name: 'tapToSelectLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Image`
+  String get addServiceImage {
+    return Intl.message(
+      'Service Image',
+      name: 'addServiceImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Image upload coming soon`
+  String get imageComingSoon {
+    return Intl.message(
+      'Image upload coming soon',
+      name: 'imageComingSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Service`
+  String get saveService {
+    return Intl.message(
+      'Save Service',
+      name: 'saveService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service added successfully`
+  String get serviceAdded {
+    return Intl.message(
+      'Service added successfully',
+      name: 'serviceAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a title`
+  String get pleaseEnterTitle {
+    return Intl.message(
+      'Please enter a title',
+      name: 'pleaseEnterTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a description`
+  String get pleaseEnterDescription {
+    return Intl.message(
+      'Please enter a description',
+      name: 'pleaseEnterDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a category`
+  String get pleaseEnterCategory {
+    return Intl.message(
+      'Please enter a category',
+      name: 'pleaseEnterCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a price`
+  String get pleaseEnterPrice {
+    return Intl.message(
+      'Please enter a price',
+      name: 'pleaseEnterPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a location`
+  String get pleaseSelectLocation {
+    return Intl.message(
+      'Please select a location',
+      name: 'pleaseSelectLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Information`
+  String get serviceInfo {
+    return Intl.message(
+      'Service Information',
+      name: 'serviceInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Basic details about your service`
+  String get serviceInfoSubtitle {
+    return Intl.message(
+      'Basic details about your service',
+      name: 'serviceInfoSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pricing`
+  String get pricingTitle {
+    return Intl.message('Pricing', name: 'pricingTitle', desc: '', args: []);
+  }
+
+  /// `Set your service rate`
+  String get pricingSubtitle {
+    return Intl.message(
+      'Set your service rate',
+      name: 'pricingSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where you provide this service`
+  String get locationSubtitle {
+    return Intl.message(
+      'Where you provide this service',
+      name: 'locationSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add photos of your work`
+  String get imageSubtitle {
+    return Intl.message(
+      'Add photos of your work',
+      name: 'imageSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

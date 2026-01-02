@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/ui_helpers.dart';
@@ -68,13 +69,7 @@ class MyServicesPage extends StatelessWidget {
           },
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            // TODO: Navigate to Add Service form
-            UIHelpers.showInfoSnackbar(
-              context: context,
-              message: S.of(context).addService,
-            );
-          },
+          onPressed: () => context.push('/add-service'),
           icon: const Icon(Icons.add),
           label: Text(S.of(context).addService),
         ),

@@ -83,6 +83,11 @@ class ServiceData extends Equatable {
   final double rating;
   final int reviewCount;
   final String? imageUrl;
+  // New fields for Add Service form
+  final String? category;
+  final double? latitude;
+  final double? longitude;
+  final String? address;
 
   const ServiceData({
     required this.id,
@@ -94,6 +99,10 @@ class ServiceData extends Equatable {
     required this.rating,
     required this.reviewCount,
     this.imageUrl,
+    this.category,
+    this.latitude,
+    this.longitude,
+    this.address,
   });
 
   @override
@@ -107,5 +116,9 @@ class ServiceData extends Equatable {
         rating,
         reviewCount,
         imageUrl,
+        category,
+        latitude,
+        longitude,
+        address,
       ];
 }
