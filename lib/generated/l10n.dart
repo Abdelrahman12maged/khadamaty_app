@@ -1493,6 +1493,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Appointment`
+  String get appointment {
+    return Intl.message('Appointment', name: 'appointment', desc: '', args: []);
+  }
+
+  /// `On Demand`
+  String get onDemand {
+    return Intl.message('On Demand', name: 'onDemand', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -3,11 +3,11 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/service_entity.dart';
-import '../../domain/repositories/i_service_repository.dart';
+import '../../domain/repositories/service_repository.dart';
 import '../models/service_model.dart';
 
-/// Firebase implementation of IServiceRepository
-class FirebaseServiceRepository implements IServiceRepository {
+/// Firebase implementation of ServiceRepository
+class FirebaseServiceRepository implements ServiceRepository {
   final FirebaseFirestore _firestore;
   final FirebaseAuth _auth;
 
@@ -168,10 +168,13 @@ class FirebaseServiceRepository implements IServiceRepository {
   Stream<List<ServiceEntity>> watchProviderServices(String providerId) {
     return _servicesCollection
         .where('providerId', isEqualTo: providerId)
-        .orderBy('createdAt', descending: true)
         .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => ServiceModel.fromFirestore(doc))
-            .toList());
+        .map((snapshot) {
+      final services =
+          snapshot.docs.map((doc) => ServiceModel.fromFirestore(doc)).toList();
+      // Sort client-side to avoid composite index requirement
+      services.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return services;
+    });
   }
 }

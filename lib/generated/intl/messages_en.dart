@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "appName": MessageLookupByLibrary.simpleMessage("Khadamaty"),
     "applyFilters": MessageLookupByLibrary.simpleMessage("Apply Filters"),
+    "appointment": MessageLookupByLibrary.simpleMessage("Appointment"),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("Booking Details"),
     "bookings": MessageLookupByLibrary.simpleMessage("Bookings"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -204,6 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "No upcoming bookings",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "onDemand": MessageLookupByLibrary.simpleMessage("On Demand"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "Get connected with the best local service providers in your area.",
     ),

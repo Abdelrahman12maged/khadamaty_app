@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "appName": MessageLookupByLibrary.simpleMessage("خدماتي"),
     "applyFilters": MessageLookupByLibrary.simpleMessage("تطبيق الفلاتر"),
+    "appointment": MessageLookupByLibrary.simpleMessage("موعد"),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
     "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
@@ -190,6 +191,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا توجد حجوزات قادمة",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+    "onDemand": MessageLookupByLibrary.simpleMessage("فوري"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/ui_helpers.dart';
@@ -10,14 +11,18 @@ import '../cubits/my_services_cubit/my_services_state.dart';
 import '../widgets/my_service_card.dart';
 import '../widgets/empty_services_state.dart';
 
-/// My Services page for managing user's services
+/// My Services page for managing provider's services
 class MyServicesPage extends StatelessWidget {
   const MyServicesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MyServicesCubit()..loadMyServices(context),
+      create: (context) => MyServicesCubit(
+        getProviderServicesUseCase: sl(),
+        deleteServiceUseCase: sl(),
+        toggleServiceStatusUseCase: sl(),
+      )..watchMyServices(), // Use real-time watching
       child: Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).myServicesTitle),
@@ -36,7 +41,7 @@ class MyServicesPage extends StatelessWidget {
 
             return RefreshIndicator(
               onRefresh: () =>
-                  context.read<MyServicesCubit>().refreshServices(context),
+                  context.read<MyServicesCubit>().refreshServices(),
               child: ListView.builder(
                 padding: EdgeInsets.all(AppSpacing.page(context)),
                 itemCount: state.myServices.length,

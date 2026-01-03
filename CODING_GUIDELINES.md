@@ -128,6 +128,37 @@ core/
   theme/           # AppColors, AppTheme
   utils/           # Responsive, Spacing, Validators
   widgets/         # Reusable app-wide widgets
+  di/              # Dependency injection container
+```
+
+---
+
+## 📛 Naming Conventions
+
+### ❌ NEVER Do This:
+```dart
+// ❌ NO! Don't use "I" prefix for interfaces
+abstract class IServiceRepository { }
+abstract class IAuthRepository { }
+
+// ❌ NO! Hungarian notation
+String strName;
+int iCount;
+```
+
+### ✅ ALWAYS Do This:
+```dart
+// ✅ YES! Use descriptive names without prefixes
+abstract class ServiceRepository { }
+abstract class AuthRepository { }
+
+// ✅ For implementations, use descriptive suffix
+class FirebaseServiceRepository implements ServiceRepository { }
+class SupabaseServiceRepository implements ServiceRepository { }
+
+// ✅ Clear variable names
+String userName;
+int itemCount;
 ```
 
 ---

@@ -169,5 +169,7 @@
   "pricingTitle": "التسعير",
   "pricingSubtitle": "حدد سعر خدمتك",
   "locationSubtitle": "أين تقدم هذه الخدمة",
-  "imageSubtitle": "أضف صور لأعمالك"
+  "imageSubtitle": "أضف صور لأعمالك",
+  "appointment": "موعد",
+  "onDemand": "فوري"
 }

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import '../../../domain/entities/service_entity.dart';
 
 /// Add Service form states
 enum AddServiceStatus {
@@ -16,6 +17,8 @@ class AddServiceState extends Equatable {
   final String category;
   final double? price;
   final String priceUnit;
+  final ServiceType serviceType;
+  final int? durationMinutes; // For appointment services
   final double? latitude;
   final double? longitude;
   final String? address;
@@ -24,6 +27,7 @@ class AddServiceState extends Equatable {
   // Form status
   final AddServiceStatus status;
   final String? error;
+  final ServiceEntity? createdService;
 
   // Validation state
   final bool hasAttemptedSubmit;
@@ -33,13 +37,16 @@ class AddServiceState extends Equatable {
     this.description = '',
     this.category = '',
     this.price,
-    this.priceUnit = 'per visit',
+    this.priceUnit = 'per_visit',
+    this.serviceType = ServiceType.onDemand,
+    this.durationMinutes,
     this.latitude,
     this.longitude,
     this.address,
     this.imageUrl,
     this.status = AddServiceStatus.initial,
     this.error,
+    this.createdService,
     this.hasAttemptedSubmit = false,
   });
 
@@ -56,18 +63,24 @@ class AddServiceState extends Equatable {
   /// Check if location is selected
   bool get hasLocation => latitude != null && longitude != null;
 
+  /// Check if this is an appointment service
+  bool get isAppointmentService => serviceType == ServiceType.appointment;
+
   AddServiceState copyWith({
     String? title,
     String? description,
     String? category,
     double? price,
     String? priceUnit,
+    ServiceType? serviceType,
+    int? durationMinutes,
     double? latitude,
     double? longitude,
     String? address,
     String? imageUrl,
     AddServiceStatus? status,
     String? error,
+    ServiceEntity? createdService,
     bool? hasAttemptedSubmit,
     bool clearError = false,
     bool clearLocation = false,
@@ -78,12 +91,15 @@ class AddServiceState extends Equatable {
       category: category ?? this.category,
       price: price ?? this.price,
       priceUnit: priceUnit ?? this.priceUnit,
+      serviceType: serviceType ?? this.serviceType,
+      durationMinutes: durationMinutes ?? this.durationMinutes,
       latitude: clearLocation ? null : (latitude ?? this.latitude),
       longitude: clearLocation ? null : (longitude ?? this.longitude),
       address: clearLocation ? null : (address ?? this.address),
       imageUrl: imageUrl ?? this.imageUrl,
       status: status ?? this.status,
       error: clearError ? null : (error ?? this.error),
+      createdService: createdService ?? this.createdService,
       hasAttemptedSubmit: hasAttemptedSubmit ?? this.hasAttemptedSubmit,
     );
   }
@@ -95,12 +111,15 @@ class AddServiceState extends Equatable {
         category,
         price,
         priceUnit,
+        serviceType,
+        durationMinutes,
         latitude,
         longitude,
         address,
         imageUrl,
         status,
         error,
+        createdService,
         hasAttemptedSubmit,
       ];
 }

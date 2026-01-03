@@ -90,11 +90,11 @@ class PriceInputSection extends StatelessWidget {
       ),
       items: [
         DropdownMenuItem(
-          value: 'per visit',
+          value: 'per_visit',
           child: Text(s.perVisit),
         ),
         DropdownMenuItem(
-          value: 'per hour',
+          value: 'per_hour',
           child: Text(s.perHour),
         ),
       ],

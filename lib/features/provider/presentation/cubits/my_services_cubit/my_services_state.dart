@@ -1,16 +1,9 @@
 import 'package:equatable/equatable.dart';
-import '../../../../home/presentation/cubits/home_cubit/home_state.dart';
-
-/// Service status enum
-enum ServiceStatus {
-  active,
-  inactive,
-  pending,
-}
+import '../../../domain/entities/service_entity.dart';
 
 /// My Services state
 class MyServicesState extends Equatable {
-  final List<ServiceData> myServices;
+  final List<ServiceEntity> myServices;
   final bool isLoading;
   final String? error;
 
@@ -20,8 +13,14 @@ class MyServicesState extends Equatable {
     this.error,
   });
 
+  /// Check if list is empty
+  bool get isEmpty => myServices.isEmpty && !isLoading;
+
+  /// Get active services count
+  int get activeCount => myServices.where((s) => s.isActive).length;
+
   MyServicesState copyWith({
-    List<ServiceData>? myServices,
+    List<ServiceEntity>? myServices,
     bool? isLoading,
     String? error,
     bool clearError = false,

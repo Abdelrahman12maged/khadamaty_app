@@ -3,11 +3,11 @@ import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/theme/app_colors.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
-import '../../../home/presentation/cubits/home_cubit/home_state.dart';
+import '../../domain/entities/service_entity.dart';
 
 /// My Service Card widget
 class MyServiceCard extends StatelessWidget {
-  final ServiceData service;
+  final ServiceEntity service;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
   final ValueChanged<bool>? onToggleStatus;
@@ -60,14 +60,72 @@ class MyServiceCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Title
-                Text(
-                  service.title,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+                // Title + Status indicator
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        service.title,
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                    ),
+                    // Status indicator
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: service.isActive ? Colors.green : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: AppSpacing.xs(context)),
+
+                // Category + Service Type
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryBlue.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        service.category,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: AppColors.primaryBlue,
+                            ),
+                      ),
+                    ),
+                    SizedBox(width: AppSpacing.xs(context)),
+                    if (service.requiresAppointment)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.orange.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          S.of(context).appointment,
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: Colors.orange,
+                                  ),
+                        ),
+                      ),
+                  ],
                 ),
                 SizedBox(height: AppSpacing.xs(context)),
 

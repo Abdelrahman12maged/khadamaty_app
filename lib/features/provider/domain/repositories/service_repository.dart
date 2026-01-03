@@ -4,7 +4,7 @@ import '../entities/service_entity.dart';
 
 /// Abstract repository interface for services
 /// Data layer will implement this interface (Firebase, Supabase, etc.)
-abstract class IServiceRepository {
+abstract class ServiceRepository {
   /// Create a new service
   Future<Either<Failure, ServiceEntity>> createService(ServiceEntity service);
 

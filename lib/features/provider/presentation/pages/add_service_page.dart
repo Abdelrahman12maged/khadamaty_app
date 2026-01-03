@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import 'package:khadamaty_app/core/theme/app_colors.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/ui_helpers.dart';
@@ -33,7 +34,7 @@ class AddServicePage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return BlocProvider(
-      create: (context) => AddServiceCubit(),
+      create: (context) => AddServiceCubit(createServiceUseCase: sl()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(s.addServiceTitle),
@@ -219,8 +220,7 @@ class AddServicePage extends StatelessWidget {
     BuildContext context,
     AddServiceCubit cubit,
   ) async {
-    const providerName = 'Current User';
-    final service = await cubit.submitForm(providerName: providerName);
+    final service = await cubit.submitForm();
     if (service != null && myServicesCubit != null) {
       // Service will be added when we return and refresh
     }

@@ -169,5 +169,7 @@
   "pricingTitle": "Pricing",
   "pricingSubtitle": "Set your service rate",
   "locationSubtitle": "Where you provide this service",
-  "imageSubtitle": "Add photos of your work"
+  "imageSubtitle": "Add photos of your work",
+  "appointment": "Appointment",
+  "onDemand": "On Demand"
 }
