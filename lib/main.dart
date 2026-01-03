@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:khadamaty_app/core/utils/router/app_router.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'core/theme/app_theme.dart';
-import 'features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +15,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Initialize dependency injection
+  await initDependencies();
 
   runApp(
     DevicePreview(
