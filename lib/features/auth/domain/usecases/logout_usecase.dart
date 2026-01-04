@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
-import '../repositories/i_auth_repository.dart';
+import '../repositories/auth_repository.dart';
 
 /// Use case for user logout
 class LogoutUseCase {
-  final IAuthRepository _authRepository;
+  final AuthRepository _authRepository;
 
-  LogoutUseCase({required IAuthRepository authRepository})
+  LogoutUseCase({required AuthRepository authRepository})
       : _authRepository = authRepository;
 
   /// Execute logout

@@ -33,7 +33,13 @@ class KhadamatyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(), // ✅ Global AuthCubit
+      create: (context) => AuthCubit(
+        registerUseCase: sl(),
+        loginUseCase: sl(),
+        logoutUseCase: sl(),
+        verifyEmailUseCase: sl(),
+        resetPasswordUseCase: sl(),
+      ),
       child: MaterialApp.router(
         // DevicePreview package to test app in mobile,tablet and dektop
         useInheritedMediaQuery: true,

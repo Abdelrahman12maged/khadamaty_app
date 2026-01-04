@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/i_auth_repository.dart';
+import '../../domain/repositories/auth_repository.dart';
 
-/// Firebase implementation of IAuthRepository
-class AuthRepositoryImpl implements IAuthRepository {
+/// Firebase implementation of AuthRepository
+class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
 
   AuthRepositoryImpl({FirebaseAuth? firebaseAuth})

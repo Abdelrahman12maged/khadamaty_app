@@ -1,17 +1,17 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/user_entity.dart';
-import '../repositories/i_auth_repository.dart';
-import '../repositories/i_user_repository.dart';
+import '../repositories/auth_repository.dart';
+import '../repositories/user_repository.dart';
 
 /// Use case for checking and handling email verification
 class VerifyEmailUseCase {
-  final IAuthRepository _authRepository;
-  final IUserRepository _userRepository;
+  final AuthRepository _authRepository;
+  final UserRepository _userRepository;
 
   VerifyEmailUseCase({
-    required IAuthRepository authRepository,
-    required IUserRepository userRepository,
+    required AuthRepository authRepository,
+    required UserRepository userRepository,
   })  : _authRepository = authRepository,
         _userRepository = userRepository;
 

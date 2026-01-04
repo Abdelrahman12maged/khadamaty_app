@@ -5,7 +5,7 @@ import '../entities/user_entity.dart';
 /// Abstract repository interface for user data operations
 /// Data layer will implement this interface
 /// Returns Either<Failure, T> for error handling
-abstract class IUserRepository {
+abstract class UserRepository {
   /// Save user to database
   Future<Either<Failure, void>> saveUser(UserEntity user);
 

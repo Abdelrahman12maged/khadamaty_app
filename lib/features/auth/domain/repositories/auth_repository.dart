@@ -5,7 +5,7 @@ import '../entities/user_entity.dart';
 /// Abstract repository interface for authentication
 /// Data layer will implement this interface
 /// Returns Either<Failure, T> for error handling
-abstract class IAuthRepository {
+abstract class AuthRepository {
   /// Register a new user with email and password
   Future<Either<Failure, UserEntity>> register({
     required String name,

@@ -5,9 +5,9 @@ import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/logout_usecase.dart';
 import '../../domain/usecases/verify_email_usecase.dart';
 import '../../domain/usecases/reset_password_usecase.dart';
-import '../../data/repositories/auth_repository_impl.dart';
-import '../../data/repositories/user_repository_impl.dart';
 
+/// Auth Cubit - manages authentication state
+/// All usecases are injected via DI
 class AuthCubit extends Cubit<AuthState> {
   final RegisterUseCase _registerUseCase;
   final LoginUseCase _loginUseCase;
@@ -16,49 +16,17 @@ class AuthCubit extends Cubit<AuthState> {
   final ResetPasswordUseCase _resetPasswordUseCase;
 
   AuthCubit({
-    RegisterUseCase? registerUseCase,
-    LoginUseCase? loginUseCase,
-    LogoutUseCase? logoutUseCase,
-    VerifyEmailUseCase? verifyEmailUseCase,
-    ResetPasswordUseCase? resetPasswordUseCase,
-  })  : _registerUseCase = registerUseCase ?? _createDefaultRegisterUseCase(),
-        _loginUseCase = loginUseCase ?? _createDefaultLoginUseCase(),
-        _logoutUseCase = logoutUseCase ?? _createDefaultLogoutUseCase(),
-        _verifyEmailUseCase =
-            verifyEmailUseCase ?? _createDefaultVerifyEmailUseCase(),
-        _resetPasswordUseCase =
-            resetPasswordUseCase ?? _createDefaultResetPasswordUseCase(),
+    required RegisterUseCase registerUseCase,
+    required LoginUseCase loginUseCase,
+    required LogoutUseCase logoutUseCase,
+    required VerifyEmailUseCase verifyEmailUseCase,
+    required ResetPasswordUseCase resetPasswordUseCase,
+  })  : _registerUseCase = registerUseCase,
+        _loginUseCase = loginUseCase,
+        _logoutUseCase = logoutUseCase,
+        _verifyEmailUseCase = verifyEmailUseCase,
+        _resetPasswordUseCase = resetPasswordUseCase,
         super(const AuthInitial());
-
-  // Factory methods to create default use cases
-  static RegisterUseCase _createDefaultRegisterUseCase() {
-    return RegisterUseCase(
-      authRepository: AuthRepositoryImpl(),
-      userRepository: UserRepositoryImpl(),
-    );
-  }
-
-  static LoginUseCase _createDefaultLoginUseCase() {
-    return LoginUseCase(
-      authRepository: AuthRepositoryImpl(),
-      userRepository: UserRepositoryImpl(),
-    );
-  }
-
-  static LogoutUseCase _createDefaultLogoutUseCase() {
-    return LogoutUseCase(authRepository: AuthRepositoryImpl());
-  }
-
-  static VerifyEmailUseCase _createDefaultVerifyEmailUseCase() {
-    return VerifyEmailUseCase(
-      authRepository: AuthRepositoryImpl(),
-      userRepository: UserRepositoryImpl(),
-    );
-  }
-
-  static ResetPasswordUseCase _createDefaultResetPasswordUseCase() {
-    return ResetPasswordUseCase(authRepository: AuthRepositoryImpl());
-  }
 
   /// Login with email and password
   Future<void> login({

@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/i_user_repository.dart';
+import '../../domain/repositories/user_repository.dart';
 import '../models/user_model.dart';
 
-/// Firestore implementation of IUserRepository
-class UserRepositoryImpl implements IUserRepository {
+/// Firestore implementation of UserRepository
+class UserRepositoryImpl implements UserRepository {
   final FirebaseFirestore _firestore;
   final String _collection = 'users';
 
