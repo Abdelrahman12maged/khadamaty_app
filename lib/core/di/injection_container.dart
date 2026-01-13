@@ -82,11 +82,10 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => DeleteServiceUseCase(repository: sl()));
   sl.registerLazySingleton(() => ToggleServiceStatusUseCase(repository: sl()));
 
-  // ============ CUBITS ============
-  // Cubits are created in UI with BlocProvider using sl() for dependencies
+ 
 }
 
-/// Reset all dependencies (useful for testing)
+/// Reset all dependencies for testing
 Future<void> resetDependencies() async {
   await sl.reset();
 }

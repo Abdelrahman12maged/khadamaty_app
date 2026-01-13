@@ -31,11 +31,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, UserEntity?>> getUser(String uid) async {
+  Future<Either<Failure, UserModel?>> getUser(String uid) async {
     try {
       final doc = await _usersCollection.doc(uid).get();
       if (doc.exists && doc.data() != null) {
-        return Right(UserModel.fromJson(doc.data()!).toEntity());
+        return Right(UserModel.fromJson(doc.data()!));
       }
       return const Right(null);
     } on FirebaseException catch (e) {
@@ -92,7 +92,7 @@ class UserRepositoryImpl implements UserRepository {
   Stream<UserEntity?> userStream(String uid) {
     return _usersCollection.doc(uid).snapshots().map((doc) {
       if (doc.exists && doc.data() != null) {
-        return UserModel.fromJson(doc.data()!).toEntity();
+        return UserModel.fromJson(doc.data()!);
       }
       return null;
     });
