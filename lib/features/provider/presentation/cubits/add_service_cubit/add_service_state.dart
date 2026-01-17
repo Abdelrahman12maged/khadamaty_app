@@ -23,6 +23,7 @@ class AddServiceState extends Equatable {
   final double? longitude;
   final String? address;
   final String? imageUrl;
+  final ServiceAvailability availability;
 
   // Form status
   final AddServiceStatus status;
@@ -44,6 +45,7 @@ class AddServiceState extends Equatable {
     this.longitude,
     this.address,
     this.imageUrl,
+    this.availability = ServiceAvailability.defaultAvailability,
     this.status = AddServiceStatus.initial,
     this.error,
     this.createdService,
@@ -78,6 +80,7 @@ class AddServiceState extends Equatable {
     double? longitude,
     String? address,
     String? imageUrl,
+    ServiceAvailability? availability,
     AddServiceStatus? status,
     String? error,
     ServiceEntity? createdService,
@@ -97,6 +100,7 @@ class AddServiceState extends Equatable {
       longitude: clearLocation ? null : (longitude ?? this.longitude),
       address: clearLocation ? null : (address ?? this.address),
       imageUrl: imageUrl ?? this.imageUrl,
+      availability: availability ?? this.availability,
       status: status ?? this.status,
       error: clearError ? null : (error ?? this.error),
       createdService: createdService ?? this.createdService,
@@ -117,6 +121,7 @@ class AddServiceState extends Equatable {
         longitude,
         address,
         imageUrl,
+        availability,
         status,
         error,
         createdService,

@@ -1503,6 +1503,176 @@ class S {
   String get onDemand {
     return Intl.message('On Demand', name: 'onDemand', desc: '', args: []);
   }
+
+  /// `Service Type`
+  String get serviceType {
+    return Intl.message(
+      'Service Type',
+      name: 'serviceType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer requests now`
+  String get onDemandDescription {
+    return Intl.message(
+      'Customer requests now',
+      name: 'onDemandDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book a time slot`
+  String get appointmentDescription {
+    return Intl.message(
+      'Book a time slot',
+      name: 'appointmentDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duration`
+  String get duration {
+    return Intl.message('Duration', name: 'duration', desc: '', args: []);
+  }
+
+  /// `e.g. 30`
+  String get durationHint {
+    return Intl.message('e.g. 30', name: 'durationHint', desc: '', args: []);
+  }
+
+  /// `min`
+  String get minutes {
+    return Intl.message('min', name: 'minutes', desc: '', args: []);
+  }
+
+  /// `min`
+  String get min {
+    return Intl.message('min', name: 'min', desc: '', args: []);
+  }
+
+  /// `Please enter duration`
+  String get pleaseEnterDuration {
+    return Intl.message(
+      'Please enter duration',
+      name: 'pleaseEnterDuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Type`
+  String get serviceTypeSection {
+    return Intl.message(
+      'Service Type',
+      name: 'serviceTypeSection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How customers will book`
+  String get serviceTypeSectionSubtitle {
+    return Intl.message(
+      'How customers will book',
+      name: 'serviceTypeSectionSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work Days`
+  String get workDays {
+    return Intl.message('Work Days', name: 'workDays', desc: '', args: []);
+  }
+
+  /// `Working Hours`
+  String get workingHours {
+    return Intl.message(
+      'Working Hours',
+      name: 'workingHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start`
+  String get startTime {
+    return Intl.message('Start', name: 'startTime', desc: '', args: []);
+  }
+
+  /// `End`
+  String get endTime {
+    return Intl.message('End', name: 'endTime', desc: '', args: []);
+  }
+
+  /// `Sun`
+  String get sun {
+    return Intl.message('Sun', name: 'sun', desc: '', args: []);
+  }
+
+  /// `Mon`
+  String get mon {
+    return Intl.message('Mon', name: 'mon', desc: '', args: []);
+  }
+
+  /// `Tue`
+  String get tue {
+    return Intl.message('Tue', name: 'tue', desc: '', args: []);
+  }
+
+  /// `Wed`
+  String get wed {
+    return Intl.message('Wed', name: 'wed', desc: '', args: []);
+  }
+
+  /// `Thu`
+  String get thu {
+    return Intl.message('Thu', name: 'thu', desc: '', args: []);
+  }
+
+  /// `Fri`
+  String get fri {
+    return Intl.message('Fri', name: 'fri', desc: '', args: []);
+  }
+
+  /// `Sat`
+  String get sat {
+    return Intl.message('Sat', name: 'sat', desc: '', args: []);
+  }
+
+  /// `Availability`
+  String get availability {
+    return Intl.message(
+      'Availability',
+      name: 'availability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When you're available`
+  String get availabilitySubtitle {
+    return Intl.message(
+      'When you\'re available',
+      name: 'availabilitySubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to add image`
+  String get tapToAddImage {
+    return Intl.message(
+      'Tap to add image',
+      name: 'tapToAddImage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

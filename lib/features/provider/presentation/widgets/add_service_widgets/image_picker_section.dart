@@ -4,16 +4,15 @@ import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 
-/// Image picker placeholder section for Add Service form
-/// TODO: Implement actual image picking when needed
+/// Image picker section for Add Service form
 class ImagePickerSection extends StatelessWidget {
   final String? imageUrl;
-  final VoidCallback? onTap;
+  final VoidCallback onTap;
 
   const ImagePickerSection({
     super.key,
     this.imageUrl,
-    this.onTap,
+    required this.onTap,
   });
 
   @override
@@ -26,33 +25,54 @@ class ImagePickerSection extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: Container(
         height:
-            context.responsive(mobile: 100.0, tablet: 120.0, desktop: 150.0),
+            context.responsive(mobile: 150.0, tablet: 180.0, desktop: 200.0),
         width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(
             color: AppColors.divider(context),
-            style: BorderStyle.solid,
+            width: imageUrl != null ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
           color: AppColors.surface(context),
+          image: imageUrl != null
+              ? DecorationImage(
+                  image: NetworkImage(imageUrl!),
+                  fit: BoxFit.cover,
+                )
+              : null,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.add_photo_alternate_outlined,
-              size: 40,
-              color: AppColors.textSecondary(context),
-            ),
-            SizedBox(height: AppSpacing.sm(context)),
-            Text(
-              s.imageComingSoon,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: AppColors.textSecondary(context),
+        child: imageUrl == null
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.add_photo_alternate_outlined,
+                    size: 48,
+                    color: AppColors.primaryBlue,
+                  ),
+                  SizedBox(height: AppSpacing.sm(context)),
+                  Text(
+                    s.tapToAddImage,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: AppColors.textSecondary(context),
+                    ),
+                  ),
+                ],
+              )
+            : Container(
+                alignment: Alignment.bottomRight,
+                padding: const EdgeInsets.all(8),
+                child: CircleAvatar(
+                  backgroundColor:
+                      AppColors.textPrimary(context).withValues(alpha: 0.5),
+                  radius: 18,
+                  child: const Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

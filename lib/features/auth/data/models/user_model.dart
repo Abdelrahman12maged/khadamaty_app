@@ -1,5 +1,7 @@
-import 'package:khadamaty_app/features/auth/domain/entities/user_entity.dart' show UserEntity;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:khadamaty_app/features/auth/domain/entities/user_entity.dart';
 
+/// User Model for Firestore serialization
 class UserModel extends UserEntity {
   const UserModel({
     required super.id,
@@ -13,22 +15,47 @@ class UserModel extends UserEntity {
     super.createdAt,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  /// Create from Firestore document
+  factory UserModel.fromFirestore(DocumentSnapshot doc) {
+    final json = doc.data() as Map<String, dynamic>;
     return UserModel(
-      id: json['id'] as String,
-      email: json['email'] as String,
-      name: json['name'] as String,
+      id: doc.id,
+      email: json['email'] as String? ?? '',
+      name: json['name'] as String? ?? '',
       phoneNumber: json['phoneNumber'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
       isEmailVerified: json['isEmailVerified'] as bool? ?? false,
       isPhoneVerified: json['isPhoneVerified'] as bool? ?? false,
       location: json['location'] as String?,
       createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'] as String)
+          ? (json['createdAt'] as Timestamp).toDate()
           : null,
     );
   }
 
+  /// Create from JSON map
+  factory UserModel.fromJson(Map<String, dynamic> json, {String? docId}) {
+    return UserModel(
+      id: docId ?? json['id'] as String? ?? '',
+      email: json['email'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      phoneNumber: json['phoneNumber'] as String?,
+      profileImageUrl: json['profileImageUrl'] as String?,
+      isEmailVerified: json['isEmailVerified'] as bool? ?? false,
+      isPhoneVerified: json['isPhoneVerified'] as bool? ?? false,
+      location: json['location'] as String?,
+      createdAt: _parseDateTime(json['createdAt']),
+    );
+  }
+
+  static DateTime? _parseDateTime(dynamic value) {
+    if (value == null) return null;
+    if (value is Timestamp) return value.toDate();
+    if (value is String) return DateTime.tryParse(value);
+    return null;
+  }
+
+  /// Create from UserEntity
   factory UserModel.fromEntity(UserEntity entity) {
     return UserModel(
       id: entity.id,
@@ -43,6 +70,21 @@ class UserModel extends UserEntity {
     );
   }
 
+  /// Convert to Firestore map
+  Map<String, dynamic> toFirestore() {
+    return {
+      'email': email,
+      'name': name,
+      'phoneNumber': phoneNumber,
+      'profileImageUrl': profileImageUrl,
+      'isEmailVerified': isEmailVerified,
+      'isPhoneVerified': isPhoneVerified,
+      'location': location,
+      'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : null,
+    };
+  }
+
+  /// Convert to JSON map
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -57,9 +99,6 @@ class UserModel extends UserEntity {
     };
   }
 
-
-
-  // دالة copyWith تبقى كما هي
   @override
   UserModel copyWith({
     String? id,

@@ -34,6 +34,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "appName": MessageLookupByLibrary.simpleMessage("Khadamaty"),
     "applyFilters": MessageLookupByLibrary.simpleMessage("Apply Filters"),
     "appointment": MessageLookupByLibrary.simpleMessage("Appointment"),
+    "appointmentDescription": MessageLookupByLibrary.simpleMessage(
+      "Book a time slot",
+    ),
+    "availability": MessageLookupByLibrary.simpleMessage("Availability"),
+    "availabilitySubtitle": MessageLookupByLibrary.simpleMessage(
+      "When you\'re available",
+    ),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("Booking Details"),
     "bookings": MessageLookupByLibrary.simpleMessage("Bookings"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -61,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "duration": MessageLookupByLibrary.simpleMessage("Duration"),
+    "durationHint": MessageLookupByLibrary.simpleMessage("e.g. 30"),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -70,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailSent": MessageLookupByLibrary.simpleMessage(
       "Verification email sent!",
     ),
+    "endTime": MessageLookupByLibrary.simpleMessage("End"),
     "enterCategory": MessageLookupByLibrary.simpleMessage(
       "Enter category (e.g., Plumbing, Cleaning)",
     ),
@@ -142,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "filters": MessageLookupByLibrary.simpleMessage("Filters"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+    "fri": MessageLookupByLibrary.simpleMessage("Fri"),
     "from": MessageLookupByLibrary.simpleMessage("From"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
@@ -188,7 +199,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Use Current Location",
     ),
     "memberSince": MessageLookupByLibrary.simpleMessage("Member Since"),
+    "min": MessageLookupByLibrary.simpleMessage("min"),
     "minimumRating": MessageLookupByLibrary.simpleMessage("Minimum Rating"),
+    "minutes": MessageLookupByLibrary.simpleMessage("min"),
+    "mon": MessageLookupByLibrary.simpleMessage("Mon"),
     "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
     "myBookings": MessageLookupByLibrary.simpleMessage("My Bookings"),
@@ -206,6 +220,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
     "onDemand": MessageLookupByLibrary.simpleMessage("On Demand"),
+    "onDemandDescription": MessageLookupByLibrary.simpleMessage(
+      "Customer requests now",
+    ),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "Get connected with the best local service providers in your area.",
     ),
@@ -238,6 +255,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseEnterDescription": MessageLookupByLibrary.simpleMessage(
       "Please enter a description",
+    ),
+    "pleaseEnterDuration": MessageLookupByLibrary.simpleMessage(
+      "Please enter duration",
     ),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter your email",
@@ -291,6 +311,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "rating": MessageLookupByLibrary.simpleMessage("Rating"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("Resend Email"),
     "reviews": MessageLookupByLibrary.simpleMessage("reviews"),
+    "sat": MessageLookupByLibrary.simpleMessage("Sat"),
     "saveService": MessageLookupByLibrary.simpleMessage("Save Service"),
     "searchServices": MessageLookupByLibrary.simpleMessage(
       "Search for services...",
@@ -308,6 +329,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "serviceLocation": MessageLookupByLibrary.simpleMessage("Service Location"),
     "serviceTitle": MessageLookupByLibrary.simpleMessage("Service Title"),
+    "serviceType": MessageLookupByLibrary.simpleMessage("Service Type"),
+    "serviceTypeSection": MessageLookupByLibrary.simpleMessage("Service Type"),
+    "serviceTypeSectionSubtitle": MessageLookupByLibrary.simpleMessage(
+      "How customers will book",
+    ),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
@@ -319,10 +345,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "startAddingServices": MessageLookupByLibrary.simpleMessage(
       "Start adding your services to reach customers",
     ),
+    "startTime": MessageLookupByLibrary.simpleMessage("Start"),
+    "sun": MessageLookupByLibrary.simpleMessage("Sun"),
+    "tapToAddImage": MessageLookupByLibrary.simpleMessage("Tap to add image"),
     "tapToSelectLocation": MessageLookupByLibrary.simpleMessage(
       "Tap to select location",
     ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
+    "thu": MessageLookupByLibrary.simpleMessage("Thu"),
     "timeSlot": MessageLookupByLibrary.simpleMessage("Time Slot"),
     "topRated": MessageLookupByLibrary.simpleMessage("Top Rated"),
     "totalBookings": MessageLookupByLibrary.simpleMessage("Total Bookings"),
@@ -330,6 +360,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
       "Try different keywords or clear filters",
     ),
+    "tue": MessageLookupByLibrary.simpleMessage("Tue"),
     "upcoming": MessageLookupByLibrary.simpleMessage("Upcoming"),
     "verifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email"),
     "verifyEmailDesc": MessageLookupByLibrary.simpleMessage(
@@ -339,6 +370,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Check your email",
     ),
     "viewDetails": MessageLookupByLibrary.simpleMessage("View Details"),
+    "wed": MessageLookupByLibrary.simpleMessage("Wed"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+    "workDays": MessageLookupByLibrary.simpleMessage("Work Days"),
+    "workingHours": MessageLookupByLibrary.simpleMessage("Working Hours"),
   };
 }

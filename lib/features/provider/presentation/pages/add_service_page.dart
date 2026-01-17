@@ -17,6 +17,9 @@ import '../widgets/add_service_widgets/price_input_section.dart';
 import '../widgets/add_service_widgets/location_picker_section.dart';
 import '../widgets/add_service_widgets/image_picker_section.dart';
 import '../widgets/add_service_widgets/form_section_card.dart';
+import '../widgets/add_service_widgets/service_type_selector.dart';
+import '../widgets/add_service_widgets/duration_input_field.dart';
+import '../widgets/add_service_widgets/availability_picker.dart';
 
 /// Add Service page for creating new services
 class AddServicePage extends StatelessWidget {
@@ -34,7 +37,10 @@ class AddServicePage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return BlocProvider(
-      create: (context) => AddServiceCubit(createServiceUseCase: sl()),
+      create: (context) => AddServiceCubit(
+        createServiceUseCase: sl(),
+        uploadImageUseCase: sl(),
+      ),
       child: Scaffold(
         appBar: AppBar(
           title: Text(s.addServiceTitle),
@@ -105,6 +111,37 @@ class AddServicePage extends StatelessWidget {
 
                     SizedBox(height: AppSpacing.lg(context)),
 
+                    // ===== SERVICE TYPE SECTION =====
+                    FormSectionCard(
+                      title: s.serviceTypeSection,
+                      subtitle: s.serviceTypeSectionSubtitle,
+                      icon: Icons.category_outlined,
+                      child: Column(
+                        children: [
+                          ServiceTypeSelector(
+                            value: state.serviceType,
+                            onChanged: cubit.updateServiceType,
+                          ),
+                          // Show duration field only for appointment services
+                          if (state.isAppointmentService) ...[
+                            SizedBox(height: AppSpacing.md(context)),
+                            DurationInputField(
+                              value: state.durationMinutes,
+                              onChanged: cubit.updateDuration,
+                              showError: showErrors,
+                            ),
+                            SizedBox(height: AppSpacing.md(context)),
+                            AvailabilityPicker(
+                              value: state.availability,
+                              onChanged: cubit.updateAvailability,
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: AppSpacing.lg(context)),
+
                     // ===== PRICING SECTION =====
                     FormSectionCard(
                       title: s.pricingTitle,
@@ -148,7 +185,10 @@ class AddServicePage extends StatelessWidget {
                       title: s.addServiceImage,
                       subtitle: s.imageSubtitle,
                       icon: Icons.photo_camera_outlined,
-                      child: const ImagePickerSection(),
+                      child: ImagePickerSection(
+                        imageUrl: state.imageUrl,
+                        onTap: cubit.pickAndUploadImage,
+                      ),
                     ),
 
                     SizedBox(height: AppSpacing.xl(context)),
@@ -176,12 +216,12 @@ class AddServicePage extends StatelessWidget {
                             ? null
                             : () => _submitForm(context, cubit),
                         icon: state.status == AddServiceStatus.loading
-                            ? const SizedBox(
+                            ? SizedBox(
                                 width: 20,
                                 height: 20,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
-                                  color: Colors.white,
+                                  color: theme.colorScheme.onPrimary,
                                 ),
                               )
                             : const Icon(Icons.check_circle_outline),

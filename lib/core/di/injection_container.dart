@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 
 // Auth imports
@@ -21,6 +22,8 @@ import '../../features/provider/domain/usecases/get_provider_services_usecase.da
 import '../../features/provider/domain/usecases/update_service_usecase.dart';
 import '../../features/provider/domain/usecases/delete_service_usecase.dart';
 import '../../features/provider/domain/usecases/toggle_service_status_usecase.dart';
+import '../../features/provider/domain/usecases/upload_image_usecase.dart';
+import '../../features/provider/data/repositories/firebase_image_repository.dart';
 
 /// Service Locator instance
 final sl = GetIt.instance;
@@ -32,6 +35,7 @@ Future<void> initDependencies() async {
   // Firebase instances
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
   sl.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
+  sl.registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance);
 
   // ============ REPOSITORIES ============
 
@@ -51,6 +55,11 @@ Future<void> initDependencies() async {
       firestore: sl(),
       auth: sl(),
     ),
+  );
+
+  // Image Repository
+  sl.registerLazySingleton<ImageRepository>(
+    () => FirebaseImageRepository(storage: sl()),
   );
 
   // ============ AUTH USECASES ============
@@ -81,8 +90,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => UpdateServiceUseCase(repository: sl()));
   sl.registerLazySingleton(() => DeleteServiceUseCase(repository: sl()));
   sl.registerLazySingleton(() => ToggleServiceStatusUseCase(repository: sl()));
-
- 
+  sl.registerLazySingleton(() => UploadImageUseCase(sl()));
 }
 
 /// Reset all dependencies for testing

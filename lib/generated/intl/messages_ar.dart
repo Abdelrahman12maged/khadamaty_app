@@ -34,6 +34,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "appName": MessageLookupByLibrary.simpleMessage("خدماتي"),
     "applyFilters": MessageLookupByLibrary.simpleMessage("تطبيق الفلاتر"),
     "appointment": MessageLookupByLibrary.simpleMessage("موعد"),
+    "appointmentDescription": MessageLookupByLibrary.simpleMessage(
+      "حجز موعد مسبق",
+    ),
+    "availability": MessageLookupByLibrary.simpleMessage("التوفر"),
+    "availabilitySubtitle": MessageLookupByLibrary.simpleMessage(
+      "متى تكون متاحاً",
+    ),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
     "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
@@ -61,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل أنت متأكد من حذف هذه الخدمة؟",
     ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
+    "duration": MessageLookupByLibrary.simpleMessage("المدة"),
+    "durationHint": MessageLookupByLibrary.simpleMessage("مثال: 30"),
     "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
@@ -70,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailSent": MessageLookupByLibrary.simpleMessage(
       "تم إرسال رسالة التأكيد!",
     ),
+    "endTime": MessageLookupByLibrary.simpleMessage("إلى"),
     "enterCategory": MessageLookupByLibrary.simpleMessage(
       "أدخل الفئة (مثل: سباكة، تنظيف)",
     ),
@@ -132,6 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredServices": MessageLookupByLibrary.simpleMessage("الخدمات المميزة"),
     "filters": MessageLookupByLibrary.simpleMessage("الفلاتر"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+    "fri": MessageLookupByLibrary.simpleMessage("جمعة"),
     "from": MessageLookupByLibrary.simpleMessage("من"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
@@ -170,9 +181,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "استخدم موقعي الحالي",
     ),
     "memberSince": MessageLookupByLibrary.simpleMessage("عضو منذ"),
+    "min": MessageLookupByLibrary.simpleMessage("د"),
     "minimumRating": MessageLookupByLibrary.simpleMessage(
       "الحد الأدنى للتقييم",
     ),
+    "minutes": MessageLookupByLibrary.simpleMessage("دقيقة"),
+    "mon": MessageLookupByLibrary.simpleMessage("اثنين"),
     "mostPopular": MessageLookupByLibrary.simpleMessage("الأكثر شعبية"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("عناويني"),
     "myBookings": MessageLookupByLibrary.simpleMessage("حجوزاتي"),
@@ -192,6 +206,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "onDemand": MessageLookupByLibrary.simpleMessage("فوري"),
+    "onDemandDescription": MessageLookupByLibrary.simpleMessage(
+      "طلب فوري الآن",
+    ),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
       "تواصل مع أفضل مقدمي الخدمات في منطقتك.",
     ),
@@ -224,6 +241,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseEnterDescription": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال الوصف",
+    ),
+    "pleaseEnterDuration": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال المدة",
     ),
     "pleaseEnterEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال بريدك الإلكتروني",
@@ -275,6 +295,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "reviews": MessageLookupByLibrary.simpleMessage("تقييم"),
+    "sat": MessageLookupByLibrary.simpleMessage("سبت"),
     "saveService": MessageLookupByLibrary.simpleMessage("حفظ الخدمة"),
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
     "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
@@ -290,6 +311,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "serviceLocation": MessageLookupByLibrary.simpleMessage("موقع الخدمة"),
     "serviceTitle": MessageLookupByLibrary.simpleMessage("اسم الخدمة"),
+    "serviceType": MessageLookupByLibrary.simpleMessage("نوع الخدمة"),
+    "serviceTypeSection": MessageLookupByLibrary.simpleMessage("نوع الخدمة"),
+    "serviceTypeSectionSubtitle": MessageLookupByLibrary.simpleMessage(
+      "كيف سيحجز العملاء",
+    ),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
@@ -301,10 +327,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "startAddingServices": MessageLookupByLibrary.simpleMessage(
       "ابدأ بإضافة خدماتك للوصول للعملاء",
     ),
+    "startTime": MessageLookupByLibrary.simpleMessage("من"),
+    "sun": MessageLookupByLibrary.simpleMessage("أحد"),
+    "tapToAddImage": MessageLookupByLibrary.simpleMessage("اضغط لإضافة صورة"),
     "tapToSelectLocation": MessageLookupByLibrary.simpleMessage(
       "اضغط لاختيار الموقع",
     ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
+    "thu": MessageLookupByLibrary.simpleMessage("خميس"),
     "timeSlot": MessageLookupByLibrary.simpleMessage("الوقت"),
     "topRated": MessageLookupByLibrary.simpleMessage("الأعلى تقييماً"),
     "totalBookings": MessageLookupByLibrary.simpleMessage("إجمالي الحجوزات"),
@@ -312,6 +342,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
       "جرب كلمات مختلفة أو امسح الفلاتر",
     ),
+    "tue": MessageLookupByLibrary.simpleMessage("ثلاثاء"),
     "upcoming": MessageLookupByLibrary.simpleMessage("القادمة"),
     "verifyEmail": MessageLookupByLibrary.simpleMessage(
       "تأكيد البريد الإلكتروني",
@@ -323,6 +354,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تأكد من بريدك الإلكتروني",
     ),
     "viewDetails": MessageLookupByLibrary.simpleMessage("عرض التفاصيل"),
+    "wed": MessageLookupByLibrary.simpleMessage("أربعاء"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
+    "workDays": MessageLookupByLibrary.simpleMessage("أيام العمل"),
+    "workingHours": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
   };
 }

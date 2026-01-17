@@ -13,7 +13,6 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl({FirebaseFirestore? firestore})
       : _firestore = firestore ?? FirebaseFirestore.instance;
 
-  /// Reference to users collection
   CollectionReference<Map<String, dynamic>> get _usersCollection =>
       _firestore.collection(_collection);
 
@@ -21,7 +20,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, void>> saveUser(UserEntity user) async {
     try {
       final model = UserModel.fromEntity(user);
-      await _usersCollection.doc(user.id).set(model.toJson());
+      await _usersCollection.doc(user.id).set(model.toFirestore());
       return const Right(null);
     } on FirebaseException catch (e) {
       return Left(DatabaseFailure(message: e.message ?? 'Failed to save user'));
@@ -31,11 +30,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel?>> getUser(String uid) async {
+  Future<Either<Failure, UserEntity?>> getUser(String uid) async {
     try {
       final doc = await _usersCollection.doc(uid).get();
       if (doc.exists && doc.data() != null) {
-        return Right(UserModel.fromJson(doc.data()!));
+        return Right(UserModel.fromFirestore(doc));
       }
       return const Right(null);
     } on FirebaseException catch (e) {
@@ -92,7 +91,7 @@ class UserRepositoryImpl implements UserRepository {
   Stream<UserEntity?> userStream(String uid) {
     return _usersCollection.doc(uid).snapshots().map((doc) {
       if (doc.exists && doc.data() != null) {
-        return UserModel.fromJson(doc.data()!);
+        return UserModel.fromFirestore(doc);
       }
       return null;
     });

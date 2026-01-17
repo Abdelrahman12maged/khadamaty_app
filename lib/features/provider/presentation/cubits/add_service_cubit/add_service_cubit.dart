@@ -1,18 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/entities/service_entity.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import '../../../domain/usecases/create_service_usecase.dart';
+import '../../../domain/usecases/upload_image_usecase.dart';
 import 'add_service_state.dart';
 
 /// Cubit for managing Add Service form
 class AddServiceCubit extends Cubit<AddServiceState> {
   final CreateServiceUseCase _createServiceUseCase;
+  final UploadImageUseCase _uploadImageUseCase;
   final FirebaseAuth _auth;
 
   AddServiceCubit({
     required CreateServiceUseCase createServiceUseCase,
+    required UploadImageUseCase uploadImageUseCase,
     FirebaseAuth? auth,
   })  : _createServiceUseCase = createServiceUseCase,
+        _uploadImageUseCase = uploadImageUseCase,
         _auth = auth ?? FirebaseAuth.instance,
         super(const AddServiceState());
 
@@ -51,6 +57,11 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     emit(state.copyWith(durationMinutes: minutes));
   }
 
+  /// Update availability (for appointment services)
+  void updateAvailability(ServiceAvailability availability) {
+    emit(state.copyWith(availability: availability));
+  }
+
   /// Update location
   void updateLocation({
     required double latitude,
@@ -68,6 +79,51 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   /// Clear location
   void clearLocation() {
     emit(state.copyWith(clearLocation: true));
+  }
+
+  /// Pick and upload image
+  Future<void> pickAndUploadImage() async {
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 70,
+      );
+
+      if (pickedFile == null) return;
+
+      final currentUser = _auth.currentUser;
+      if (currentUser == null) {
+        emit(state.copyWith(
+          status: AddServiceStatus.error,
+          error: 'User not authenticated',
+        ));
+        return;
+      }
+
+      emit(state.copyWith(status: AddServiceStatus.loading));
+
+      final file = File(pickedFile.path);
+      final fileName = 'services/${DateTime.now().millisecondsSinceEpoch}.jpg';
+
+      final result = await _uploadImageUseCase(file, fileName);
+
+      result.fold(
+        (failure) => emit(state.copyWith(
+          status: AddServiceStatus.error,
+          error: failure.message,
+        )),
+        (url) => emit(state.copyWith(
+          status: AddServiceStatus.initial,
+          imageUrl: url,
+        )),
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        status: AddServiceStatus.error,
+        error: 'Failed to pick/upload image: ${e.toString()}',
+      ));
+    }
   }
 
   /// Submit form to Firebase
@@ -111,9 +167,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
           longitude: state.longitude!,
           address: state.address ?? '',
         ),
-        availability: state.isAppointmentService
-            ? ServiceAvailability.defaultAvailability
-            : null,
+        availability: state.isAppointmentService ? state.availability : null,
         createdAt: DateTime.now(),
       );
 

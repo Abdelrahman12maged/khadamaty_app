@@ -77,7 +77,7 @@ class FormSectionCard extends StatelessWidget {
                         ),
                       ),
                       if (subtitle != null) ...[
-                        const SizedBox(height: 2),
+                        SizedBox(height: AppSpacing.xs(context)),
                         Text(
                           subtitle!,
                           style: theme.textTheme.bodySmall?.copyWith(

@@ -12,6 +12,7 @@ class UserEntity extends Equatable {
   final bool isPhoneVerified;
   final String? location;
   final DateTime? createdAt;
+  
 
   const UserEntity({
     required this.id,
@@ -23,6 +24,7 @@ class UserEntity extends Equatable {
     this.isPhoneVerified = false,
     this.location,
     this.createdAt,
+   
   });
 
   /// Create a copy with updated fields
@@ -63,3 +65,6 @@ class UserEntity extends Equatable {
         createdAt,
       ];
 }
+
+
+

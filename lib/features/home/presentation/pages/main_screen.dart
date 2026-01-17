@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import 'package:khadamaty_app/features/bookings/presentation/pages/bookings_page.dart';
 import '../cubits/navigation_cubit.dart';
 import '../widgets/home_widgets/side_navigation_rail.dart';
 import '../widgets/home_widgets/app_bottom_navigation_bar.dart';
 import 'home_screen.dart';
 import 'explore_page.dart';
-import 'bookings_page.dart';
 import 'profile_page.dart';
 
 /// Main screen with adaptive navigation:
