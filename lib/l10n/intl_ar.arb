@@ -195,5 +195,11 @@
   "sat": "سبت",
   "availability": "التوفر",
   "availabilitySubtitle": "متى تكون متاحاً",
-  "tapToAddImage": "اضغط لإضافة صورة"
+  "tapToAddImage": "اضغط لإضافة صورة",
+  "bookNow": "احجز الآن",
+  "aboutService": "عن الخدمة",
+  "location": "الموقع",
+  "provider": "مزود الخدمة",
+  "reviews": "التقييمات",
+  "noImage": "لا توجد صورة متوفرة"
 }

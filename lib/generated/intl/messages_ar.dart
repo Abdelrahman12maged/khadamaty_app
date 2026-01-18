@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutService": MessageLookupByLibrary.simpleMessage("عن الخدمة"),
     "accountSettings": MessageLookupByLibrary.simpleMessage("إعدادات الحساب"),
     "active": MessageLookupByLibrary.simpleMessage("نشطة"),
     "addService": MessageLookupByLibrary.simpleMessage("إضافة خدمة"),
@@ -41,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "availabilitySubtitle": MessageLookupByLibrary.simpleMessage(
       "متى تكون متاحاً",
     ),
+    "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
     "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
@@ -164,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loadingServices": MessageLookupByLibrary.simpleMessage(
       "جاري تحميل الخدمات...",
     ),
+    "location": MessageLookupByLibrary.simpleMessage("الموقع"),
     "locationSubtitle": MessageLookupByLibrary.simpleMessage(
       "أين تقدم هذه الخدمة",
     ),
@@ -195,6 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noCancelledBookings": MessageLookupByLibrary.simpleMessage(
       "لا توجد حجوزات ملغاة",
     ),
+    "noImage": MessageLookupByLibrary.simpleMessage("لا توجد صورة متوفرة"),
     "noPastBookings": MessageLookupByLibrary.simpleMessage(
       "لا توجد حجوزات سابقة",
     ),
@@ -291,10 +295,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "pricingTitle": MessageLookupByLibrary.simpleMessage("التسعير"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "provider": MessageLookupByLibrary.simpleMessage("مزود الخدمة"),
     "quickActions": MessageLookupByLibrary.simpleMessage("إجراءات سريعة"),
     "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
-    "reviews": MessageLookupByLibrary.simpleMessage("تقييم"),
+    "reviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
     "sat": MessageLookupByLibrary.simpleMessage("سبت"),
     "saveService": MessageLookupByLibrary.simpleMessage("حفظ الخدمة"),
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),

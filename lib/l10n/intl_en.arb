@@ -195,5 +195,11 @@
   "sat": "Sat",
   "availability": "Availability",
   "availabilitySubtitle": "When you're available",
-  "tapToAddImage": "Tap to add image"
+  "tapToAddImage": "Tap to add image",
+  "bookNow": "Book Now",
+  "aboutService": "About this service",
+  "location": "Location",
+  "provider": "Provider",
+  "reviews": "Reviews",
+  "noImage": "No image available"
 }

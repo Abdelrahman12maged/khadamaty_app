@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutService": MessageLookupByLibrary.simpleMessage("About this service"),
     "accountSettings": MessageLookupByLibrary.simpleMessage("Account Settings"),
     "active": MessageLookupByLibrary.simpleMessage("Active"),
     "addService": MessageLookupByLibrary.simpleMessage("Add Service"),
@@ -41,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "availabilitySubtitle": MessageLookupByLibrary.simpleMessage(
       "When you\'re available",
     ),
+    "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("Booking Details"),
     "bookings": MessageLookupByLibrary.simpleMessage("Bookings"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -180,6 +182,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loadingServices": MessageLookupByLibrary.simpleMessage(
       "Loading services...",
     ),
+    "location": MessageLookupByLibrary.simpleMessage("Location"),
     "locationSubtitle": MessageLookupByLibrary.simpleMessage(
       "Where you provide this service",
     ),
@@ -211,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noCancelledBookings": MessageLookupByLibrary.simpleMessage(
       "No cancelled bookings",
     ),
+    "noImage": MessageLookupByLibrary.simpleMessage("No image available"),
     "noPastBookings": MessageLookupByLibrary.simpleMessage("No past bookings"),
     "noResultsFor": MessageLookupByLibrary.simpleMessage("No results for"),
     "noServices": MessageLookupByLibrary.simpleMessage("No services available"),
@@ -307,10 +311,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "pricingTitle": MessageLookupByLibrary.simpleMessage("Pricing"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "provider": MessageLookupByLibrary.simpleMessage("Provider"),
     "quickActions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
     "rating": MessageLookupByLibrary.simpleMessage("Rating"),
     "resendEmail": MessageLookupByLibrary.simpleMessage("Resend Email"),
-    "reviews": MessageLookupByLibrary.simpleMessage("reviews"),
+    "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "sat": MessageLookupByLibrary.simpleMessage("Sat"),
     "saveService": MessageLookupByLibrary.simpleMessage("Save Service"),
     "searchServices": MessageLookupByLibrary.simpleMessage(

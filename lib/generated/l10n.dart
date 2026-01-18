@@ -699,9 +699,9 @@ class S {
     return Intl.message('Rating', name: 'rating', desc: '', args: []);
   }
 
-  /// `reviews`
+  /// `Reviews`
   String get reviews {
-    return Intl.message('reviews', name: 'reviews', desc: '', args: []);
+    return Intl.message('Reviews', name: 'reviews', desc: '', args: []);
   }
 
   /// `View Details`
@@ -1669,6 +1669,41 @@ class S {
     return Intl.message(
       'Tap to add image',
       name: 'tapToAddImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Now`
+  String get bookNow {
+    return Intl.message('Book Now', name: 'bookNow', desc: '', args: []);
+  }
+
+  /// `About this service`
+  String get aboutService {
+    return Intl.message(
+      'About this service',
+      name: 'aboutService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message('Location', name: 'location', desc: '', args: []);
+  }
+
+  /// `Provider`
+  String get provider {
+    return Intl.message('Provider', name: 'provider', desc: '', args: []);
+  }
+
+  /// `No image available`
+  String get noImage {
+    return Intl.message(
+      'No image available',
+      name: 'noImage',
       desc: '',
       args: [],
     );
