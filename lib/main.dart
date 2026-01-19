@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:khadamaty_app/core/utils/router/app_router.dart';
 import 'package:khadamaty_app/core/di/injection_container.dart';
+import 'package:khadamaty_app/features/provider/data/repositories/firebase_service_repository.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
@@ -18,6 +20,33 @@ void main() async {
 
   // Initialize dependency injection
   await initDependencies();
+
+
+
+// final repository = FirebaseServiceRepository();
+
+  
+//     final result = await repository.getActiveServices();
+
+//     result.fold(
+//       (failure) => print('❌ فشل الاتصال: ${failure.message}'),
+//       (services) {
+//         print('✅ نجاح! تم جلب ${services.length} خدمة من السيرفر.');
+//         for (var s in services) {
+//           print('--- الخدمة: ${s} | التقييم: ${s.rating}');
+//         }
+//       },
+//     );
+  
+
+
+
+
+
+
+
+
+
 
   runApp(
     DevicePreview(

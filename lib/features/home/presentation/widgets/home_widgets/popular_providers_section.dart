@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../../cubits/home_cubit/mock_home_data.dart';
+import '../../cubits/home_cubit/home_state.dart';
 import 'service_card.dart';
 
 /// Popular Providers Section Widget
 class PopularProvidersSection extends StatelessWidget {
-  const PopularProvidersSection({super.key});
+  final List<ServiceData> providers;
+
+  const PopularProvidersSection({super.key, required this.providers});
 
   @override
   Widget build(BuildContext context) {
-    // Get providers from centralized mock data
-    final providers = MockHomeData.getPopularProviders(context);
+    if (providers.isEmpty) {
+      return const Center(child: Text('No providers available'));
+    }
 
     // Desktop/tablet: show grid
     if (!context.isMobile) {
@@ -42,10 +46,7 @@ class PopularProvidersSection extends StatelessWidget {
             reviewCount: provider.reviewCount,
             imageUrl: provider.imageUrl,
             isInGrid: true,
-            onTap: () {
-              // TODO: Navigate to provider profile (/provider/${provider.id})
-              // Will implement when provider profile page is created
-            },
+            onTap: () => context.push('/service-details/${provider.id}'),
           );
         },
       );
@@ -72,10 +73,7 @@ class PopularProvidersSection extends StatelessWidget {
             reviewCount: provider.reviewCount,
             imageUrl: provider.imageUrl,
             isInGrid: false,
-            onTap: () {
-              // TODO: Navigate to provider profile (/provider/${provider.id})
-              // Will implement when provider profile page is created
-            },
+            onTap: () => context.push('/service-details/${provider.id}'),
           );
         },
       ),

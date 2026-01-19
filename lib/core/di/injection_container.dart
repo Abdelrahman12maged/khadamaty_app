@@ -13,6 +13,9 @@ import '../../features/auth/domain/usecases/login_usecase.dart';
 import '../../features/auth/domain/usecases/logout_usecase.dart';
 import '../../features/auth/domain/usecases/verify_email_usecase.dart';
 import '../../features/auth/domain/usecases/reset_password_usecase.dart';
+import '../../features/home/presentation/cubits/home_cubit/home_cubit.dart';
+import '../../features/home/presentation/cubits/navigation_cubit.dart';
+import '../../features/home/presentation/cubits/service_details_cubit/service_details_cubit.dart';
 
 // Provider imports
 import '../../features/provider/domain/repositories/service_repository.dart';
@@ -24,6 +27,8 @@ import '../../features/provider/domain/usecases/delete_service_usecase.dart';
 import '../../features/provider/domain/usecases/toggle_service_status_usecase.dart';
 import '../../features/provider/domain/usecases/upload_image_usecase.dart';
 import '../../features/provider/data/repositories/firebase_image_repository.dart';
+import '../../features/home/domain/usecases/get_active_services_usecase.dart';
+import '../../features/home/domain/usecases/get_service_by_id_usecase.dart';
 
 /// Service Locator instance
 final sl = GetIt.instance;
@@ -53,7 +58,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<ServiceRepository>(
     () => FirebaseServiceRepository(
       firestore: sl(),
-      auth: sl(),
+     auth: sl()
     ),
   );
 
@@ -91,6 +96,15 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => DeleteServiceUseCase(repository: sl()));
   sl.registerLazySingleton(() => ToggleServiceStatusUseCase(repository: sl()));
   sl.registerLazySingleton(() => UploadImageUseCase(sl()));
+
+  // ============ HOME USECASES ============
+  sl.registerLazySingleton(() => GetActiveServicesUseCase(repository: sl()));
+  sl.registerLazySingleton(() => GetServiceByIdUseCase(repository: sl()));
+
+  // ============ CUBITS ============
+  sl.registerFactory(() => NavigationCubit());
+  sl.registerFactory(() => HomeCubit(getActiveServicesUseCase: sl()));
+  sl.registerFactory(() => ServiceDetailsCubit(getServiceByIdUseCase: sl()));
 }
 
 /// Reset all dependencies for testing

@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../../cubits/home_cubit/mock_home_data.dart';
+import '../../cubits/home_cubit/home_state.dart';
 import 'service_card.dart';
 
 /// Featured Services Section Widget
 class FeaturedServicesSection extends StatelessWidget {
-  const FeaturedServicesSection({super.key});
+  final List<ServiceData> services;
+
+  const FeaturedServicesSection({super.key, required this.services});
 
   @override
   Widget build(BuildContext context) {
-    // Get services from centralized mock data
-    final services = MockHomeData.getFeaturedServices(context);
+    if (services.isEmpty) {
+      return const Center(child: Text('No featured services available'));
+    }
 
     // Desktop/tablet: show grid
     if (!context.isMobile) {
@@ -42,10 +46,7 @@ class FeaturedServicesSection extends StatelessWidget {
             reviewCount: service.reviewCount,
             imageUrl: service.imageUrl,
             isInGrid: true,
-            onTap: () {
-              // TODO: Navigate to service details (/service/${service.id})
-              // Will implement when service detail page is created
-            },
+            onTap: () => context.push('/service-details/${service.id}'),
           );
         },
       );
@@ -72,10 +73,7 @@ class FeaturedServicesSection extends StatelessWidget {
             reviewCount: service.reviewCount,
             imageUrl: service.imageUrl,
             isInGrid: false,
-            onTap: () {
-              // TODO: Navigate to service details (/service/${service.id})
-              // Will implement when service detail page is created
-            },
+            onTap: () => context.push('/service-details/${service.id}'),
           );
         },
       ),

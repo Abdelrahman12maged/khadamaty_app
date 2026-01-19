@@ -110,10 +110,13 @@ class FirebaseServiceRepository implements ServiceRepository {
         query = query.where('category', isEqualTo: category);
       }
 
-      final snapshot = await query.orderBy('rating', descending: true).get();
+      final snapshot = await query.get();
 
       List<ServiceEntity> services =
           snapshot.docs.map((doc) => ServiceModel.fromFirestore(doc)).toList();
+
+      // Sort client-side by rating (descending) to avoid composite index requirement
+      services.sort((a, b) => b.rating.compareTo(a.rating));
 
       // Client-side search filtering (Firestore doesn't support full-text search)
       if (searchQuery != null && searchQuery.isNotEmpty) {
@@ -136,15 +139,17 @@ class FirebaseServiceRepository implements ServiceRepository {
     int limit = 10,
   }) async {
     try {
-      final snapshot = await _servicesCollection
-          .where('isActive', isEqualTo: true)
-          .orderBy('rating', descending: true)
-          .limit(limit)
-          .get();
+      final snapshot =
+          await _servicesCollection.where('isActive', isEqualTo: true).get();
 
       final services =
           snapshot.docs.map((doc) => ServiceModel.fromFirestore(doc)).toList();
-      return Right(services);
+
+      // Sort client-side and apply limit
+      services.sort((a, b) => b.rating.compareTo(a.rating));
+      final limitedServices = services.take(limit).toList();
+
+      return Right(limitedServices);
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }

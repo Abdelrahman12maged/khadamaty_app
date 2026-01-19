@@ -7,6 +7,7 @@ import 'package:khadamaty_app/core/widgets/loading_indicator.dart';
 import 'package:khadamaty_app/core/widgets/error_display.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import '../cubits/home_cubit/home_cubit.dart';
 import '../widgets/home_widgets/home_app_bar.dart';
 import '../widgets/home_widgets/search_bar_widget.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..loadHomeData(context),
+      create: (context) => sl<HomeCubit>()..loadHomeData(context),
       child: Scaffold(
         appBar: const HomeAppBar(),
         body: BlocConsumer<HomeCubit, HomeState>(
@@ -102,7 +103,7 @@ class HomeScreen extends StatelessWidget {
 
                       SizedBox(height: AppSpacing.header(context)),
 
-                      const FeaturedServicesSection(),
+                      FeaturedServicesSection(services: state.featuredServices),
 
                       SizedBox(height: AppSpacing.section(context)),
 
@@ -115,7 +116,8 @@ class HomeScreen extends StatelessWidget {
 
                       SizedBox(height: AppSpacing.header(context)),
 
-                      const PopularProvidersSection(),
+                      PopularProvidersSection(
+                          providers: state.popularProviders),
 
                       SizedBox(height: AppSpacing.section(context)),
                     ],

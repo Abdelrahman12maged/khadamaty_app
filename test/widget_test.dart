@@ -1,30 +1,26 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:khadamaty_app/features/provider/data/repositories/firebase_service_repository.dart';
+import 'package:khadamaty_app/firebase_options.dart'; // ملف الإعدادات الخاص بك
 
-import 'package:khadamaty_app/main.dart';
+void main() async {
+ 
+  final repository = FirebaseServiceRepository(
+    firestore: FirebaseFirestore.instance, // استخدام النسخة الحقيقية
+  );
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const KhadamatyApp());
+  test('جلب البيانات من السيرفر الحقيقي', () async {
+    final result = await repository.getActiveServices();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    result.fold(
+      (failure) => print('❌ فشل الاتصال: ${failure.message}'),
+      (services) {
+        print('✅ نجاح! تم جلب ${services.length} خدمة من السيرفر.');
+        for (var s in services) {
+          print('--- الخدمة: ${s.title} | التقييم: ${s.rating}');
+        }
+      },
+    );
   });
 }

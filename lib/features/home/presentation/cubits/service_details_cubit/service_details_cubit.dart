@@ -1,49 +1,29 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
+import 'package:khadamaty_app/features/home/domain/usecases/get_service_by_id_usecase.dart';
 import 'service_details_state.dart';
 
 class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
-  ServiceDetailsCubit() : super(const ServiceDetailsState());
+  final GetServiceByIdUseCase _getServiceByIdUseCase;
+
+  ServiceDetailsCubit({
+    required GetServiceByIdUseCase getServiceByIdUseCase,
+  })  : _getServiceByIdUseCase = getServiceByIdUseCase,
+        super(const ServiceDetailsState());
 
   Future<void> loadService(String id) async {
     emit(state.copyWith(status: ServiceDetailsStatus.loading));
 
-    // Simulate network delay
-    await Future.delayed(const Duration(milliseconds: 800));
+    final result = await _getServiceByIdUseCase(id);
 
-    // Use mock data for now
-    final mockService = ServiceEntity(
-      id: id,
-      providerId: 'p123',
-      providerName: 'Ahmed Mahmoud',
-      title: 'Plumbing & Pipe Repair',
-      description:
-          'Professional plumbing services for all your home needs. We fix leaks, install new pipes, and repair water heaters with 24/7 availability for emergencies.',
-      category: 'Maintenance',
-      serviceType: ServiceType.appointment,
-      price: 250.0,
-      priceUnit: 'Fixed',
-      durationMinutes: 60,
-      imageUrl:
-          'https://images.unsplash.com/photo-1581244276823-86f789bc3330?q=80&w=2000',
-      location: const ServiceLocation(
-        latitude: 30.0444,
-        longitude: 31.2357,
-        address: 'Downtown, Cairo, Egypt',
-      ),
-      availability: const ServiceAvailability(
-        workDays: [0, 1, 2, 3, 4],
-        startTime: '09:00',
-        endTime: '18:00',
-      ),
-      rating: 4.8,
-      reviewCount: 124,
-      createdAt: DateTime.now(),
+    result.fold(
+      (failure) => emit(state.copyWith(
+        status: ServiceDetailsStatus.error,
+        errorMessage: failure.message,
+      )),
+      (service) => emit(state.copyWith(
+        status: ServiceDetailsStatus.success,
+        service: service,
+      )),
     );
-
-    emit(state.copyWith(
-      status: ServiceDetailsStatus.success,
-      service: mockService,
-    ));
   }
 }

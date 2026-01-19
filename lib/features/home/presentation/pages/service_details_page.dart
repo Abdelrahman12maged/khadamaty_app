@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/widgets/loading_indicator.dart';
@@ -22,7 +23,7 @@ class ServiceDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ServiceDetailsCubit()..loadService(serviceId),
+      create: (context) => sl<ServiceDetailsCubit>()..loadService(serviceId),
       child: Scaffold(
         body: BlocBuilder<ServiceDetailsCubit, ServiceDetailsState>(
           builder: (context, state) {
