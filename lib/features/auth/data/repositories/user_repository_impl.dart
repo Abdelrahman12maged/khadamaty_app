@@ -1,29 +1,26 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/user_repository.dart';
+import '../datasources/auth_remote_data_source.dart';
+import '../datasources/user_remote_data_source.dart';
 import '../models/user_model.dart';
 
 /// Firestore implementation of UserRepository
 class UserRepositoryImpl implements UserRepository {
-  final FirebaseFirestore _firestore;
-  final String _collection = 'users';
+  final UserRemoteDataSource _remoteDataSource;
 
-  UserRepositoryImpl({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
-
-  CollectionReference<Map<String, dynamic>> get _usersCollection =>
-      _firestore.collection(_collection);
+  UserRepositoryImpl({required UserRemoteDataSource remoteDataSource})
+      : _remoteDataSource = remoteDataSource;
 
   @override
   Future<Either<Failure, void>> saveUser(UserEntity user) async {
     try {
-      final model = UserModel.fromEntity(user);
-      await _usersCollection.doc(user.id).set(model.toFirestore());
+      await _remoteDataSource.saveUser(user);
       return const Right(null);
-    } on FirebaseException catch (e) {
-      return Left(DatabaseFailure(message: e.message ?? 'Failed to save user'));
+    } on AuthException catch (e) {
+      // Assuming database failure is treated similarly
+      return Left(DatabaseFailure(message: e.message));
     } catch (e) {
       return Left(DatabaseFailure(message: e.toString()));
     }
@@ -32,13 +29,20 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, UserEntity?>> getUser(String uid) async {
     try {
-      final doc = await _usersCollection.doc(uid).get();
-      if (doc.exists && doc.data() != null) {
-        return Right(UserModel.fromFirestore(doc));
-      }
-      return const Right(null);
-    } on FirebaseException catch (e) {
-      return Left(DatabaseFailure(message: e.message ?? 'Failed to get user'));
+      final userModel = await _remoteDataSource.getUser(uid);
+      if (userModel == null) return const Right(null);
+
+      return Right(UserEntity(
+        id: userModel.id,
+        email: userModel.email,
+        name: userModel.name,
+        phoneNumber: userModel.phoneNumber,
+        isEmailVerified: userModel.isEmailVerified,
+        isPhoneVerified: userModel.isPhoneVerified,
+        createdAt: userModel.createdAt,
+      ));
+    } on AuthException catch (e) {
+      return Left(DatabaseFailure(message: e.message));
     } catch (e) {
       return Left(DatabaseFailure(message: e.toString()));
     }
@@ -48,11 +52,10 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, void>> updateUser(
       String uid, Map<String, dynamic> data) async {
     try {
-      await _usersCollection.doc(uid).update(data);
+      await _remoteDataSource.updateUser(uid, data);
       return const Right(null);
-    } on FirebaseException catch (e) {
-      return Left(
-          DatabaseFailure(message: e.message ?? 'Failed to update user'));
+    } on AuthException catch (e) {
+      return Left(DatabaseFailure(message: e.message));
     } catch (e) {
       return Left(DatabaseFailure(message: e.toString()));
     }
@@ -61,11 +64,10 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, bool>> userExists(String uid) async {
     try {
-      final doc = await _usersCollection.doc(uid).get();
-      return Right(doc.exists);
-    } on FirebaseException catch (e) {
-      return Left(
-          DatabaseFailure(message: e.message ?? 'Failed to check user'));
+      final exists = await _remoteDataSource.userExists(uid);
+      return Right(exists);
+    } on AuthException catch (e) {
+      return Left(DatabaseFailure(message: e.message));
     } catch (e) {
       return Left(DatabaseFailure(message: e.toString()));
     }
@@ -75,13 +77,10 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, void>> updateEmailVerified(
       String uid, bool verified) async {
     try {
-      await _usersCollection.doc(uid).update({
-        'isEmailVerified': verified,
-      });
+      await _remoteDataSource.updateEmailVerified(uid, verified);
       return const Right(null);
-    } on FirebaseException catch (e) {
-      return Left(DatabaseFailure(
-          message: e.message ?? 'Failed to update email verification'));
+    } on AuthException catch (e) {
+      return Left(DatabaseFailure(message: e.message));
     } catch (e) {
       return Left(DatabaseFailure(message: e.toString()));
     }
@@ -89,11 +88,17 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Stream<UserEntity?> userStream(String uid) {
-    return _usersCollection.doc(uid).snapshots().map((doc) {
-      if (doc.exists && doc.data() != null) {
-        return UserModel.fromFirestore(doc);
-      }
-      return null;
+    return _remoteDataSource.userStream(uid).map((userModel) {
+      if (userModel == null) return null;
+      return UserEntity(
+        id: userModel.id,
+        email: userModel.email,
+        name: userModel.name,
+        phoneNumber: userModel.phoneNumber,
+        isEmailVerified: userModel.isEmailVerified,
+        isPhoneVerified: userModel.isPhoneVerified,
+        createdAt: userModel.createdAt,
+      );
     });
   }
 }

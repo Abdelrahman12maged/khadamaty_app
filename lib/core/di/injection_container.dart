@@ -8,6 +8,8 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/domain/repositories/user_repository.dart';
 import '../../features/auth/data/repositories/auth_repository_impl.dart';
 import '../../features/auth/data/repositories/user_repository_impl.dart';
+import '../../features/auth/data/datasources/auth_remote_data_source.dart';
+import '../../features/auth/data/datasources/user_remote_data_source.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/login_usecase.dart';
 import '../../features/auth/domain/usecases/logout_usecase.dart';
@@ -42,24 +44,33 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
   sl.registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance);
 
+  // ============ DATA SOURCES ============
+
+  // Auth Remote Data Source
+  sl.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(firebaseAuth: sl()),
+  );
+
+  // User Remote Data Source
+  sl.registerLazySingleton<UserRemoteDataSource>(
+    () => UserRemoteDataSourceImpl(firestore: sl()),
+  );
+
   // ============ REPOSITORIES ============
 
   // Auth Repository
   sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(firebaseAuth: sl()),
+    () => AuthRepositoryImpl(remoteDataSource: sl()),
   );
 
   // User Repository
   sl.registerLazySingleton<UserRepository>(
-    () => UserRepositoryImpl(firestore: sl()),
+    () => UserRepositoryImpl(remoteDataSource: sl()),
   );
 
   // Service Repository
   sl.registerLazySingleton<ServiceRepository>(
-    () => FirebaseServiceRepository(
-      firestore: sl(),
-     auth: sl()
-    ),
+    () => FirebaseServiceRepository(firestore: sl(), auth: sl()),
   );
 
   // Image Repository

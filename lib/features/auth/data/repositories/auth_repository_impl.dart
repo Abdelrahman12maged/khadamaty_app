@@ -1,41 +1,22 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../datasources/auth_remote_data_source.dart';
 
 /// Firebase implementation of AuthRepository
 class AuthRepositoryImpl implements AuthRepository {
-  final FirebaseAuth _firebaseAuth;
+  final AuthRemoteDataSource _remoteDataSource;
 
-  AuthRepositoryImpl({FirebaseAuth? firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
-
-  @override
-  UserEntity? get currentUser {
-    final user = _firebaseAuth.currentUser;
-    if (user == null) return null;
-
-    return UserEntity(
-      id: user.uid,
-      email: user.email ?? '',
-      name: user.displayName ?? '',
-      isEmailVerified: user.emailVerified,
-    );
-  }
+  AuthRepositoryImpl({required AuthRemoteDataSource remoteDataSource})
+      : _remoteDataSource = remoteDataSource;
 
   @override
-  Stream<UserEntity?> get authStateChanges {
-    return _firebaseAuth.authStateChanges().map((user) {
-      if (user == null) return null;
-      return UserEntity(
-        id: user.uid,
-        email: user.email ?? '',
-        name: user.displayName ?? '',
-        isEmailVerified: user.emailVerified,
-      );
-    });
-  }
+  UserEntity? get currentUser => _remoteDataSource.currentUser;
+
+  @override
+  Stream<UserEntity?> get authStateChanges =>
+      _remoteDataSource.authStateChanges;
 
   @override
   Future<Either<Failure, UserEntity>> register({
@@ -45,35 +26,22 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     try {
-      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
+      final userModel = await _remoteDataSource.register(
+        name: name,
         email: email,
         password: password,
       );
 
-      if (credential.user == null) {
-        return Left(
-            AuthFailure.unknown('Registration failed: No user returned'));
-      }
-
-      // Update display name - wrapped in try-catch due to known Firebase issue
-      try {
-        await credential.user!.updateDisplayName(name);
-      } catch (e) {
-        // Ignore updateDisplayName error - name will be stored in Firestore
-        // This is a known issue with some firebase_auth versions
-      }
-
       return Right(UserEntity(
-        id: credential.user!.uid,
-        email: email,
-        name: name,
+        id: userModel.id,
+        email: userModel.email,
+        name: userModel.name,
         phoneNumber: phone,
-        isEmailVerified: false,
-        isPhoneVerified: false,
-        createdAt: DateTime.now(),
+        isEmailVerified: userModel.isEmailVerified,
+        createdAt: userModel.createdAt,
       ));
-    } on FirebaseAuthException catch (e) {
-      return Left(_mapFirebaseAuthException(e));
+    } on AuthException catch (e) {
+      return Left(_mapAuthException(e));
     } catch (e) {
       return Left(AuthFailure.unknown(e.toString()));
     }
@@ -85,23 +53,19 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     try {
-      final credential = await _firebaseAuth.signInWithEmailAndPassword(
+      final userModel = await _remoteDataSource.login(
         email: email,
         password: password,
       );
 
-      if (credential.user == null) {
-        return Left(AuthFailure.unknown('Login failed: No user returned'));
-      }
-
       return Right(UserEntity(
-        id: credential.user!.uid,
-        email: credential.user!.email ?? email,
-        name: credential.user!.displayName ?? '',
-        isEmailVerified: credential.user!.emailVerified,
+        id: userModel.id,
+        email: userModel.email,
+        name: userModel.name,
+        isEmailVerified: userModel.isEmailVerified,
       ));
-    } on FirebaseAuthException catch (e) {
-      return Left(_mapFirebaseAuthException(e));
+    } on AuthException catch (e) {
+      return Left(_mapAuthException(e));
     } catch (e) {
       return Left(AuthFailure.unknown(e.toString()));
     }
@@ -110,7 +74,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> logout() async {
     try {
-      await _firebaseAuth.signOut();
+      await _remoteDataSource.logout();
       return const Right(null);
     } catch (e) {
       return Left(AuthFailure.unknown(e.toString()));
@@ -120,19 +84,9 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> sendEmailVerification() async {
     try {
-      final user = _firebaseAuth.currentUser;
-      if (user != null && !user.emailVerified) {
-        // Wrap in try-catch due to known Firebase Pigeon issue
-        try {
-          await user.sendEmailVerification();
-        } catch (e) {
-          // Ignore - verification email might fail but shouldn't block flow
-          // User can request resend later
-        }
-      }
+      await _remoteDataSource.sendEmailVerification();
       return const Right(null);
     } catch (e) {
-      // Return success anyway - email verification is not critical for registration
       return const Right(null);
     }
   }
@@ -140,13 +94,8 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, bool>> isEmailVerified() async {
     try {
-      // Wrap reload in try-catch due to known Firebase Pigeon issue
-      try {
-        await _firebaseAuth.currentUser?.reload();
-      } catch (e) {
-        // Ignore reload error
-      }
-      return Right(_firebaseAuth.currentUser?.emailVerified ?? false);
+      final isVerified = await _remoteDataSource.isEmailVerified();
+      return Right(isVerified);
     } catch (e) {
       return const Right(false);
     }
@@ -155,22 +104,11 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, UserEntity?>> reloadUser() async {
     try {
-      // Wrap reload in try-catch due to known Firebase Pigeon issue
-      try {
-        await _firebaseAuth.currentUser?.reload();
-      } catch (e) {
-        // Ignore reload error
-      }
-      final user = _firebaseAuth.currentUser;
+      final userEntity = await _remoteDataSource.reloadUser();
+      if (userEntity == null) return const Right(null);
 
-      if (user == null) return const Right(null);
-
-      return Right(UserEntity(
-        id: user.uid,
-        email: user.email ?? '',
-        name: user.displayName ?? '',
-        isEmailVerified: user.emailVerified,
-      ));
+      // We already returned UserEntity? from remoteDataSource based on interface
+      return Right(userEntity);
     } catch (e) {
       return Left(AuthFailure.unknown(e.toString()));
     }
@@ -179,17 +117,17 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> sendPasswordResetEmail(String email) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      await _remoteDataSource.sendPasswordResetEmail(email);
       return const Right(null);
-    } on FirebaseAuthException catch (e) {
-      return Left(_mapFirebaseAuthException(e));
+    } on AuthException catch (e) {
+      return Left(_mapAuthException(e));
     } catch (e) {
       return Left(AuthFailure.unknown(e.toString()));
     }
   }
 
-  /// Map Firebase Auth exceptions to AuthFailure
-  AuthFailure _mapFirebaseAuthException(FirebaseAuthException e) {
+  /// Map AuthException (from Data Source) to AuthFailure
+  AuthFailure _mapAuthException(AuthException e) {
     switch (e.code) {
       case 'email-already-in-use':
         return AuthFailure.emailAlreadyInUse();
