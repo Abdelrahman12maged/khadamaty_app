@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user_model.dart';
 import '../../domain/entities/user_entity.dart';
+import '../../../../core/error/exceptions.dart';
 
 /// Interface for Auth Remote Data Source
 abstract class AuthRemoteDataSource {
@@ -157,12 +158,4 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       throw AuthException(e.message ?? 'Unknown error', e.code);
     }
   }
-}
-
-class AuthException implements Exception {
-  final String message;
-  final String? code;
-  const AuthException(this.message, [this.code]);
-  @override
-  String toString() => message;
 }

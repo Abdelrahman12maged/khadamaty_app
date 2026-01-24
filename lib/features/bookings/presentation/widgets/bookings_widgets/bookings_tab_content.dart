@@ -7,17 +7,12 @@ import '../../cubits/bookings_cubit/bookings_cubit.dart';
 import '../../cubits/bookings_cubit/bookings_state.dart';
 import 'bookings_list_view.dart';
 import 'empty_bookings_state.dart';
+import '../../../domain/entities/booking_entity.dart';
 
 /// Tab content for bookings list
-///
-/// Handles different states:
-/// - Loading state
-/// - Error state
-/// - Empty state
-/// - List of bookings
 class BookingsTabContent extends StatelessWidget {
   final BookingsState state;
-  final List<BookingData> bookings;
+  final List<BookingEntity> bookings;
   final String emptyMessage;
   final IconData emptyIcon;
 
@@ -32,14 +27,13 @@ class BookingsTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => context.read<BookingsCubit>().refreshBookings(context),
+      onRefresh: () => context.read<BookingsCubit>().refreshBookings(),
       child: state.isLoading && bookings.isEmpty
           ? LoadingIndicator(message: S.of(context).loadingBookings)
           : state.error != null && bookings.isEmpty
               ? ErrorDisplay(
                   message: state.error!,
-                  onRetry: () =>
-                      context.read<BookingsCubit>().loadBookings(context),
+                  onRetry: () => context.read<BookingsCubit>().loadBookings(),
                 )
               : bookings.isEmpty
                   ? SingleChildScrollView(
@@ -56,7 +50,6 @@ class BookingsTabContent extends StatelessWidget {
                       bookings: bookings,
                       onBookingTap: () {
                         // TODO: Navigate to booking details
-                        // context.push('/booking/${booking.id}');
                       },
                     ),
     );

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import 'package:khadamaty_app/core/theme/app_colors.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import 'package:khadamaty_app/features/bookings/presentation/cubits/create_booking_cubit/create_booking_cubit.dart';
+import 'package:khadamaty_app/features/bookings/presentation/widgets/booking_widgets/booking_sheet.dart';
 import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 
@@ -34,7 +38,15 @@ class BookingBottomBar extends StatelessWidget {
       child: SafeArea(
         child: ElevatedButton(
           onPressed: () {
-            // TODO: Implement Booking flow
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (context) => BlocProvider(
+                create: (context) => sl<CreateBookingCubit>(),
+                child: BookingSheet(service: service),
+              ),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryBlue,

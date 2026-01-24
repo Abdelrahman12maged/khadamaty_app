@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:khadamaty_app/core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/user_repository.dart';
 import '../datasources/auth_remote_data_source.dart';
 import '../datasources/user_remote_data_source.dart';
-import '../models/user_model.dart';
 
 /// Firestore implementation of UserRepository
 class UserRepositoryImpl implements UserRepository {

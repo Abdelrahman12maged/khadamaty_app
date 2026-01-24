@@ -1,59 +1,14 @@
 import 'package:equatable/equatable.dart';
-
-/// Booking status enum
-enum BookingStatus {
-  pending,
-  confirmed,
-  completed,
-  cancelled,
-}
-
-/// Booking data model
-class BookingData extends Equatable {
-  final String id;
-  final String serviceTitle;
-  final String providerName;
-  final String? imageUrl;
-  final DateTime bookingDate;
-  final String timeSlot;
-  final double price;
-  final BookingStatus status;
-  final String? address;
-
-  const BookingData({
-    required this.id,
-    required this.serviceTitle,
-    required this.providerName,
-    this.imageUrl,
-    required this.bookingDate,
-    required this.timeSlot,
-    required this.price,
-    required this.status,
-    this.address,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        serviceTitle,
-        providerName,
-        imageUrl,
-        bookingDate,
-        timeSlot,
-        price,
-        status,
-        address,
-      ];
-}
+import 'package:khadamaty_app/features/bookings/domain/entities/booking_entity.dart';
 
 /// Bookings page state
 class BookingsState extends Equatable {
   final bool isLoading;
   final String? error;
-  final List<BookingData> allBookings;
-  final List<BookingData> upcomingBookings;
-  final List<BookingData> pastBookings;
-  final List<BookingData> cancelledBookings;
+  final List<BookingEntity> allBookings;
+  final List<BookingEntity> upcomingBookings;
+  final List<BookingEntity> pastBookings;
+  final List<BookingEntity> cancelledBookings;
 
   const BookingsState({
     this.isLoading = false,
@@ -68,10 +23,10 @@ class BookingsState extends Equatable {
     bool? isLoading,
     String? error,
     bool clearError = false,
-    List<BookingData>? allBookings,
-    List<BookingData>? upcomingBookings,
-    List<BookingData>? pastBookings,
-    List<BookingData>? cancelledBookings,
+    List<BookingEntity>? allBookings,
+    List<BookingEntity>? upcomingBookings,
+    List<BookingEntity>? pastBookings,
+    List<BookingEntity>? cancelledBookings,
   }) {
     return BookingsState(
       isLoading: isLoading ?? this.isLoading,

@@ -4,13 +4,13 @@ import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:intl/intl.dart';
-import '../../cubits/bookings_cubit/bookings_state.dart';
+import '../../../domain/entities/booking_entity.dart';
 import 'booking_status_badge.dart';
 import 'placeholder_image.dart';
 
-/// Booking card widget for displaying booking information
+/// Booking card widget for displaying real booking information
 class BookingCard extends StatelessWidget {
-  final BookingData booking;
+  final BookingEntity booking;
   final VoidCallback? onTap;
 
   const BookingCard({
@@ -59,19 +59,10 @@ class BookingCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image
+            // Image (Placeholder for now as Entity doesn't have it yet)
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: booking.imageUrl != null
-                  ? Image.network(
-                      booking.imageUrl!,
-                      width: imageSize,
-                      height: imageSize,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          PlaceholderImage(size: imageSize),
-                    )
-                  : PlaceholderImage(size: imageSize),
+              child: PlaceholderImage(size: imageSize),
             ),
             SizedBox(width: AppSpacing.sm(context)),
 
@@ -82,7 +73,7 @@ class BookingCard extends StatelessWidget {
                 children: [
                   // Service Title
                   Text(
-                    booking.serviceTitle,
+                    booking.serviceName,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -123,7 +114,7 @@ class BookingCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
-                          '${_formatDate(booking.bookingDate)} • ${booking.timeSlot}',
+                          _formatDateTime(booking.bookingDate),
                           style: Theme.of(context).textTheme.bodySmall,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -139,7 +130,7 @@ class BookingCard extends StatelessWidget {
                     children: [
                       // Price
                       Text(
-                        '${booking.price.toStringAsFixed(0)} ${S.of(context).currency}',
+                        '${booking.totalPrice.toStringAsFixed(0)} ${S.of(context).currency}',
                         style:
                             Theme.of(context).textTheme.titleMedium?.copyWith(
                                   color: AppColors.primaryBlue,
@@ -159,7 +150,7 @@ class BookingCard extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime date) {
-    return DateFormat('MMM dd, yyyy').format(date);
+  String _formatDateTime(DateTime dateTime) {
+    return DateFormat('MMM dd, yyyy • hh:mm a').format(dateTime);
   }
 }

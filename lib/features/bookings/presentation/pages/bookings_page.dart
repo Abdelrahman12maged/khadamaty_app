@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import '../cubits/bookings_cubit/bookings_cubit.dart';
 import '../cubits/bookings_cubit/bookings_state.dart';
 import '../widgets/bookings_widgets/bookings_tab_content.dart';
@@ -32,7 +33,7 @@ class _BookingsPageState extends State<BookingsPage>
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BookingsCubit()..loadBookings(context),
+      create: (context) => sl<BookingsCubit>()..loadBookings(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).bookings),

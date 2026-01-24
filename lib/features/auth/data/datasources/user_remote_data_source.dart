@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:khadamaty_app/core/error/exceptions.dart';
 import '../../domain/entities/user_entity.dart';
 import '../models/user_model.dart';
 import 'auth_remote_data_source.dart';

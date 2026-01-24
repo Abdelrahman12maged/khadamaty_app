@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
+import 'package:khadamaty_app/features/bookings/domain/entities/booking_entity.dart';
 import '../../cubits/bookings_cubit/bookings_state.dart';
 import 'booking_card.dart';
 
@@ -10,7 +11,7 @@ import 'booking_card.dart';
 /// - Grid layout (2 columns) on tablet/desktop
 /// - List layout (single column) on mobile
 class BookingsListView extends StatelessWidget {
-  final List<BookingData> bookings;
+  final List<BookingEntity> bookings;
   final VoidCallback? onBookingTap;
 
   const BookingsListView({

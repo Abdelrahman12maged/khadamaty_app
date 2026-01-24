@@ -1,54 +1,76 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khadamaty_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:khadamaty_app/features/bookings/domain/entities/booking_entity.dart';
+import 'package:khadamaty_app/features/bookings/domain/usecases/get_user_bookings_usecase.dart';
 import 'bookings_state.dart';
-import 'mock_bookings_data.dart';
 
-/// Bookings cubit for managing bookings data
+
+/// Bookings cubit for managing real bookings data from Firestore
 class BookingsCubit extends Cubit<BookingsState> {
-  BookingsCubit() : super(const BookingsState());
+  final GetUserBookingsUseCase _getUserBookingsUseCase;
+  final AuthRepository _authRepository;
 
-  /// Load all bookings and filter by status
-  Future<void> loadBookings(BuildContext context) async {
+  BookingsCubit({
+    required GetUserBookingsUseCase getUserBookingsUseCase,
+    required AuthRepository authRepository,
+  })  : _getUserBookingsUseCase = getUserBookingsUseCase,
+        _authRepository = authRepository,
+        super(const BookingsState());
+
+  /// Load all bookings for the current user and filter them
+  Future<void> loadBookings() async {
+    final user = _authRepository.currentUser;
+    if (user == null) {
+      emit(state.copyWith(
+        isLoading: false,
+        error: 'يجب تسجيل الدخول لعرض الحجوزات',
+      ));
+      return;
+    }
+
     try {
       emit(state.copyWith(isLoading: true, clearError: true));
 
-      // Simulate network delay
-      await Future.delayed(const Duration(milliseconds: 500));
+      final result = await _getUserBookingsUseCase(user.id);
 
-      // Load mock data
-      final bookings = MockBookingsData.getBookings(context);
-
-      // Filter bookings by status
-      final filtered = _filterBookings(bookings);
-
-      emit(state.copyWith(
-        isLoading: false,
-        allBookings: bookings,
-        upcomingBookings: filtered['upcoming']!,
-        pastBookings: filtered['past']!,
-        cancelledBookings: filtered['cancelled']!,
-      ));
+      result.fold(
+        (failure) => emit(state.copyWith(
+          isLoading: false,
+          error: failure.message,
+        )),
+        (bookings) {
+          final filtered = _filterBookings(bookings);
+          emit(state.copyWith(
+            isLoading: false,
+            allBookings: bookings,
+            upcomingBookings: filtered['upcoming']!,
+            pastBookings: filtered['past']!,
+            cancelledBookings: filtered['cancelled']!,
+          ));
+        },
+      );
     } catch (e) {
       emit(state.copyWith(
         isLoading: false,
-        error: 'Failed to load bookings: ${e.toString()}',
+        error: 'فشل تحميل الحجوزات: ${e.toString()}',
       ));
     }
   }
 
-  /// Refresh bookings (pull-to-refresh)
-  Future<void> refreshBookings(BuildContext context) async {
-    await loadBookings(context);
+  /// Refresh bookings
+  Future<void> refreshBookings() async {
+    await loadBookings();
   }
 
   /// Filter bookings by status and date
-  Map<String, List<BookingData>> _filterBookings(List<BookingData> bookings) {
+  Map<String, List<BookingEntity>> _filterBookings(
+      List<BookingEntity> bookings) {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
 
-    final upcoming = <BookingData>[];
-    final past = <BookingData>[];
-    final cancelled = <BookingData>[];
+    final upcoming = <BookingEntity>[];
+    final past = <BookingEntity>[];
+    final cancelled = <BookingEntity>[];
 
     for (final booking in bookings) {
       final bookingDay = DateTime(
@@ -58,20 +80,16 @@ class BookingsCubit extends Cubit<BookingsState> {
       );
 
       if (booking.status == BookingStatus.cancelled) {
-        // All cancelled bookings
         cancelled.add(booking);
       } else if (booking.status == BookingStatus.completed) {
-        // Completed bookings go to past
         past.add(booking);
       } else if (bookingDay.isAfter(today) ||
           bookingDay.isAtSameMomentAs(today)) {
-        // Pending/Confirmed bookings with future or today date
         if (booking.status == BookingStatus.pending ||
             booking.status == BookingStatus.confirmed) {
           upcoming.add(booking);
         }
       } else {
-        // Past date with pending/confirmed status -> still goes to past
         past.add(booking);
       }
     }

@@ -31,6 +31,15 @@ import '../../features/provider/domain/usecases/upload_image_usecase.dart';
 import '../../features/provider/data/repositories/firebase_image_repository.dart';
 import '../../features/home/domain/usecases/get_active_services_usecase.dart';
 import '../../features/home/domain/usecases/get_service_by_id_usecase.dart';
+// Booking imports
+import '../../features/bookings/data/datasources/booking_remote_data_source.dart';
+import '../../features/bookings/data/repositories/firebase_booking_repository.dart';
+import '../../features/bookings/domain/repositories/booking_repository.dart';
+import '../../features/bookings/domain/usecases/create_booking_usecase.dart';
+import '../../features/bookings/domain/usecases/get_user_bookings_usecase.dart';
+import '../../features/bookings/domain/usecases/update_booking_status_usecase.dart';
+import '../../features/bookings/presentation/cubits/bookings_cubit/bookings_cubit.dart';
+import '../../features/bookings/presentation/cubits/create_booking_cubit/create_booking_cubit.dart';
 
 /// Service Locator instance
 final sl = GetIt.instance;
@@ -56,6 +65,11 @@ Future<void> initDependencies() async {
     () => UserRemoteDataSourceImpl(firestore: sl()),
   );
 
+  // Booking Remote Data Source
+  sl.registerLazySingleton<BookingRemoteDataSource>(
+    () => BookingRemoteDataSourceImpl(firestore: sl()),
+  );
+
   // ============ REPOSITORIES ============
 
   // Auth Repository
@@ -76,6 +90,11 @@ Future<void> initDependencies() async {
   // Image Repository
   sl.registerLazySingleton<ImageRepository>(
     () => FirebaseImageRepository(storage: sl()),
+  );
+
+  // Booking Repository
+  sl.registerLazySingleton<BookingRepository>(
+    () => FirebaseBookingRepositoryImp(remoteDataSource: sl()),
   );
 
   // ============ AUTH USECASES ============
@@ -112,10 +131,23 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => GetActiveServicesUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetServiceByIdUseCase(repository: sl()));
 
+  // ============ BOOKING USECASES ============
+  sl.registerLazySingleton(() => CreateBookingUseCase(repository: sl()));
+  sl.registerLazySingleton(() => GetUserBookingsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => UpdateBookingStatusUseCase(repository: sl()));
+
   // ============ CUBITS ============
   sl.registerFactory(() => NavigationCubit());
   sl.registerFactory(() => HomeCubit(getActiveServicesUseCase: sl()));
   sl.registerFactory(() => ServiceDetailsCubit(getServiceByIdUseCase: sl()));
+  sl.registerFactory(() => BookingsCubit(
+        getUserBookingsUseCase: sl(),
+        authRepository: sl(),
+      ));
+  sl.registerFactory(() => CreateBookingCubit(
+        createBookingUseCase: sl(),
+        authRepository: sl(),
+      ));
 }
 
 /// Reset all dependencies for testing
