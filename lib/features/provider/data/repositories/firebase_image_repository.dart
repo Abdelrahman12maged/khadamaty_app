@@ -1,16 +1,16 @@
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/error/exceptions.dart';
 import '../../domain/usecases/upload_image_usecase.dart';
+import '../datasources/image_remote_data_source.dart';
 
 /// Firebase Storage implementation of ImageRepository
 class FirebaseImageRepository implements ImageRepository {
-  final FirebaseStorage _storage;
+  final ImageRemoteDataSource _remoteDataSource;
 
-  FirebaseImageRepository({FirebaseStorage? storage})
-      : _storage = storage ?? FirebaseStorage.instance;
+  FirebaseImageRepository({required ImageRemoteDataSource remoteDataSource})
+      : _remoteDataSource = remoteDataSource;
 
   @override
   Future<Either<Failure, String>> uploadImage(File image, String path) async {
@@ -21,30 +21,9 @@ class FirebaseImageRepository implements ImageRepository {
             DatabaseFailure(message: 'Local file not found at: ${image.path}'));
       }
 
-      final ref = _storage.ref().child(path);
-      debugPrint('DEBUG: Attempting upload to bucket: ${_storage.bucket}');
-      debugPrint('DEBUG: Full path: ${ref.fullPath}');
-
-      // Start upload task
-      final uploadTask = ref.putFile(
-        image,
-        SettableMetadata(contentType: 'image/jpeg'),
-      );
-
-      // Wait for completion
-      final snapshot = await uploadTask;
-
-      // Handle success
-      if (snapshot.state == TaskState.success) {
-        final downloadUrl = await snapshot.ref.getDownloadURL();
-        return Right(downloadUrl);
-      } else {
-        return Left(DatabaseFailure(
-          message: 'Upload failed with state: ${snapshot.state}',
-        ));
-      }
-    } on FirebaseException catch (e) {
-      // [firebase_storage/object-not-found] often means bucket not found or configuration error
+      final downloadUrl = await _remoteDataSource.uploadImage(image, path);
+      return Right(downloadUrl);
+    } on DatabaseException catch (e) {
       String customMessage = 'Firebase Storage Error: [${e.code}] ${e.message}';
       if (e.code == 'object-not-found') {
         customMessage =
@@ -53,8 +32,7 @@ class FirebaseImageRepository implements ImageRepository {
         customMessage =
             'Permission denied. Check your Firebase Storage rules. [${e.code}]';
       }
-
-      return Left(DatabaseFailure(message: customMessage));
+      return Left(DatabaseFailure(message: customMessage, code: e.code));
     } catch (e) {
       return Left(DatabaseFailure(
           message: 'Unexpected error during upload: ${e.toString()}'));

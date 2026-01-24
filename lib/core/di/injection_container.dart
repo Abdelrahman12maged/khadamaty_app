@@ -22,6 +22,8 @@ import '../../features/home/presentation/cubits/service_details_cubit/service_de
 // Provider imports
 import '../../features/provider/domain/repositories/service_repository.dart';
 import '../../features/provider/data/repositories/firebase_service_repository.dart';
+import '../../features/provider/data/datasources/service_remote_data_source.dart';
+import '../../features/provider/data/datasources/image_remote_data_source.dart';
 import '../../features/provider/domain/usecases/create_service_usecase.dart';
 import '../../features/provider/domain/usecases/get_provider_services_usecase.dart';
 import '../../features/provider/domain/usecases/update_service_usecase.dart';
@@ -65,6 +67,16 @@ Future<void> initDependencies() async {
     () => UserRemoteDataSourceImpl(firestore: sl()),
   );
 
+  // Service Remote Data Source
+  sl.registerLazySingleton<ServiceRemoteDataSource>(
+    () => ServiceRemoteDataSourceImpl(firestore: sl()),
+  );
+
+  // Image Remote Data Source
+  sl.registerLazySingleton<ImageRemoteDataSource>(
+    () => ImageRemoteDataSourceImpl(storage: sl()),
+  );
+
   // Booking Remote Data Source
   sl.registerLazySingleton<BookingRemoteDataSource>(
     () => BookingRemoteDataSourceImpl(firestore: sl()),
@@ -84,12 +96,12 @@ Future<void> initDependencies() async {
 
   // Service Repository
   sl.registerLazySingleton<ServiceRepository>(
-    () => FirebaseServiceRepository(firestore: sl(), auth: sl()),
+    () => FirebaseServiceRepository(remoteDataSource: sl()),
   );
 
   // Image Repository
   sl.registerLazySingleton<ImageRepository>(
-    () => FirebaseImageRepository(storage: sl()),
+    () => FirebaseImageRepository(remoteDataSource: sl()),
   );
 
   // Booking Repository

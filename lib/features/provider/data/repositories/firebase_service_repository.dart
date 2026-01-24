@@ -1,38 +1,27 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/error/exceptions.dart';
 import '../../domain/entities/service_entity.dart';
 import '../../domain/repositories/service_repository.dart';
-import '../models/service_model.dart';
+import '../datasources/service_remote_data_source.dart';
 
 /// Firebase implementation of ServiceRepository
 class FirebaseServiceRepository implements ServiceRepository {
-  final FirebaseFirestore _firestore;
-  final FirebaseAuth _auth;
+  final ServiceRemoteDataSource _remoteDataSource;
 
   FirebaseServiceRepository({
-    FirebaseFirestore? firestore,
-    FirebaseAuth? auth,
-  })  : _firestore = firestore ?? FirebaseFirestore.instance,
-        _auth = auth ?? FirebaseAuth.instance;
-
-  CollectionReference<Map<String, dynamic>> get _servicesCollection =>
-      _firestore.collection('services');
-
-  /// Get current user ID
-  String? get currentUserId => _auth.currentUser?.uid;
+    required ServiceRemoteDataSource remoteDataSource,
+  }) : _remoteDataSource = remoteDataSource;
 
   @override
   Future<Either<Failure, ServiceEntity>> createService(
       ServiceEntity service) async {
     try {
-      final model = ServiceModel.fromEntity(service);
-      final docRef = await _servicesCollection.add(model.toFirestore());
-
-      // Return with generated ID
-      final created = service.copyWith(id: docRef.id);
+      final generatedId = await _remoteDataSource.createService(service);
+      final created = service.copyWith(id: generatedId);
       return Right(created);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -42,12 +31,10 @@ class FirebaseServiceRepository implements ServiceRepository {
   Future<Either<Failure, ServiceEntity>> updateService(
       ServiceEntity service) async {
     try {
-      final model = ServiceModel.fromEntity(service.copyWith(
-        updatedAt: DateTime.now(),
-      ));
-
-      await _servicesCollection.doc(service.id).update(model.toFirestore());
+      await _remoteDataSource.updateService(service);
       return Right(service);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -56,8 +43,10 @@ class FirebaseServiceRepository implements ServiceRepository {
   @override
   Future<Either<Failure, void>> deleteService(String serviceId) async {
     try {
-      await _servicesCollection.doc(serviceId).delete();
+      await _remoteDataSource.deleteService(serviceId);
       return const Right(null);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -67,11 +56,10 @@ class FirebaseServiceRepository implements ServiceRepository {
   Future<Either<Failure, ServiceEntity>> getServiceById(
       String serviceId) async {
     try {
-      final doc = await _servicesCollection.doc(serviceId).get();
-      if (!doc.exists) {
-        return Left(ServerFailure(message: 'Service not found'));
-      }
-      return Right(ServiceModel.fromFirestore(doc));
+      final service = await _remoteDataSource.getServiceById(serviceId);
+      return Right(service);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -81,14 +69,10 @@ class FirebaseServiceRepository implements ServiceRepository {
   Future<Either<Failure, List<ServiceEntity>>> getProviderServices(
       String providerId) async {
     try {
-      final snapshot = await _servicesCollection
-          .where('providerId', isEqualTo: providerId)
-          .orderBy('createdAt', descending: true)
-          .get();
-
-      final services =
-          snapshot.docs.map((doc) => ServiceModel.fromFirestore(doc)).toList();
+      final services = await _remoteDataSource.getProviderServices(providerId);
       return Right(services);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -103,32 +87,18 @@ class FirebaseServiceRepository implements ServiceRepository {
     double? radiusKm,
   }) async {
     try {
-      Query<Map<String, dynamic>> query =
-          _servicesCollection.where('isActive', isEqualTo: true);
+      final services = await _remoteDataSource.getActiveServices(
+        category: category,
+        searchQuery: searchQuery,
+      );
 
-      if (category != null && category.isNotEmpty) {
-        query = query.where('category', isEqualTo: category);
-      }
+      // Client-side sort if needed
+      final sortedServices = List<ServiceEntity>.from(services);
+      sortedServices.sort((a, b) => b.rating.compareTo(a.rating));
 
-      final snapshot = await query.get();
-
-      List<ServiceEntity> services =
-          snapshot.docs.map((doc) => ServiceModel.fromFirestore(doc)).toList();
-
-      // Sort client-side by rating (descending) to avoid composite index requirement
-      services.sort((a, b) => b.rating.compareTo(a.rating));
-
-      // Client-side search filtering (Firestore doesn't support full-text search)
-      if (searchQuery != null && searchQuery.isNotEmpty) {
-        final lowerQuery = searchQuery.toLowerCase();
-        services = services.where((s) {
-          return s.title.toLowerCase().contains(lowerQuery) ||
-              s.description.toLowerCase().contains(lowerQuery) ||
-              s.category.toLowerCase().contains(lowerQuery);
-        }).toList();
-      }
-
-      return Right(services);
+      return Right(sortedServices);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -139,17 +109,10 @@ class FirebaseServiceRepository implements ServiceRepository {
     int limit = 10,
   }) async {
     try {
-      final snapshot =
-          await _servicesCollection.where('isActive', isEqualTo: true).get();
-
-      final services =
-          snapshot.docs.map((doc) => ServiceModel.fromFirestore(doc)).toList();
-
-      // Sort client-side and apply limit
-      services.sort((a, b) => b.rating.compareTo(a.rating));
-      final limitedServices = services.take(limit).toList();
-
-      return Right(limitedServices);
+      final services = await _remoteDataSource.getFeaturedServices(limit);
+      return Right(services);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -159,11 +122,10 @@ class FirebaseServiceRepository implements ServiceRepository {
   Future<Either<Failure, void>> toggleServiceStatus(
       String serviceId, bool isActive) async {
     try {
-      await _servicesCollection.doc(serviceId).update({
-        'isActive': isActive,
-        'updatedAt': Timestamp.now(),
-      });
+      await _remoteDataSource.toggleServiceStatus(serviceId, isActive);
       return const Right(null);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -171,15 +133,6 @@ class FirebaseServiceRepository implements ServiceRepository {
 
   @override
   Stream<List<ServiceEntity>> watchProviderServices(String providerId) {
-    return _servicesCollection
-        .where('providerId', isEqualTo: providerId)
-        .snapshots()
-        .map((snapshot) {
-      final services =
-          snapshot.docs.map((doc) => ServiceModel.fromFirestore(doc)).toList();
-      // Sort client-side to avoid composite index requirement
-      services.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-      return services;
-    });
+    return _remoteDataSource.watchProviderServices(providerId);
   }
 }
