@@ -24,32 +24,6 @@ void main() async {
   await initDependencies();
 
 
-
-// final repository = FirebaseServiceRepository();
-
-  
-//     final result = await repository.getActiveServices();
-
-//     result.fold(
-//       (failure) => print('❌ فشل الاتصال: ${failure.message}'),
-//       (services) {
-//         print('✅ نجاح! تم جلب ${services.length} خدمة من السيرفر.');
-//         for (var s in services) {
-//           print('--- الخدمة: ${s} | التقييم: ${s.rating}');
-//         }
-//       },
-//     );
-  
-
-
-
-
-
-
-
-
-
-
   runApp(
     DevicePreview(
       enabled: true,
