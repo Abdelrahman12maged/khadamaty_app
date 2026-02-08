@@ -1708,6 +1708,81 @@ class S {
       args: [],
     );
   }
+
+  /// `Select Date`
+  String get selectDate {
+    return Intl.message('Select Date', name: 'selectDate', desc: '', args: []);
+  }
+
+  /// `Select Time`
+  String get selectTime {
+    return Intl.message('Select Time', name: 'selectTime', desc: '', args: []);
+  }
+
+  /// `Additional Notes`
+  String get additionalNotes {
+    return Intl.message(
+      'Additional Notes',
+      name: 'additionalNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add any other details...`
+  String get addNotesHint {
+    return Intl.message(
+      'Add any other details...',
+      name: 'addNotesHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Booking ({price} {currency})`
+  String confirmBookingWithPrice(Object price, Object currency) {
+    return Intl.message(
+      'Confirm Booking ($price $currency)',
+      name: 'confirmBookingWithPrice',
+      desc: '',
+      args: [price, currency],
+    );
+  }
+
+  /// `Booking successful!`
+  String get bookingSuccess {
+    return Intl.message(
+      'Booking successful!',
+      name: 'bookingSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking failed`
+  String get bookingFailed {
+    return Intl.message(
+      'Booking failed',
+      name: 'bookingFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Declined`
+  String get declined {
+    return Intl.message('Declined', name: 'declined', desc: '', args: []);
+  }
+
+  /// `Booking Date`
+  String get bookingDate {
+    return Intl.message(
+      'Booking Date',
+      name: 'bookingDate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

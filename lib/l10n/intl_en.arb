@@ -201,5 +201,14 @@
   "location": "Location",
   "provider": "Provider",
   "reviews": "Reviews",
-  "noImage": "No image available"
+  "noImage": "No image available",
+  "selectDate": "Select Date",
+  "selectTime": "Select Time",
+  "additionalNotes": "Additional Notes",
+  "addNotesHint": "Add any other details...",
+  "confirmBookingWithPrice": "Confirm Booking ({price} {currency})",
+  "bookingSuccess": "Booking successful!",
+  "bookingFailed": "Booking failed",
+  "declined": "Declined",
+  "bookingDate": "Booking Date"
 }

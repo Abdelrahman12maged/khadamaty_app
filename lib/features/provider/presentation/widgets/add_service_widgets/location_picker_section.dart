@@ -35,7 +35,7 @@ class LocationPickerSection extends StatelessWidget {
       children: [
         // Location card
         InkWell(
-          onTap: () => _openLocationPicker(context),
+          onTap: () =>  _openLocationPicker(context),
           borderRadius: BorderRadius.circular(12),
           child: Container(
             padding: EdgeInsets.all(AppSpacing.md(context)),

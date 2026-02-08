@@ -20,14 +20,20 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(price, currency) => "Confirm Booking (${price} ${currency})";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutService": MessageLookupByLibrary.simpleMessage("About this service"),
     "accountSettings": MessageLookupByLibrary.simpleMessage("Account Settings"),
     "active": MessageLookupByLibrary.simpleMessage("Active"),
+    "addNotesHint": MessageLookupByLibrary.simpleMessage(
+      "Add any other details...",
+    ),
     "addService": MessageLookupByLibrary.simpleMessage("Add Service"),
     "addServiceImage": MessageLookupByLibrary.simpleMessage("Service Image"),
     "addServiceTitle": MessageLookupByLibrary.simpleMessage("Add New Service"),
+    "additionalNotes": MessageLookupByLibrary.simpleMessage("Additional Notes"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
@@ -43,7 +49,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "When you\'re available",
     ),
     "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
+    "bookingDate": MessageLookupByLibrary.simpleMessage("Booking Date"),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("Booking Details"),
+    "bookingFailed": MessageLookupByLibrary.simpleMessage("Booking failed"),
+    "bookingSuccess": MessageLookupByLibrary.simpleMessage(
+      "Booking successful!",
+    ),
     "bookings": MessageLookupByLibrary.simpleMessage("Bookings"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled"),
@@ -54,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "completedServices": MessageLookupByLibrary.simpleMessage("Completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+    "confirmBookingWithPrice": m0,
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "confirmYourPassword": MessageLookupByLibrary.simpleMessage(
       "Confirm your password",
@@ -62,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
     "currency": MessageLookupByLibrary.simpleMessage("EGP"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "declined": MessageLookupByLibrary.simpleMessage("Declined"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteService": MessageLookupByLibrary.simpleMessage("Delete Service"),
     "deleteServiceConfirmation": MessageLookupByLibrary.simpleMessage(
@@ -322,6 +335,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search for services...",
     ),
     "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
+    "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
+    "selectTime": MessageLookupByLibrary.simpleMessage("Select Time"),
     "serviceActive": MessageLookupByLibrary.simpleMessage("Active"),
     "serviceAdded": MessageLookupByLibrary.simpleMessage(
       "Service added successfully",

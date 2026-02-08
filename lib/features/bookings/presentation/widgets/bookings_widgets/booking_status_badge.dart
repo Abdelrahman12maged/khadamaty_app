@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/theme/app_colors.dart';
+import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/features/bookings/domain/entities/booking_entity.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
@@ -29,15 +30,14 @@ class BookingStatusBadge extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal:
-            context.responsive(mobile: 8.0, tablet: 10.0, desktop: 12.0),
-        vertical: context.responsive(mobile: 4.0, tablet: 5.0, desktop: 6.0),
+        horizontal: AppSpacing.sm(context),
+        vertical: AppSpacing.xs(context),
       ),
       decoration: BoxDecoration(
-        color: config.color.withOpacity(0.1),
+        color: config.color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: config.color.withOpacity(0.3),
+          color: config.color.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -91,7 +91,7 @@ class BookingStatusBadge extends StatelessWidget {
         );
       case BookingStatus.declined:
         return _StatusConfig(
-          label: 'تم الرفض', // Add to L10n later if needed
+          label: S.of(context).declined,
           icon: Icons.block,
           color: AppColors.errorRed,
         );

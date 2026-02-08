@@ -4,7 +4,6 @@ import '../../../../provider/domain/entities/service_entity.dart';
 import '../../../domain/entities/booking_entity.dart';
 import '../../../domain/usecases/create_booking_usecase.dart';
 import 'create_booking_state.dart';
-import 'package:uuid/uuid.dart';
 
 class CreateBookingCubit extends Cubit<CreateBookingState> {
   final CreateBookingUseCase _createBookingUseCase;
@@ -43,6 +42,15 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
       emit(state.copyWith(
         status: CreateBookingStatus.error,
         errorMessage: 'يجب تسجيل الدخول لإتمام الحجز',
+      ));
+      return;
+    }
+
+    // Prevent self-booking
+    if (user.id == service.providerId) {
+      emit(state.copyWith(
+        status: CreateBookingStatus.error,
+        errorMessage: 'لا يمكنك حجز خدمتك الخاصة',
       ));
       return;
     }

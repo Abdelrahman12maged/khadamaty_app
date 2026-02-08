@@ -1,5 +1,6 @@
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../core/error/exceptions.dart';
 
 abstract class ImageRemoteDataSource {
@@ -7,31 +8,33 @@ abstract class ImageRemoteDataSource {
 }
 
 class ImageRemoteDataSourceImpl implements ImageRemoteDataSource {
-  final FirebaseStorage _storage;
+  final SupabaseClient _supabaseClient;
+  // Bucket name must exist in Supabase Storage
+  static const String _bucketName = 'khadamaty-bucket';
 
-  ImageRemoteDataSourceImpl({FirebaseStorage? storage})
-      : _storage = storage ?? FirebaseStorage.instance;
+  ImageRemoteDataSourceImpl({SupabaseClient? supabaseClient})
+      : _supabaseClient = supabaseClient ?? Supabase.instance.client;
 
   @override
   Future<String> uploadImage(File image, String path) async {
     try {
-      final ref = _storage.ref().child(path);
+      final fileExt = path.split('.').last;
+      final fileName = '${DateTime.now().millisecondsSinceEpoch}.$fileExt';
+      final filePath =
+          'public/$fileName'; // Path inside the bucket matching RLS policy
 
-      final uploadTask = ref.putFile(
-        image,
-        SettableMetadata(contentType: 'image/jpeg'),
-      );
+      await _supabaseClient.storage.from(_bucketName).upload(
+            filePath,
+            image,
+            fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
+          );
 
-      final snapshot = await uploadTask;
+      final imageUrl =
+          _supabaseClient.storage.from(_bucketName).getPublicUrl(filePath);
 
-      if (snapshot.state == TaskState.success) {
-        return await snapshot.ref.getDownloadURL();
-      } else {
-        throw DatabaseException(
-            'Upload failed with state: ${snapshot.state}', 'storage-error');
-      }
-    } on FirebaseException catch (e) {
-      throw DatabaseException(e.message ?? 'Storage error', e.code);
+      return imageUrl;
+    } on StorageException catch (e) {
+      throw DatabaseException(e.message, e.statusCode ?? 'storage-error');
     } catch (e) {
       throw DatabaseException(e.toString());
     }

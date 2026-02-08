@@ -14,6 +14,7 @@ import '../widgets/service_details_widgets/provider_info_card.dart';
 import '../widgets/service_details_widgets/service_location_section.dart';
 import '../widgets/service_details_widgets/booking_bottom_bar.dart';
 import '../../../provider/domain/entities/service_entity.dart';
+import 'package:khadamaty_app/features/auth/domain/repositories/auth_repository.dart';
 
 class ServiceDetailsPage extends StatelessWidget {
   final String serviceId;
@@ -65,6 +66,9 @@ class _ServiceDetailsContent extends StatelessWidget {
       desktop: 100.0,
     );
 
+    final currentUser = sl<AuthRepository>().currentUser;
+    final isOwner = currentUser?.id == service.providerId;
+
     return Stack(
       children: [
         CustomScrollView(
@@ -94,12 +98,13 @@ class _ServiceDetailsContent extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: BookingBottomBar(service: service),
-        ),
+        if (!isOwner)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: BookingBottomBar(service: service),
+          ),
       ],
     );
   }

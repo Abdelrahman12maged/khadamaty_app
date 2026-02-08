@@ -21,16 +21,10 @@ class BookingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardPadding = context.responsive(
-      mobile: 12.0,
-      tablet: 14.0,
-      desktop: 16.0,
-    );
-    final borderRadius = context.responsive(
-      mobile: 12.0,
-      tablet: 14.0,
-      desktop: 16.0,
-    );
+    // Use AppSpacing.card for consistent card padding/radius
+    final cardPadding = AppSpacing.card(context);
+    final borderRadius = AppSpacing.card(context);
+
     final imageSize = context.responsive(
       mobile: 80.0,
       tablet: 90.0,
@@ -50,7 +44,7 @@ class BookingCard extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),

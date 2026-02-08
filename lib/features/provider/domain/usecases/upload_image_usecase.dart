@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:khadamaty_app/features/provider/domain/repositories/image_repositry.dart';
 import '../../../../core/error/failures.dart';
 
 /// UseCase to upload an image to storage
@@ -14,6 +15,3 @@ class UploadImageUseCase {
 }
 
 /// Simple repository interface for image operations
-abstract class ImageRepository {
-  Future<Either<Failure, String>> uploadImage(File image, String path);
-}

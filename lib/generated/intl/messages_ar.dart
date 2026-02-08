@@ -20,14 +20,20 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(price, currency) => "تأكيد الحجز (${price} ${currency})";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutService": MessageLookupByLibrary.simpleMessage("عن الخدمة"),
     "accountSettings": MessageLookupByLibrary.simpleMessage("إعدادات الحساب"),
     "active": MessageLookupByLibrary.simpleMessage("نشطة"),
+    "addNotesHint": MessageLookupByLibrary.simpleMessage(
+      "أضف أي تفاصيل أخرى...",
+    ),
     "addService": MessageLookupByLibrary.simpleMessage("إضافة خدمة"),
     "addServiceImage": MessageLookupByLibrary.simpleMessage("صورة الخدمة"),
     "addServiceTitle": MessageLookupByLibrary.simpleMessage("إضافة خدمة جديدة"),
+    "additionalNotes": MessageLookupByLibrary.simpleMessage("ملاحظات إضافية"),
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
@@ -43,7 +49,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "متى تكون متاحاً",
     ),
     "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
+    "bookingDate": MessageLookupByLibrary.simpleMessage("تاريخ الحجز"),
     "bookingDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
+    "bookingFailed": MessageLookupByLibrary.simpleMessage("فشل الحجز"),
+    "bookingSuccess": MessageLookupByLibrary.simpleMessage("تم الحجز بنجاح!"),
     "bookings": MessageLookupByLibrary.simpleMessage("الحجوزات"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "cancelled": MessageLookupByLibrary.simpleMessage("الملغاة"),
@@ -54,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
     "completedServices": MessageLookupByLibrary.simpleMessage("مكتملة"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+    "confirmBookingWithPrice": m0,
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
@@ -64,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "currency": MessageLookupByLibrary.simpleMessage("جنيه"),
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+    "declined": MessageLookupByLibrary.simpleMessage("تم الرفض"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
     "deleteService": MessageLookupByLibrary.simpleMessage("حذف الخدمة"),
     "deleteServiceConfirmation": MessageLookupByLibrary.simpleMessage(
@@ -304,6 +315,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "saveService": MessageLookupByLibrary.simpleMessage("حفظ الخدمة"),
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
     "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+    "selectDate": MessageLookupByLibrary.simpleMessage("اختر التاريخ"),
+    "selectTime": MessageLookupByLibrary.simpleMessage("اختر الوقت"),
     "serviceActive": MessageLookupByLibrary.simpleMessage("نشطة"),
     "serviceAdded": MessageLookupByLibrary.simpleMessage(
       "تمت إضافة الخدمة بنجاح",

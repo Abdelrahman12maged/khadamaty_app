@@ -5,6 +5,11 @@
     <!-- Internet permission for loading map tiles -->
     <uses-permission android:name="android.permission.INTERNET" />
     
+    <!-- Storage permissions for Image Picker -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    
     <application
         android:label="khadamaty_app"
         android:name="${applicationName}"

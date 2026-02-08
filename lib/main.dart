@@ -13,16 +13,27 @@ import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  try {
+    await Supabase.initialize(
+      url: 'https://ruwxfullhspsewvpnkyw.supabase.co',
+      anonKey:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1d3hmdWxsaHNwc2V3dnBua3l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyMDI0OTUsImV4cCI6MjA4NTc3ODQ5NX0.dqDkAuGHwZ92J33gEAlwnnqk2gUK1fhXUiX5txY6WsE',
+    );
+  } catch (e) {
+    debugPrint('Supabase initialization failed: $e');
+  }
+
   // Initialize dependency injection
   await initDependencies();
-
 
   runApp(
     DevicePreview(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/theme/app_colors.dart';
+import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 
 /// Empty state widget for bookings tabs
@@ -15,6 +16,7 @@ class EmptyBookingsState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Custom larger icon size for empty state
     final iconSize = context.responsive(
       mobile: 80.0,
       tablet: 100.0,
@@ -23,18 +25,16 @@ class EmptyBookingsState extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(
-          context.responsive(mobile: 32.0, tablet: 48.0, desktop: 64.0),
-        ),
+        padding: EdgeInsets.all(AppSpacing.xl(context)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
               size: iconSize,
-              color: AppColors.textSecondary(context).withOpacity(0.5),
+              color: AppColors.textSecondary(context).withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: AppSpacing.lg(context)),
             Text(
               message,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(

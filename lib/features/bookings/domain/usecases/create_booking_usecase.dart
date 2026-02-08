@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/booking_entity.dart';
 import '../repositories/booking_repository.dart';
@@ -13,3 +14,4 @@ class CreateBookingUseCase {
     return await _repository.createBooking(booking);
   }
 }
+

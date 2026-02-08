@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:khadamaty_app/features/provider/domain/repositories/image_repositry.dart';
 
 // Auth imports
 import '../../features/auth/domain/repositories/auth_repository.dart';
@@ -30,7 +31,7 @@ import '../../features/provider/domain/usecases/update_service_usecase.dart';
 import '../../features/provider/domain/usecases/delete_service_usecase.dart';
 import '../../features/provider/domain/usecases/toggle_service_status_usecase.dart';
 import '../../features/provider/domain/usecases/upload_image_usecase.dart';
-import '../../features/provider/data/repositories/firebase_image_repository.dart';
+import '../../features/provider/data/repositories/Image_repositoryImp.dart';
 import '../../features/home/domain/usecases/get_active_services_usecase.dart';
 import '../../features/home/domain/usecases/get_service_by_id_usecase.dart';
 // Booking imports
@@ -43,6 +44,9 @@ import '../../features/bookings/domain/usecases/update_booking_status_usecase.da
 import '../../features/bookings/presentation/cubits/bookings_cubit/bookings_cubit.dart';
 import '../../features/bookings/presentation/cubits/create_booking_cubit/create_booking_cubit.dart';
 
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../features/provider/data/datasources/image_remote_data_source.dart';
+
 /// Service Locator instance
 final sl = GetIt.instance;
 
@@ -54,6 +58,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
   sl.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
   sl.registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance);
+  sl.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
 
   // ============ DATA SOURCES ============
 
@@ -74,7 +79,7 @@ Future<void> initDependencies() async {
 
   // Image Remote Data Source
   sl.registerLazySingleton<ImageRemoteDataSource>(
-    () => ImageRemoteDataSourceImpl(storage: sl()),
+    () => ImageRemoteDataSourceImpl(supabaseClient: sl()),
   );
 
   // Booking Remote Data Source
@@ -101,7 +106,7 @@ Future<void> initDependencies() async {
 
   // Image Repository
   sl.registerLazySingleton<ImageRepository>(
-    () => FirebaseImageRepository(remoteDataSource: sl()),
+    () => ImageRepositoryImpl(remoteDataSource: sl()),
   );
 
   // Booking Repository

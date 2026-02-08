@@ -201,5 +201,14 @@
   "location": "الموقع",
   "provider": "مزود الخدمة",
   "reviews": "التقييمات",
-  "noImage": "لا توجد صورة متوفرة"
+  "noImage": "لا توجد صورة متوفرة",
+  "selectDate": "اختر التاريخ",
+  "selectTime": "اختر الوقت",
+  "additionalNotes": "ملاحظات إضافية",
+  "addNotesHint": "أضف أي تفاصيل أخرى...",
+  "confirmBookingWithPrice": "تأكيد الحجز ({price} {currency})",
+  "bookingSuccess": "تم الحجز بنجاح!",
+  "bookingFailed": "فشل الحجز",
+  "declined": "تم الرفض",
+  "bookingDate": "تاريخ الحجز"
 }

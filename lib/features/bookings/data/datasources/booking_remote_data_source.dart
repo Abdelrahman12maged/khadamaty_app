@@ -20,10 +20,13 @@ class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
   Future<void> createBooking(BookingEntity booking) async {
     try {
       final model = BookingModel.fromEntity(booking);
-      await _firestore
-          .collection('bookings')
-          .doc(model.id)
-          .set(model.toFirestore());
+      final _bookingCollection = _firestore.collection('bookings');
+        await _bookingCollection.add(model.toFirestore());
+   
+      // await _firestore
+      //     .collection('bookings')
+      //     .doc(model.id)
+      //     .set(model.toFirestore());
     } on FirebaseException catch (e) {
       throw DatabaseException(e.message ?? 'فشل إنشاء الحجز', e.code);
     } catch (e) {

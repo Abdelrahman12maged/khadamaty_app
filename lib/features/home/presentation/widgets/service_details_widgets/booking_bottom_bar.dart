@@ -5,7 +5,7 @@ import 'package:khadamaty_app/core/theme/app_colors.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/features/bookings/presentation/cubits/create_booking_cubit/create_booking_cubit.dart';
-import 'package:khadamaty_app/features/bookings/presentation/widgets/booking_widgets/booking_sheet.dart';
+import 'package:khadamaty_app/features/bookings/presentation/widgets/bookings_widgets/booking_sheet.dart';
 import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 
