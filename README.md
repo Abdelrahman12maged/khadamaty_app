@@ -123,7 +123,18 @@ flutter run
 
 ## 📸 Screenshots
 
-> *Coming soon*
+<img width="704" height="1472" alt="Gemini_Generated_Image_dnatsqdnatsqdnat" src="https://github.com/user-attachments/assets/eaa94b93-ffcf-4e4a-a525-5b246a873921" />
+![6](https://github.com/user-attachments/assets/6f96001a-b95a-4024-832e-0b2c2e3d83a3)
+![5](https://github.com/user-attachments/assets/5f33c8ab-2d7f-4b5e-bd63-1e742a9aa1de)
+![4](https://github.com/user-attachments/assets/f8ba8a42-6f3c-435c-bf26-d0f2ebc35aa3)
+![3](https://github.com/user-attachments/assets/7b3b2241-0a15-4a30-9d3a-9e0d267ecf3c)
+![2](https://github.com/user-attachments/assets/e5f77515-9b67-4b42-9c54-4b095042bf19)
+![1](https://github.com/user-attachments/assets/c98555de-4165-48d1-8729-31de92d48c23)
+![10](https://github.com/user-attachments/assets/096ab5b7-494b-4191-a927-c7e43dc871af)
+![9](https://github.com/user-attachments/assets/481a87be-06ba-4f21-94fd-71b41f4d33a3)
+![8](https://github.com/user-attachments/assets/64173ad4-28b9-4d2b-8b8a-eb83e427065d)
+![7](https://github.com/user-attachments/assets/13a3b7b1-58f7-4d14-b41a-a618c936b442)
+
 
 ---
 
