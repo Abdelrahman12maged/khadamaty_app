@@ -210,5 +210,18 @@
   "bookingSuccess": "Booking successful!",
   "bookingFailed": "Booking failed",
   "declined": "Declined",
-  "bookingDate": "Booking Date"
+  "bookingDate": "Booking Date",
+  "payment": "Payment",
+  "selectPaymentMethod": "Select Payment Method",
+  "paymentTotalAmount": "Total Amount",
+  "payWithStripe": "Pay with Stripe",
+  "payWithPaypal": "Pay with PayPal",
+  "paymentSuccessful": "Payment Successful!",
+  "paidVia": "Paid via {method}",
+  "transactionId": "Transaction",
+  "done": "Done",
+  "paypalNote": "Contact us for any questions on your order.",
+  "processingPayment": "Processing payment...",
+  "payWithPaymob": "Pay with Paymob",
+  "paymobTestMode": "🧪 Test Mode - Use test cards"
 }

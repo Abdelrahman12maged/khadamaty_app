@@ -1783,6 +1783,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Payment`
+  String get payment {
+    return Intl.message('Payment', name: 'payment', desc: '', args: []);
+  }
+
+  /// `Select Payment Method`
+  String get selectPaymentMethod {
+    return Intl.message(
+      'Select Payment Method',
+      name: 'selectPaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Amount`
+  String get paymentTotalAmount {
+    return Intl.message(
+      'Total Amount',
+      name: 'paymentTotalAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay with Stripe`
+  String get payWithStripe {
+    return Intl.message(
+      'Pay with Stripe',
+      name: 'payWithStripe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay with PayPal`
+  String get payWithPaypal {
+    return Intl.message(
+      'Pay with PayPal',
+      name: 'payWithPaypal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Successful!`
+  String get paymentSuccessful {
+    return Intl.message(
+      'Payment Successful!',
+      name: 'paymentSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paid via {method}`
+  String paidVia(Object method) {
+    return Intl.message(
+      'Paid via $method',
+      name: 'paidVia',
+      desc: '',
+      args: [method],
+    );
+  }
+
+  /// `Transaction`
+  String get transactionId {
+    return Intl.message(
+      'Transaction',
+      name: 'transactionId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message('Done', name: 'done', desc: '', args: []);
+  }
+
+  /// `Contact us for any questions on your order.`
+  String get paypalNote {
+    return Intl.message(
+      'Contact us for any questions on your order.',
+      name: 'paypalNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing payment...`
+  String get processingPayment {
+    return Intl.message(
+      'Processing payment...',
+      name: 'processingPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay with Paymob`
+  String get payWithPaymob {
+    return Intl.message(
+      'Pay with Paymob',
+      name: 'payWithPaymob',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `🧪 Test Mode - Use test cards`
+  String get paymobTestMode {
+    return Intl.message(
+      '🧪 Test Mode - Use test cards',
+      name: 'paymobTestMode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

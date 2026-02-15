@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(price, currency) => "تأكيد الحجز (${price} ${currency})";
 
+  static String m1(method) => "تم الدفع عبر ${method}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutService": MessageLookupByLibrary.simpleMessage("عن الخدمة"),
@@ -80,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteServiceConfirmation": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد من حذف هذه الخدمة؟",
     ),
+    "done": MessageLookupByLibrary.simpleMessage("تم"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
     "duration": MessageLookupByLibrary.simpleMessage("المدة"),
     "durationHint": MessageLookupByLibrary.simpleMessage("مثال: 30"),
@@ -238,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "onboardingTitle2": MessageLookupByLibrary.simpleMessage("حجز سهل"),
     "onboardingTitle3": MessageLookupByLibrary.simpleMessage("دفع آمن"),
+    "paidVia": m1,
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordMinLength": MessageLookupByLibrary.simpleMessage(
       "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
@@ -246,7 +250,23 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمات المرور غير متطابقة",
     ),
     "past": MessageLookupByLibrary.simpleMessage("السابقة"),
+    "payWithPaymob": MessageLookupByLibrary.simpleMessage("الدفع عبر Paymob"),
+    "payWithPaypal": MessageLookupByLibrary.simpleMessage("الدفع عبر PayPal"),
+    "payWithStripe": MessageLookupByLibrary.simpleMessage("الدفع عبر Stripe"),
+    "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
     "paymentMethods": MessageLookupByLibrary.simpleMessage("طرق الدفع"),
+    "paymentSuccessful": MessageLookupByLibrary.simpleMessage(
+      "تمت عملية الدفع بنجاح!",
+    ),
+    "paymentTotalAmount": MessageLookupByLibrary.simpleMessage(
+      "المبلغ الإجمالي",
+    ),
+    "paymobTestMode": MessageLookupByLibrary.simpleMessage(
+      "🧪 وضع التجريب - استخدم بطاقات اختبار",
+    ),
+    "paypalNote": MessageLookupByLibrary.simpleMessage(
+      "تواصل معنا لأي استفسارات حول طلبك.",
+    ),
     "pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "perHour": MessageLookupByLibrary.simpleMessage("في الساعة"),
     "perVisit": MessageLookupByLibrary.simpleMessage("لكل زيارة"),
@@ -305,6 +325,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pricingSubtitle": MessageLookupByLibrary.simpleMessage("حدد سعر خدمتك"),
     "pricingTitle": MessageLookupByLibrary.simpleMessage("التسعير"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+    "processingPayment": MessageLookupByLibrary.simpleMessage(
+      "جاري معالجة الدفع...",
+    ),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "provider": MessageLookupByLibrary.simpleMessage("مزود الخدمة"),
     "quickActions": MessageLookupByLibrary.simpleMessage("إجراءات سريعة"),
@@ -316,6 +339,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchServices": MessageLookupByLibrary.simpleMessage("ابحث عن خدمة..."),
     "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "selectDate": MessageLookupByLibrary.simpleMessage("اختر التاريخ"),
+    "selectPaymentMethod": MessageLookupByLibrary.simpleMessage(
+      "اختر طريقة الدفع",
+    ),
     "selectTime": MessageLookupByLibrary.simpleMessage("اختر الوقت"),
     "serviceActive": MessageLookupByLibrary.simpleMessage("نشطة"),
     "serviceAdded": MessageLookupByLibrary.simpleMessage(
@@ -357,6 +383,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "topRated": MessageLookupByLibrary.simpleMessage("الأعلى تقييماً"),
     "totalBookings": MessageLookupByLibrary.simpleMessage("إجمالي الحجوزات"),
     "totalSpent": MessageLookupByLibrary.simpleMessage("إجمالي الإنفاق"),
+    "transactionId": MessageLookupByLibrary.simpleMessage("رقم العملية"),
     "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
       "جرب كلمات مختلفة أو امسح الفلاتر",
     ),

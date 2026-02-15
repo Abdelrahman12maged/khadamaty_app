@@ -12,7 +12,7 @@ class UserEntity extends Equatable {
   final bool isPhoneVerified;
   final String? location;
   final DateTime? createdAt;
-  
+  final String? stripeCustomerId;
 
   const UserEntity({
     required this.id,
@@ -24,7 +24,7 @@ class UserEntity extends Equatable {
     this.isPhoneVerified = false,
     this.location,
     this.createdAt,
-   
+    this.stripeCustomerId,
   });
 
   /// Create a copy with updated fields
@@ -38,6 +38,7 @@ class UserEntity extends Equatable {
     bool? isPhoneVerified,
     String? location,
     DateTime? createdAt,
+    String? stripeCustomerId,
   }) {
     return UserEntity(
       id: id ?? this.id,
@@ -49,6 +50,7 @@ class UserEntity extends Equatable {
       isPhoneVerified: isPhoneVerified ?? this.isPhoneVerified,
       location: location ?? this.location,
       createdAt: createdAt ?? this.createdAt,
+      stripeCustomerId: stripeCustomerId ?? this.stripeCustomerId,
     );
   }
 
@@ -63,8 +65,6 @@ class UserEntity extends Equatable {
         isPhoneVerified,
         location,
         createdAt,
+        stripeCustomerId,
       ];
 }
-
-
-

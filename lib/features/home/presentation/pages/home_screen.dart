@@ -134,40 +134,13 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:khadamaty_app/core/widgets/map_view_widget.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:khadamaty_app/features/Payment/presentation/pages/payment_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:  FlutterMap(
-        
-        
-        options: MapOptions(initialZoom: 15,
-          
-          initialCenter: LatLng( 27.5528445455529, 30.720263635340483 )),
-           children: [
-
-              // OpenStreetMap tile layer
-            TileLayer(
-              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: 'com.khadamaty.app',
-              maxZoom: 20,
-            ),
-           ],
-        //  center: LatLng(30.0444, 31.2357),
-          // markers: [
-          //   MapViewWidget.createServiceMarker(
-          //     position:
-          //         LatLng(service.location.latitude, service.location.longitude),
-          //     onTap: null,
-          //   ),
-          // ],
-        ),
-    );
+    return PaymentScreen(amount: 50);
   }
 }

@@ -36,6 +36,12 @@
 @import firebase_storage;
 #endif
 
+#if __has_include(<flutter_inappwebview_ios/InAppWebViewFlutterPlugin.h>)
+#import <flutter_inappwebview_ios/InAppWebViewFlutterPlugin.h>
+#else
+@import flutter_inappwebview_ios;
+#endif
+
 #if __has_include(<geocoding_ios/GeocodingPlugin.h>)
 #import <geocoding_ios/GeocodingPlugin.h>
 #else
@@ -78,6 +84,12 @@
 @import sqflite_darwin;
 #endif
 
+#if __has_include(<stripe_ios/StripeIosPlugin.h>)
+#import <stripe_ios/StripeIosPlugin.h>
+#else
+@import stripe_ios;
+#endif
+
 #if __has_include(<url_launcher_ios/URLLauncherPlugin.h>)
 #import <url_launcher_ios/URLLauncherPlugin.h>
 #else
@@ -92,6 +104,7 @@
   [FLTFirebaseAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseAuthPlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
   [FLTFirebaseStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseStoragePlugin"]];
+  [InAppWebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"InAppWebViewFlutterPlugin"]];
   [GeocodingPlugin registerWithRegistrar:[registry registrarForPlugin:@"GeocodingPlugin"]];
   [GeolocatorPlugin registerWithRegistrar:[registry registrarForPlugin:@"GeolocatorPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
@@ -99,6 +112,7 @@
   [PermissionHandlerPlugin registerWithRegistrar:[registry registrarForPlugin:@"PermissionHandlerPlugin"]];
   [SharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"SharedPreferencesPlugin"]];
   [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
+  [StripeIosPlugin registerWithRegistrar:[registry registrarForPlugin:@"StripeIosPlugin"]];
   [URLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"URLLauncherPlugin"]];
 }
 

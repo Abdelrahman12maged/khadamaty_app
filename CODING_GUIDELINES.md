@@ -7,6 +7,7 @@
 ## 🎯 Responsive System - MUST USE
 
 ### ❌ NEVER Do This:
+
 ```dart
 // ❌ Manual screen width checks
 final width = MediaQuery.of(context).size.width;
@@ -21,6 +22,7 @@ margin: EdgeInsets.only(bottom: 24)
 ```
 
 ### ✅ ALWAYS Do This:
+
 ```dart
 // ✅ Use context extensions
 if (context.isDesktop) { ... }
@@ -44,6 +46,7 @@ final size = context.responsive(
 ## 📏 Spacing System
 
 ### Available AppSpacing Methods:
+
 - `AppSpacing.xs(context)` → 4-6-8px
 - `AppSpacing.sm(context)` → 8-10-12px
 - `AppSpacing.md(context)` → 16-20-24px (most common)
@@ -53,6 +56,7 @@ final size = context.responsive(
 - `AppSpacing.card(context)` → 12-14-16px (grid spacing)
 
 ### ✅ Always Import:
+
 ```dart
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
@@ -63,6 +67,7 @@ import 'package:khadamaty_app/core/utils/responsive_value.dart';
 ## 🎨 Theme System
 
 ### ❌ NEVER Do This:
+
 ```dart
 // ❌ Direct color access
 color: Colors.blue
@@ -75,6 +80,7 @@ style: Theme.of(context).textTheme.bodySmall?.copyWith(
 ```
 
 ### ✅ ALWAYS Do This:
+
 ```dart
 // ✅ Use AppColors methods for containers, borders, backgrounds
 color: AppColors.primaryBlue
@@ -98,8 +104,9 @@ style: Theme.of(context).textTheme.titleMedium?.copyWith(
 ```
 
 ### 📝 Theme Text Colors Reference:
+
 - `bodySmall` → Already uses `textSecondaryColor`
-- `labelSmall` → Already uses `textSecondaryColor`  
+- `labelSmall` → Already uses `textSecondaryColor`
 - All other text styles → Use `textPrimaryColor`
 
 **Rule**: Don't override text color unless you have a specific reason!
@@ -109,6 +116,7 @@ style: Theme.of(context).textTheme.titleMedium?.copyWith(
 ## 📂 Project Structure
 
 ### Feature Structure:
+
 ```
 features/
   feature_name/
@@ -123,6 +131,7 @@ features/
 ```
 
 ### Core Structure:
+
 ```
 core/
   theme/           # AppColors, AppTheme
@@ -133,9 +142,196 @@ core/
 
 ---
 
+## 🏗️ Clean Architecture Rules
+
+> **CRITICAL**: Every feature MUST follow this layer structure!
+
+### Feature Folder Structure:
+
+```
+features/
+  feature_name/
+    domain/                 # Business Logic Layer
+      entities/             # Pure Dart classes
+        feature_entity.dart
+      repositories/         # Abstract contracts
+        feature_repository.dart
+      usecases/             # Single-purpose actions
+        create_feature_usecase.dart
+
+    data/                   # Data Layer
+      datasources/          # Remote/Local data sources
+        feature_remote_data_source.dart
+      models/               # Firebase/API models
+        feature_model.dart
+      repositories/         # Implementation
+        firebase_feature_repository.dart
+
+    presentation/           # UI Layer
+      pages/                # Full screens
+        feature_screen.dart
+      widgets/              # Feature widgets
+        feature_widgets/    # Nested folder for widgets
+          feature_card.dart
+          feature_list_item.dart
+      cubits/               # State management
+        feature_cubit/
+          feature_cubit.dart
+          feature_state.dart
+```
+
+### Domain Layer Rules:
+
+#### ✅ Entities (domain/entities/)
+
+```dart
+// ✅ YES! Extend Equatable, add copyWith
+class BookingEntity extends Equatable {
+  final String id;
+  final String name;
+  // ...
+
+  const BookingEntity({required this.id, required this.name});
+
+  @override
+  List<Object?> get props => [id, name];
+
+  BookingEntity copyWith({String? id, String? name}) {
+    return BookingEntity(
+      id: id ?? this.id,
+      name: name ?? this.name,
+    );
+  }
+}
+```
+
+#### ✅ Repositories (domain/repositories/)
+
+```dart
+// ✅ YES! Abstract class with Dartz Either
+import 'package:dartz/dartz.dart';
+
+abstract class BookingRepository {
+  Future<Either<Failure, void>> createBooking(BookingEntity booking);
+  Future<Either<Failure, List<BookingEntity>>> getUserBookings(String userId);
+}
+```
+
+#### ✅ Use Cases (domain/usecases/)
+
+```dart
+// ✅ YES! Single purpose, named constructor params
+class CreateBookingUseCase {
+  final BookingRepository _repository;
+
+  CreateBookingUseCase({required BookingRepository repository})
+      : _repository = repository;
+
+  Future<Either<Failure, void>> call(BookingEntity booking) async {
+    return await _repository.createBooking(booking);
+  }
+}
+```
+
+### Data Layer Rules:
+
+#### ✅ Models (data/models/)
+
+```dart
+// ✅ YES! Extend Entity, add factory methods
+class BookingModel extends BookingEntity {
+  const BookingModel({required super.id, required super.name});
+
+  // From external source
+  factory BookingModel.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return BookingModel(
+      id: doc.id,
+      name: data['name'] ?? '',
+    );
+  }
+
+  // From entity (for writes)
+  factory BookingModel.fromEntity(BookingEntity entity) {
+    return BookingModel(id: entity.id, name: entity.name);
+  }
+
+  // To external source
+  Map<String, dynamic> toFirestore() {
+    return {'name': name};
+  }
+}
+```
+
+#### ✅ Repository Implementation (data/repositories/)
+
+```dart
+// ✅ YES! Implement abstract, wrap in try-catch, return Either
+class FirebaseBookingRepositoryImp implements BookingRepository {
+  final BookingRemoteDataSource _remoteDataSource;
+
+  FirebaseBookingRepositoryImp({required BookingRemoteDataSource remoteDataSource})
+      : _remoteDataSource = remoteDataSource;
+
+  @override
+  Future<Either<Failure, void>> createBooking(BookingEntity booking) async {
+    try {
+      await _remoteDataSource.createBooking(booking);
+      return const Right(null);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
+    } catch (e) {
+      return Left(DatabaseFailure(message: e.toString()));
+    }
+  }
+}
+```
+
+### Presentation Layer Rules:
+
+#### ✅ Widgets Location
+
+```dart
+// ✅ YES! Widgets in nested feature_widgets/ folder
+// features/bookings/presentation/widgets/bookings_widgets/booking_card.dart
+
+class BookingCard extends StatelessWidget {
+  final BookingEntity booking;
+  const BookingCard({super.key, required this.booking});
+  // ...
+}
+```
+
+### Dependency Injection (core/di/injection_container.dart):
+
+```dart
+// Register in this order:
+// 1. Data Sources
+sl.registerLazySingleton<BookingRemoteDataSource>(
+  () => BookingRemoteDataSourceImpl(firestore: sl()),
+);
+
+// 2. Repositories
+sl.registerLazySingleton<BookingRepository>(
+  () => FirebaseBookingRepositoryImp(remoteDataSource: sl()),
+);
+
+// 3. Use Cases
+sl.registerLazySingleton(() => CreateBookingUseCase(repository: sl()));
+
+// 4. Cubits (use registerFactory, not registerLazySingleton!)
+sl.registerFactory(() => BookingsCubit(
+  getUserBookingsUseCase: sl(),
+  authRepository: sl(),
+));
+```
+
+---
+
 ## 📛 Naming Conventions
 
 ### ❌ NEVER Do This:
+
 ```dart
 // ❌ NO! Don't use "I" prefix for interfaces
 abstract class IServiceRepository { }
@@ -147,6 +343,7 @@ int iCount;
 ```
 
 ### ✅ ALWAYS Do This:
+
 ```dart
 // ✅ YES! Use descriptive names without prefixes
 abstract class ServiceRepository { }
@@ -166,6 +363,7 @@ int itemCount;
 ## 🔄 State Management Rules
 
 ### Use BlocProvider + BlocConsumer:
+
 ```dart
 BlocProvider(
   create: (context) => MyCubit()..loadData(context),
@@ -181,6 +379,7 @@ BlocProvider(
 ```
 
 ### Pass BuildContext to Cubit Methods:
+
 ```dart
 // ✅ For localization and responsive values
 void loadData(BuildContext context) {
@@ -194,6 +393,7 @@ void loadData(BuildContext context) {
 ## 🧩 Widget Extraction
 
 ### ❌ NEVER Extract as Method:
+
 ```dart
 // ❌ NO! Widget as method
 Widget _buildSomeWidget(BuildContext context) {
@@ -202,13 +402,14 @@ Widget _buildSomeWidget(BuildContext context) {
 ```
 
 ### ✅ ALWAYS Extract as StatelessWidget:
+
 ```dart
 // ✅ YES! Widget as StatelessWidget
 class SomeWidget extends StatelessWidget {
   final String data;
-  
+
   const SomeWidget({super.key, required this.data});
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(...);
@@ -217,6 +418,7 @@ class SomeWidget extends StatelessWidget {
 ```
 
 **Why?**
+
 - ✅ Better performance (Flutter can optimize rebuilds)
 - ✅ Reusable across files
 - ✅ Cleaner code organization
@@ -224,6 +426,7 @@ class SomeWidget extends StatelessWidget {
 - ✅ Can use `const` constructors
 
 **Where to put widgets?**
+
 - Feature-specific widgets → `features/feature_name/presentation/feature_widgets/`
 - Reusable app-wide widgets → `core/widgets/`
 
@@ -234,6 +437,7 @@ class SomeWidget extends StatelessWidget {
 ### ✅ Use UIHelpers Instead of Direct Calls
 
 **❌ DON'T Repeat:**
+
 ```dart
 // ❌ NO! Repeating dialog code everywhere
 showDialog(
@@ -258,6 +462,7 @@ ScaffoldMessenger.of(context).showSnackBar(
 ```
 
 **✅ DO Use UIHelpers:**
+
 ```dart
 // ✅ YES! Use UIHelpers utility
 import 'package:khadamaty_app/core/utils/ui_helpers.dart';
@@ -302,6 +507,7 @@ await UIHelpers.deleteWithConfirmation(
 ```
 
 **Benefits:**
+
 - ✅ Consistent UI across the app
 - ✅ Less code duplication
 - ✅ Easy to change styling in one place
@@ -309,6 +515,7 @@ await UIHelpers.deleteWithConfirmation(
 - ✅ Built-in best practices
 
 **Available Utilities:**
+
 - `UIHelpers.showConfirmDialog()` - Yes/No dialogs
 - `UIHelpers.showSuccessSnackbar()` - Green success messages
 - `UIHelpers.showErrorSnackbar()` - Red error messages
@@ -320,11 +527,13 @@ await UIHelpers.deleteWithConfirmation(
 ## 🌍 Localization
 
 ### ✅ Always Use:
+
 ```dart
 S.of(context).keyName  // Generated from .arb files
 ```
 
 ### ❌ NEVER Hardcode Strings:
+
 ```dart
 // ❌ NO! Hardcoded strings
 Text('Hello')
@@ -334,6 +543,7 @@ SnackBar(content: Text('Success!'))
 ```
 
 ### ✅ Use Localization:
+
 ```dart
 // ✅ YES! Localized strings
 Text(S.of(context).hello)
@@ -343,6 +553,7 @@ SnackBar(content: Text(S.of(context).success))
 ```
 
 **Steps to add new localized string:**
+
 1. Add key to `lib/l10n/intl_en.arb`
 2. Add key to `lib/l10n/intl_ar.arb`
 3. Run: `flutter pub run intl_utils:generate`
@@ -378,6 +589,7 @@ Before submitting ANY code, verify:
 ## 📚 Key Files to Review First
 
 Before any responsive work:
+
 1. `lib/core/utils/responsive_value.dart`
 2. `lib/core/utils/app_spacing.dart`
 3. `lib/core/theme/app_colors.dart`

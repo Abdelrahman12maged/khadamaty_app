@@ -13,6 +13,7 @@ class UserModel extends UserEntity {
     super.isPhoneVerified,
     super.location,
     super.createdAt,
+    super.stripeCustomerId,
   });
 
   /// Create from Firestore document
@@ -30,6 +31,7 @@ class UserModel extends UserEntity {
       createdAt: json['createdAt'] != null
           ? (json['createdAt'] as Timestamp).toDate()
           : null,
+      stripeCustomerId: json['stripeCustomerId'] as String?,
     );
   }
 
@@ -45,6 +47,7 @@ class UserModel extends UserEntity {
       isPhoneVerified: json['isPhoneVerified'] as bool? ?? false,
       location: json['location'] as String?,
       createdAt: _parseDateTime(json['createdAt']),
+      stripeCustomerId: json['stripeCustomerId'] as String?,
     );
   }
 
@@ -67,6 +70,7 @@ class UserModel extends UserEntity {
       isPhoneVerified: entity.isPhoneVerified,
       location: entity.location,
       createdAt: entity.createdAt,
+      stripeCustomerId: entity.stripeCustomerId,
     );
   }
 
@@ -81,6 +85,7 @@ class UserModel extends UserEntity {
       'isPhoneVerified': isPhoneVerified,
       'location': location,
       'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : null,
+      'stripeCustomerId': stripeCustomerId,
     };
   }
 
@@ -96,6 +101,7 @@ class UserModel extends UserEntity {
       'isPhoneVerified': isPhoneVerified,
       'location': location,
       'createdAt': createdAt?.toIso8601String(),
+      'stripeCustomerId': stripeCustomerId,
     };
   }
 
@@ -110,6 +116,7 @@ class UserModel extends UserEntity {
     bool? isPhoneVerified,
     String? location,
     DateTime? createdAt,
+    String? stripeCustomerId,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -121,6 +128,7 @@ class UserModel extends UserEntity {
       isPhoneVerified: isPhoneVerified ?? this.isPhoneVerified,
       location: location ?? this.location,
       createdAt: createdAt ?? this.createdAt,
+      stripeCustomerId: stripeCustomerId ?? this.stripeCustomerId,
     );
   }
 }

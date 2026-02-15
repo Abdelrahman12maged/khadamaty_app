@@ -210,5 +210,18 @@
   "bookingSuccess": "تم الحجز بنجاح!",
   "bookingFailed": "فشل الحجز",
   "declined": "تم الرفض",
-  "bookingDate": "تاريخ الحجز"
+  "bookingDate": "تاريخ الحجز",
+  "payment": "الدفع",
+  "selectPaymentMethod": "اختر طريقة الدفع",
+  "paymentTotalAmount": "المبلغ الإجمالي",
+  "payWithStripe": "الدفع عبر Stripe",
+  "payWithPaypal": "الدفع عبر PayPal",
+  "paymentSuccessful": "تمت عملية الدفع بنجاح!",
+  "paidVia": "تم الدفع عبر {method}",
+  "transactionId": "رقم العملية",
+  "done": "تم",
+  "paypalNote": "تواصل معنا لأي استفسارات حول طلبك.",
+  "processingPayment": "جاري معالجة الدفع...",
+  "payWithPaymob": "الدفع عبر Paymob",
+  "paymobTestMode": "🧪 وضع التجريب - استخدم بطاقات اختبار"
 }

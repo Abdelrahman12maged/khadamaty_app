@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:khadamaty_app/core/utils/router/app_router.dart';
 import 'package:khadamaty_app/core/di/injection_container.dart';
 import 'package:khadamaty_app/features/bookings/domain/repositories/booking_repository.dart';
@@ -18,15 +20,21 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // 1. Load .env FIRST — everything else depends on it
+  await dotenv.load(fileName: ".env");
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // 2. Stripe — read publishable key from .env
+  Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';
+
+  // 3. Supabase — read from .env
   try {
     await Supabase.initialize(
-      url: 'https://ruwxfullhspsewvpnkyw.supabase.co',
-      anonKey:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1d3hmdWxsaHNwc2V3dnBua3l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyMDI0OTUsImV4cCI6MjA4NTc3ODQ5NX0.dqDkAuGHwZ92J33gEAlwnnqk2gUK1fhXUiX5txY6WsE',
+      url: dotenv.env['SUPABASE_URL'] ?? '',
+      anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
     );
   } catch (e) {
     debugPrint('Supabase initialization failed: $e');

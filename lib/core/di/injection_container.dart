@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:khadamaty_app/core/service/Api.dart';
+import 'package:khadamaty_app/features/Payment/data/datasources/payment_service.dart';
+import 'package:khadamaty_app/features/Payment/data/datasources/paypal_service.dart';
 import 'package:khadamaty_app/features/provider/domain/repositories/image_repositry.dart';
 
 // Auth imports
@@ -44,6 +48,12 @@ import '../../features/bookings/domain/usecases/update_booking_status_usecase.da
 import '../../features/bookings/presentation/cubits/bookings_cubit/bookings_cubit.dart';
 import '../../features/bookings/presentation/cubits/create_booking_cubit/create_booking_cubit.dart';
 
+// Payment imports
+import '../../features/Payment/domain/repositories/payment_repository.dart';
+import '../../features/Payment/data/repositories/payment_repository_impl.dart';
+import '../../features/Payment/data/datasources/stripe_service.dart';
+import '../../features/Payment/presentation/cubit/payment_cubit.dart';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../features/provider/data/datasources/image_remote_data_source.dart';
 
@@ -58,8 +68,11 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
   sl.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
   sl.registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance);
+  
+  //supabase instance
   sl.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
-
+  sl.registerLazySingleton<Dio>(() => Dio());
+  sl.registerLazySingleton<Apiservice>(() => Apiservice(dio: sl()));
   // ============ DATA SOURCES ============
 
   // Auth Remote Data Source
@@ -87,6 +100,10 @@ Future<void> initDependencies() async {
     () => BookingRemoteDataSourceImpl(firestore: sl()),
   );
 
+  // Stripe Service
+  sl.registerLazySingleton<StripeServiceImp>(() => StripeServiceImp(apiservice: sl()));
+  sl.registerLazySingleton<PaypalService>(() => PaypalService());
+  sl.registerLazySingleton<PaymentServiceFactory>(() => PaymentServiceFactory(stripeService: sl<StripeServiceImp>(),paypalService: sl<PaypalService>()));
   // ============ REPOSITORIES ============
 
   // Auth Repository
@@ -112,6 +129,11 @@ Future<void> initDependencies() async {
   // Booking Repository
   sl.registerLazySingleton<BookingRepository>(
     () => FirebaseBookingRepositoryImp(remoteDataSource: sl()),
+  );
+
+  // Payment Repository
+  sl.registerLazySingleton<PaymentRepository>(
+    () => PaymentRepositoryImpl(paymentFactory: sl()),
   );
 
   // ============ AUTH USECASES ============
@@ -165,6 +187,7 @@ Future<void> initDependencies() async {
         createBookingUseCase: sl(),
         authRepository: sl(),
       ));
+  sl.registerFactory(() => PaymentCubit(paymentRepository: sl()));
 }
 
 /// Reset all dependencies for testing

@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(price, currency) => "Confirm Booking (${price} ${currency})";
 
+  static String m1(method) => "Paid via ${method}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutService": MessageLookupByLibrary.simpleMessage("About this service"),
@@ -80,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteServiceConfirmation": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this service?",
     ),
+    "done": MessageLookupByLibrary.simpleMessage("Done"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
@@ -254,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "onboardingTitle2": MessageLookupByLibrary.simpleMessage("Book Easily"),
     "onboardingTitle3": MessageLookupByLibrary.simpleMessage("Secure Payments"),
+    "paidVia": m1,
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordMinLength": MessageLookupByLibrary.simpleMessage(
       "Password must be at least 6 characters",
@@ -262,7 +266,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "Passwords don\'t match",
     ),
     "past": MessageLookupByLibrary.simpleMessage("Past"),
+    "payWithPaymob": MessageLookupByLibrary.simpleMessage("Pay with Paymob"),
+    "payWithPaypal": MessageLookupByLibrary.simpleMessage("Pay with PayPal"),
+    "payWithStripe": MessageLookupByLibrary.simpleMessage("Pay with Stripe"),
+    "payment": MessageLookupByLibrary.simpleMessage("Payment"),
     "paymentMethods": MessageLookupByLibrary.simpleMessage("Payment Methods"),
+    "paymentSuccessful": MessageLookupByLibrary.simpleMessage(
+      "Payment Successful!",
+    ),
+    "paymentTotalAmount": MessageLookupByLibrary.simpleMessage("Total Amount"),
+    "paymobTestMode": MessageLookupByLibrary.simpleMessage(
+      "🧪 Test Mode - Use test cards",
+    ),
+    "paypalNote": MessageLookupByLibrary.simpleMessage(
+      "Contact us for any questions on your order.",
+    ),
     "pending": MessageLookupByLibrary.simpleMessage("Pending"),
     "perHour": MessageLookupByLibrary.simpleMessage("per hour"),
     "perVisit": MessageLookupByLibrary.simpleMessage("per visit"),
@@ -323,6 +341,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pricingTitle": MessageLookupByLibrary.simpleMessage("Pricing"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "processingPayment": MessageLookupByLibrary.simpleMessage(
+      "Processing payment...",
+    ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "provider": MessageLookupByLibrary.simpleMessage("Provider"),
     "quickActions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
@@ -336,6 +357,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
     "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
+    "selectPaymentMethod": MessageLookupByLibrary.simpleMessage(
+      "Select Payment Method",
+    ),
     "selectTime": MessageLookupByLibrary.simpleMessage("Select Time"),
     "serviceActive": MessageLookupByLibrary.simpleMessage("Active"),
     "serviceAdded": MessageLookupByLibrary.simpleMessage(
@@ -377,6 +401,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "topRated": MessageLookupByLibrary.simpleMessage("Top Rated"),
     "totalBookings": MessageLookupByLibrary.simpleMessage("Total Bookings"),
     "totalSpent": MessageLookupByLibrary.simpleMessage("Total Spent"),
+    "transactionId": MessageLookupByLibrary.simpleMessage("Transaction"),
     "tryDifferentKeywords": MessageLookupByLibrary.simpleMessage(
       "Try different keywords or clear filters",
     ),
