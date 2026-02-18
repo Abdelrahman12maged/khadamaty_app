@@ -123,7 +123,9 @@ flutter run
 
 ## 📸 Screenshots
 
-> *Coming soon*
+<img width="500" height="600" alt="Gemini_Generated_Image_dnatsqdnatsqdnat" src="https://github.com/user-attachments/assets/eaa94b93-ffcf-4e4a-a525-5b246a873921" />
+
+
 
 ---
 
