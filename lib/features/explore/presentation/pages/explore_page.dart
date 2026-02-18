@@ -5,14 +5,15 @@ import 'package:khadamaty_app/core/widgets/responsive_layout.dart';
 import 'package:khadamaty_app/core/widgets/loading_indicator.dart';
 import 'package:khadamaty_app/core/widgets/error_display.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
+import 'package:khadamaty_app/core/di/injection_container.dart';
+import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import '../cubits/explore_cubit/explore_cubit.dart';
 import '../cubits/explore_cubit/explore_state.dart';
-import '../cubits/home_cubit/mock_home_data.dart';
 import '../widgets/explore_widgets/explore_search_field.dart';
 import '../widgets/explore_widgets/category_filter_chips.dart';
 import '../widgets/explore_widgets/sort_dropdown.dart';
 import '../widgets/explore_widgets/empty_search_state.dart';
-import '../widgets/home_widgets/services_grid.dart';
+import 'package:khadamaty_app/features/home/presentation/widgets/home_widgets/services_grid.dart';
 
 /// Explore page for searching and filtering services
 class ExplorePage extends StatelessWidget {
@@ -21,7 +22,7 @@ class ExplorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ExploreCubit()..loadServices(context),
+      create: (context) => sl<ExploreCubit>()..loadServices(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).explore),
@@ -38,7 +39,7 @@ class ExplorePage extends StatelessWidget {
                     label: 'Retry',
                     textColor: Colors.white,
                     onPressed: () {
-                      context.read<ExploreCubit>().loadServices(context);
+                      context.read<ExploreCubit>().loadServices();
                     },
                   ),
                 ),
@@ -55,15 +56,13 @@ class ExplorePage extends StatelessWidget {
             if (state.error != null && state.allServices.isEmpty) {
               return ErrorDisplay(
                 message: state.error!,
-                onRetry: () =>
-                    context.read<ExploreCubit>().loadServices(context),
+                onRetry: () => context.read<ExploreCubit>().loadServices(),
               );
             }
 
             // Show content
             return RefreshIndicator(
-              onRefresh: () =>
-                  context.read<ExploreCubit>().refreshServices(context),
+              onRefresh: () => context.read<ExploreCubit>().refreshServices(),
               child: ResponsiveLayout(
                 useCard: false,
                 mobileMaxWidth: double.infinity,
@@ -88,7 +87,7 @@ class ExplorePage extends StatelessWidget {
 
                       // Category Filter Chips
                       CategoryFilterChips(
-                        categories: MockHomeData.getCategories(),
+                        categories: defaultCategories,
                         selectedCategoryId: state.selectedCategoryId,
                         onCategorySelected: (categoryId) {
                           context

@@ -6,7 +6,7 @@ import '../cubits/navigation_cubit.dart';
 import '../widgets/home_widgets/side_navigation_rail.dart';
 import '../widgets/home_widgets/app_bottom_navigation_bar.dart';
 import 'home_screen.dart';
-import 'explore_page.dart';
+import 'package:khadamaty_app/features/explore/presentation/pages/explore_page.dart';
 import 'profile_page.dart';
 
 /// Main screen with adaptive navigation:

@@ -1,37 +1,34 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
+import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
+import 'package:khadamaty_app/features/home/domain/usecases/get_active_services_usecase.dart';
 import 'explore_state.dart';
-import '../home_cubit/mock_home_data.dart';
 
 /// Explore cubit for managing search, filter, and sort functionality
 class ExploreCubit extends Cubit<ExploreState> {
-  ExploreCubit() : super(const ExploreState());
+  final GetActiveServicesUseCase _getActiveServicesUseCase;
 
-  /// Load all services
-  Future<void> loadServices(BuildContext context) async {
+  ExploreCubit({
+    required GetActiveServicesUseCase getActiveServicesUseCase,
+  })  : _getActiveServicesUseCase = getActiveServicesUseCase,
+        super(const ExploreState());
+
+  /// Load all services from Firestore
+  Future<void> loadServices() async {
     emit(state.copyWith(isLoading: true, clearError: true));
 
-    try {
-      // Simulate network delay
-      await Future.delayed(const Duration(milliseconds: 500));
+    final result = await _getActiveServicesUseCase();
 
-      // Get all services from mock data
-      final featured = MockHomeData.getFeaturedServices(context);
-      final providers = MockHomeData.getPopularProviders(context);
-      final allServices = [...featured, ...providers];
-
-      emit(state.copyWith(
+    result.fold(
+      (failure) => emit(state.copyWith(
         isLoading: false,
-        allServices: allServices,
-        filteredServices: allServices,
-      ));
-    } catch (e) {
-      emit(state.copyWith(
+        error: failure.message,
+      )),
+      (services) => emit(state.copyWith(
         isLoading: false,
-        error: e.toString(),
-      ));
-    }
+        allServices: services,
+        filteredServices: services,
+      )),
+    );
   }
 
   /// Search services by query
@@ -74,7 +71,7 @@ class ExploreCubit extends Cubit<ExploreState> {
 
   /// Apply all filters, search, and sort
   void _applyAllFilters() {
-    var filtered = List<ServiceData>.from(state.allServices);
+    var filtered = List<ServiceEntity>.from(state.allServices);
 
     // Apply search
     if (state.searchQuery.isNotEmpty) {
@@ -86,8 +83,12 @@ class ExploreCubit extends Cubit<ExploreState> {
       }).toList();
     }
 
-    // Apply category filter (would need category info in ServiceData)
-    // For now, skipping category filter as mock data doesn't have category field
+    // Apply category filter
+    if (state.selectedCategoryId != null) {
+      filtered = filtered
+          .where((s) => s.category == state.selectedCategoryId)
+          .toList();
+    }
 
     // Apply custom filters
     if (state.filters != null) {
@@ -126,21 +127,18 @@ class ExploreCubit extends Cubit<ExploreState> {
   }
 
   /// Refresh services
-  Future<void> refreshServices(BuildContext context) async {
-    try {
-      await Future.delayed(const Duration(seconds: 1));
+  Future<void> refreshServices() async {
+    final result = await _getActiveServicesUseCase();
 
-      final featured = MockHomeData.getFeaturedServices(context);
-      final providers = MockHomeData.getPopularProviders(context);
-      final allServices = [...featured, ...providers];
-
-      emit(state.copyWith(
-        allServices: allServices,
-        clearError: true,
-      ));
-      _applyAllFilters();
-    } catch (e) {
-      emit(state.copyWith(error: e.toString()));
-    }
+    result.fold(
+      (failure) => emit(state.copyWith(error: failure.message)),
+      (services) {
+        emit(state.copyWith(
+          allServices: services,
+          clearError: true,
+        ));
+        _applyAllFilters();
+      },
+    );
   }
 }

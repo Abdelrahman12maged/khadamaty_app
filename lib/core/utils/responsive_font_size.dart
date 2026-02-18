@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'responsive_breakpoints.dart';
 
-/// Responsive font size utility
-/// Automatically scales font sizes based on screen type
-///
-/// Example:
-/// ```dart
-/// Text(
-///   'Hello',
-///   style: TextStyle(
-///     fontSize: ResponsiveFontSize.large(context),
-///   ),
-/// )
-/// ```
+
 class ResponsiveFontSize {
   ResponsiveFontSize._();
 

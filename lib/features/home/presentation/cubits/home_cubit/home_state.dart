@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
 
 /// Home screen state
 class HomeState extends Equatable {
   final bool isLoading;
   final String? error;
   final List<CategoryData> categories;
-  final List<ServiceData> featuredServices;
-  final List<ServiceData> popularProviders;
+  final List<ServiceEntity> featuredServices;
+  final List<ServiceEntity> popularProviders;
 
   const HomeState({
     this.isLoading = false,
@@ -21,8 +22,8 @@ class HomeState extends Equatable {
     String? error,
     bool clearError = false,
     List<CategoryData>? categories,
-    List<ServiceData>? featuredServices,
-    List<ServiceData>? popularProviders,
+    List<ServiceEntity>? featuredServices,
+    List<ServiceEntity>? popularProviders,
   }) {
     return HomeState(
       isLoading: isLoading ?? this.isLoading,
@@ -69,56 +70,5 @@ class CategoryData extends Equatable {
         gradientStartColor,
         gradientEndColor,
         serviceCount,
-      ];
-}
-
-/// Service data model
-class ServiceData extends Equatable {
-  final String id;
-  final String title;
-  final String description;
-  final String providerName;
-  final double price;
-  final String priceUnit;
-  final double rating;
-  final int reviewCount;
-  final String? imageUrl;
-  // New fields for Add Service form
-  final String? category;
-  final double? latitude;
-  final double? longitude;
-  final String? address;
-
-  const ServiceData({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.providerName,
-    required this.price,
-    required this.priceUnit,
-    required this.rating,
-    required this.reviewCount,
-    this.imageUrl,
-    this.category,
-    this.latitude,
-    this.longitude,
-    this.address,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        title,
-        description,
-        providerName,
-        price,
-        priceUnit,
-        rating,
-        reviewCount,
-        imageUrl,
-        category,
-        latitude,
-        longitude,
-        address,
       ];
 }

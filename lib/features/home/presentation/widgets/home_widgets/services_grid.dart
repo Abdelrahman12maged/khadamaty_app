@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
-import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
+import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'service_card.dart';
 
 /// Reusable services grid widget
 class ServicesGrid extends StatelessWidget {
-  final List<ServiceData> services;
+  final List<ServiceEntity> services;
   final VoidCallback? onServiceTap;
 
   const ServicesGrid({

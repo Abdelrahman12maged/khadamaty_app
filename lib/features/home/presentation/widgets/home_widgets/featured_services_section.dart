@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../../cubits/home_cubit/home_state.dart';
+import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
 import 'service_card.dart';
 
 /// Featured Services Section Widget
 class FeaturedServicesSection extends StatelessWidget {
-  final List<ServiceData> services;
+  final List<ServiceEntity> services;
 
   const FeaturedServicesSection({super.key, required this.services});
 

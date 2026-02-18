@@ -47,7 +47,7 @@ final GoRouter appRouter = GoRouter(
           isGoingToLogin ||
           isGoingToSignup ||
           isGoingToMain) {
-        return '/email-verification?email=${user!.email}';
+        return '/email-verification?email=${user.email}';
       }
       return null;
     }

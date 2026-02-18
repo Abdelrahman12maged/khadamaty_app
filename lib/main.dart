@@ -33,6 +33,7 @@ void main() async {
   // 3. Supabase — read from .env
   try {
     await Supabase.initialize(
+      
       url: dotenv.env['SUPABASE_URL'] ?? '',
       anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
     );

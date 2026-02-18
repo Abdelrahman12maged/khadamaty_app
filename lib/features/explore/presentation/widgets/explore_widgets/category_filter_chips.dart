@@ -53,7 +53,7 @@ class CategoryFilterChips extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: chipPadding),
               ),
             );
-          }).toList(),
+          }),
         ],
       ),
     );

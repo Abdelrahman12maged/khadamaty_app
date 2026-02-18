@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
+import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
 
 /// Sort options for explore page
 enum SortOption {
@@ -13,8 +13,8 @@ enum SortOption {
 class ExploreState extends Equatable {
   final bool isLoading;
   final String? error;
-  final List<ServiceData> allServices;
-  final List<ServiceData> filteredServices;
+  final List<ServiceEntity> allServices;
+  final List<ServiceEntity> filteredServices;
   final String searchQuery;
   final String? selectedCategoryId;
   final SortOption sortBy;
@@ -35,8 +35,8 @@ class ExploreState extends Equatable {
     bool? isLoading,
     String? error,
     bool clearError = false,
-    List<ServiceData>? allServices,
-    List<ServiceData>? filteredServices,
+    List<ServiceEntity>? allServices,
+    List<ServiceEntity>? filteredServices,
     String? searchQuery,
     String? selectedCategoryId,
     bool clearCategory = false,

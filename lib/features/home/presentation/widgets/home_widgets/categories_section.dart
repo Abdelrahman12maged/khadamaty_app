@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
-import '../../cubits/home_cubit/mock_home_data.dart';
+import '../../cubits/home_cubit/home_state.dart';
 import 'category_card.dart';
 
 /// Categories Grid Section Widget
 class CategoriesSection extends StatelessWidget {
-  const CategoriesSection({super.key});
+  final List<CategoryData> categories;
+
+  const CategoriesSection({super.key, required this.categories});
 
   @override
   Widget build(BuildContext context) {
-    // Get categories from centralized mock data
-    final categories = MockHomeData.getCategories();
-
     // Responsive values
     final crossAxisCount = context.responsive(mobile: 2, tablet: 4, desktop: 6);
     final spacing = AppSpacing.card(context);
@@ -48,7 +47,6 @@ class CategoriesSection extends StatelessWidget {
           gradientEndColor: Color(category.gradientEndColor),
           onTap: () {
             // TODO: Navigate to category services (/category/${category.id})
-            // Will implement when category detail page is created
           },
         );
       },

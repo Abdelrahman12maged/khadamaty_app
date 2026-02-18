@@ -24,6 +24,9 @@ import '../../features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import '../../features/home/presentation/cubits/navigation_cubit.dart';
 import '../../features/home/presentation/cubits/service_details_cubit/service_details_cubit.dart';
 
+// Explore imports
+import '../../features/explore/presentation/cubits/explore_cubit/explore_cubit.dart';
+
 // Provider imports
 import '../../features/provider/domain/repositories/service_repository.dart';
 import '../../features/provider/data/repositories/firebase_service_repository.dart';
@@ -68,7 +71,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
   sl.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
   sl.registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance);
-  
+
   //supabase instance
   sl.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
   sl.registerLazySingleton<Dio>(() => Dio());
@@ -101,9 +104,12 @@ Future<void> initDependencies() async {
   );
 
   // Stripe Service
-  sl.registerLazySingleton<StripeServiceImp>(() => StripeServiceImp(apiservice: sl()));
+  sl.registerLazySingleton<StripeServiceImp>(
+      () => StripeServiceImp(apiservice: sl()));
   sl.registerLazySingleton<PaypalService>(() => PaypalService());
-  sl.registerLazySingleton<PaymentServiceFactory>(() => PaymentServiceFactory(stripeService: sl<StripeServiceImp>(),paypalService: sl<PaypalService>()));
+  sl.registerLazySingleton<PaymentServiceFactory>(() => PaymentServiceFactory(
+      stripeService: sl<StripeServiceImp>(),
+      paypalService: sl<PaypalService>()));
   // ============ REPOSITORIES ============
 
   // Auth Repository
@@ -178,6 +184,7 @@ Future<void> initDependencies() async {
   // ============ CUBITS ============
   sl.registerFactory(() => NavigationCubit());
   sl.registerFactory(() => HomeCubit(getActiveServicesUseCase: sl()));
+  sl.registerFactory(() => ExploreCubit(getActiveServicesUseCase: sl()));
   sl.registerFactory(() => ServiceDetailsCubit(getServiceByIdUseCase: sl()));
   sl.registerFactory(() => BookingsCubit(
         getUserBookingsUseCase: sl(),

@@ -2,7 +2,58 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/usecases/get_active_services_usecase.dart';
 import 'home_state.dart';
-import 'mock_home_data.dart';
+
+/// Hardcoded categories — rarely change, no need for Firestore
+const defaultCategories = [
+  CategoryData(
+    id: '1',
+    name: 'Cleaning',
+    icon: 'cleaning_services',
+    gradientStartColor: 0xFF2196F3,
+    gradientEndColor: 0xFF1976D2,
+    serviceCount: 15,
+  ),
+  CategoryData(
+    id: '2',
+    name: 'Plumbing',
+    icon: 'plumbing',
+    gradientStartColor: 0xFFFF9800,
+    gradientEndColor: 0xFFF57C00,
+    serviceCount: 12,
+  ),
+  CategoryData(
+    id: '3',
+    name: 'Electrical',
+    icon: 'electrical_services',
+    gradientStartColor: 0xFFFFC107,
+    gradientEndColor: 0xFFFFA000,
+    serviceCount: 18,
+  ),
+  CategoryData(
+    id: '4',
+    name: 'Carpentry',
+    icon: 'carpenter',
+    gradientStartColor: 0xFF795548,
+    gradientEndColor: 0xFF5D4037,
+    serviceCount: 10,
+  ),
+  CategoryData(
+    id: '5',
+    name: 'Painting',
+    icon: 'format_paint',
+    gradientStartColor: 0xFF9C27B0,
+    gradientEndColor: 0xFF7B1FA2,
+    serviceCount: 14,
+  ),
+  CategoryData(
+    id: '6',
+    name: 'AC Repair',
+    icon: 'ac_unit',
+    gradientStartColor: 0xFF00BCD4,
+    gradientEndColor: 0xFF0097A7,
+    serviceCount: 8,
+  ),
+];
 
 /// Home cubit for managing home screen data
 class HomeCubit extends Cubit<HomeState> {
@@ -18,10 +69,8 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state.copyWith(isLoading: true, clearError: true));
 
     try {
-      // 1. Load Categories (Static for now, or from config)
-      final categories = MockHomeData.getCategories();
+      final categories = defaultCategories;
 
-      // 2. Load Featured Services from Firestore
       final servicesResult = await _getActiveServicesUseCase();
 
       servicesResult.fold(
@@ -31,30 +80,11 @@ class HomeCubit extends Cubit<HomeState> {
           categories: categories,
         )),
         (services) {
-          final serviceDataList = services
-              .map((e) => ServiceData(
-                    id: e.id,
-                    title: e.title,
-                    description: e.description,
-                    providerName: e.providerName,
-                    price: e.price,
-                    priceUnit: e.priceUnit,
-                    rating: e.rating,
-                    reviewCount: e.reviewCount,
-                    imageUrl: e.imageUrl,
-                    category: e.category,
-                    latitude: e.location.latitude,
-                    longitude: e.location.longitude,
-                    address: e.location.address,
-                  ))
-              .toList();
-
           emit(state.copyWith(
             isLoading: false,
             categories: categories,
-            featuredServices: serviceDataList,
-            popularProviders:
-                serviceDataList, // For now, use same list or filter
+            featuredServices: services,
+            popularProviders: services,
           ));
         },
       );

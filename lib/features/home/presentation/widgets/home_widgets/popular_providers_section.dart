@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
-import '../../cubits/home_cubit/home_state.dart';
+import 'package:khadamaty_app/features/provider/domain/entities/service_entity.dart';
 import 'service_card.dart';
 
 /// Popular Providers Section Widget
 class PopularProvidersSection extends StatelessWidget {
-  final List<ServiceData> providers;
+  final List<ServiceEntity> providers;
 
   const PopularProvidersSection({super.key, required this.providers});
 
