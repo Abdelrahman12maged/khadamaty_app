@@ -7,7 +7,7 @@ import 'home_state.dart';
 const defaultCategories = [
   CategoryData(
     id: '1',
-    name: 'Cleaning',
+    nameKey: 'categoryCleaning',
     icon: 'cleaning_services',
     gradientStartColor: 0xFF2196F3,
     gradientEndColor: 0xFF1976D2,
@@ -15,7 +15,7 @@ const defaultCategories = [
   ),
   CategoryData(
     id: '2',
-    name: 'Plumbing',
+    nameKey: 'categoryPlumbing',
     icon: 'plumbing',
     gradientStartColor: 0xFFFF9800,
     gradientEndColor: 0xFFF57C00,
@@ -23,7 +23,7 @@ const defaultCategories = [
   ),
   CategoryData(
     id: '3',
-    name: 'Electrical',
+    nameKey: 'categoryElectrical',
     icon: 'electrical_services',
     gradientStartColor: 0xFFFFC107,
     gradientEndColor: 0xFFFFA000,
@@ -31,7 +31,7 @@ const defaultCategories = [
   ),
   CategoryData(
     id: '4',
-    name: 'Carpentry',
+    nameKey: 'categoryCarpentry',
     icon: 'carpenter',
     gradientStartColor: 0xFF795548,
     gradientEndColor: 0xFF5D4037,
@@ -39,7 +39,7 @@ const defaultCategories = [
   ),
   CategoryData(
     id: '5',
-    name: 'Painting',
+    nameKey: 'categoryPainting',
     icon: 'format_paint',
     gradientStartColor: 0xFF9C27B0,
     gradientEndColor: 0xFF7B1FA2,
@@ -47,7 +47,7 @@ const defaultCategories = [
   ),
   CategoryData(
     id: '6',
-    name: 'AC Repair',
+    nameKey: 'categoryAcRepair',
     icon: 'ac_unit',
     gradientStartColor: 0xFF00BCD4,
     gradientEndColor: 0xFF0097A7,

@@ -3,6 +3,20 @@ import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 
+/// Resolves category nameKey to localized string
+String _resolveCategoryName(BuildContext context, String nameKey) {
+  final s = S.of(context);
+  final map = {
+    'categoryCleaning': s.categoryCleaning,
+    'categoryPlumbing': s.categoryPlumbing,
+    'categoryElectrical': s.categoryElectrical,
+    'categoryCarpentry': s.categoryCarpentry,
+    'categoryPainting': s.categoryPainting,
+    'categoryAcRepair': s.categoryAcRepair,
+  };
+  return map[nameKey] ?? nameKey;
+}
+
 /// Category filter chips for explore page
 class CategoryFilterChips extends StatelessWidget {
   final List<CategoryData> categories;
@@ -45,7 +59,7 @@ class CategoryFilterChips extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(right: 8),
               child: FilterChip(
-                label: Text(category.name),
+                label: Text(_resolveCategoryName(context, category.nameKey)),
                 selected: isSelected,
                 onSelected: (_) => onCategorySelected(
                   isSelected ? null : category.id,

@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
+import 'package:khadamaty_app/generated/l10n.dart';
 import '../../cubits/home_cubit/home_state.dart';
 import 'category_card.dart';
+
+/// Resolves category nameKey to localized string
+String _resolveCategoryName(BuildContext context, String nameKey) {
+  final s = S.of(context);
+  final map = {
+    'categoryCleaning': s.categoryCleaning,
+    'categoryPlumbing': s.categoryPlumbing,
+    'categoryElectrical': s.categoryElectrical,
+    'categoryCarpentry': s.categoryCarpentry,
+    'categoryPainting': s.categoryPainting,
+    'categoryAcRepair': s.categoryAcRepair,
+  };
+  return map[nameKey] ?? nameKey;
+}
 
 /// Categories Grid Section Widget
 class CategoriesSection extends StatelessWidget {
@@ -41,7 +56,7 @@ class CategoriesSection extends StatelessWidget {
 
         return CategoryCard(
           icon: iconMap[category.icon] ?? Icons.category,
-          name: category.name,
+          name: _resolveCategoryName(context, category.nameKey),
           serviceCount: category.serviceCount,
           gradientStartColor: Color(category.gradientStartColor),
           gradientEndColor: Color(category.gradientEndColor),

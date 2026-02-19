@@ -47,7 +47,7 @@ class HomeState extends Equatable {
 /// Category data model
 class CategoryData extends Equatable {
   final String id;
-  final String name;
+  final String nameKey;
   final String icon;
   final int gradientStartColor;
   final int gradientEndColor;
@@ -55,7 +55,7 @@ class CategoryData extends Equatable {
 
   const CategoryData({
     required this.id,
-    required this.name,
+    required this.nameKey,
     required this.icon,
     required this.gradientStartColor,
     required this.gradientEndColor,
@@ -65,7 +65,7 @@ class CategoryData extends Equatable {
   @override
   List<Object> get props => [
         id,
-        name,
+        nameKey,
         icon,
         gradientStartColor,
         gradientEndColor,

@@ -223,5 +223,12 @@
   "paypalNote": "تواصل معنا لأي استفسارات حول طلبك.",
   "processingPayment": "جاري معالجة الدفع...",
   "payWithPaymob": "الدفع عبر Paymob",
-  "paymobTestMode": "🧪 وضع التجريب - استخدم بطاقات اختبار"
+  "paymobTestMode": "🧪 وضع التجريب - استخدم بطاقات اختبار",
+  "categoryCleaning": "تنظيف",
+  "categoryPlumbing": "سباكة",
+  "categoryElectrical": "كهرباء",
+  "categoryCarpentry": "نجارة",
+  "categoryPainting": "دهان",
+  "categoryAcRepair": "تصليح تكييف",
+  "servicesCount": "{count} خدمة"
 }
