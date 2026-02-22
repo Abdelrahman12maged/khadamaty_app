@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'chat_model.dart';
+part of 'chat_local_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ChatModelAdapter extends TypeAdapter<ChatModel> {
+class ChatLocalModelAdapter extends TypeAdapter<ChatLocalModel> {
   @override
   final int typeId = 1;
 
   @override
-  ChatModel read(BinaryReader reader) {
+  ChatLocalModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ChatModel(
+    return ChatLocalModel(
       id: fields[0] as String,
       bookingId: fields[1] as String,
       customerId: fields[2] as String,
@@ -31,7 +31,7 @@ class ChatModelAdapter extends TypeAdapter<ChatModel> {
   }
 
   @override
-  void write(BinaryWriter writer, ChatModel obj) {
+  void write(BinaryWriter writer, ChatLocalModel obj) {
     writer
       ..writeByte(10)
       ..writeByte(0)
@@ -62,7 +62,7 @@ class ChatModelAdapter extends TypeAdapter<ChatModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ChatModelAdapter &&
+      other is ChatLocalModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

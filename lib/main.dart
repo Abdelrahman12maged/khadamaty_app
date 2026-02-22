@@ -16,6 +16,7 @@ import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,13 +34,15 @@ void main() async {
   // 3. Supabase — read from .env
   try {
     await Supabase.initialize(
-      
       url: dotenv.env['SUPABASE_URL'] ?? '',
       anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
     );
   } catch (e) {
     debugPrint('Supabase initialization failed: $e');
   }
+
+  // Initialize Hive for local caching
+  await Hive.initFlutter();
 
   // Initialize dependency injection
   await initDependencies();

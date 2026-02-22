@@ -1,11 +1,11 @@
 import 'package:hive/hive.dart';
 import '../../../domain/Entity/chat_message_entity.dart';
 
-part 'chat_message_models.g.dart';
+part 'chat_message_local_model.g.dart';
 
-/// Hive model for ChatMessage — stores DateTime as millis for cross-platform safety
+/// Hive model for ChatMessage — used by ChatLocalDatasource for caching
 @HiveType(typeId: 0)
-class ChatMessageModel extends HiveObject {
+class ChatMessageLocalModel extends HiveObject {
   @HiveField(0)
   final String id;
 
@@ -27,7 +27,7 @@ class ChatMessageModel extends HiveObject {
   @HiveField(6)
   final int createdAtMillis;
 
-  ChatMessageModel({
+  ChatMessageLocalModel({
     required this.id,
     required this.chatId,
     required this.senderId,
@@ -37,9 +37,11 @@ class ChatMessageModel extends HiveObject {
     required this.createdAtMillis,
   });
 
-  /// Convert from domain entity
-  factory ChatMessageModel.fromEntity(String chatId, ChatMessageEntity entity) {
-    return ChatMessageModel(
+  // ─── Domain Entity conversion ─────────────────────
+
+  factory ChatMessageLocalModel.fromEntity(
+      String chatId, ChatMessageEntity entity) {
+    return ChatMessageLocalModel(
       id: entity.id,
       chatId: chatId,
       senderId: entity.senderId,
@@ -50,7 +52,6 @@ class ChatMessageModel extends HiveObject {
     );
   }
 
-  /// Convert to domain entity
   ChatMessageEntity toEntity() {
     return ChatMessageEntity(
       id: id,
