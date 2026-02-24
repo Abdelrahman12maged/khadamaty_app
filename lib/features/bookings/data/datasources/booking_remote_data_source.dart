@@ -13,8 +13,8 @@ abstract class BookingRemoteDataSource {
 class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
   final FirebaseFirestore _firestore;
 
-  BookingRemoteDataSourceImpl({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+  BookingRemoteDataSourceImpl({required FirebaseFirestore firestore})
+      : _firestore = firestore ;
 
   @override
   Future<void> createBooking(BookingEntity booking) async {

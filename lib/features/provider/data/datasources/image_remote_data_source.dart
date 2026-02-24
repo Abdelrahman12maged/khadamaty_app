@@ -12,8 +12,8 @@ class ImageRemoteDataSourceImpl implements ImageRemoteDataSource {
   // Bucket name must exist in Supabase Storage
   static const String _bucketName = 'khadamaty-bucket';
 
-  ImageRemoteDataSourceImpl({SupabaseClient? supabaseClient})
-      : _supabaseClient = supabaseClient ?? Supabase.instance.client;
+  ImageRemoteDataSourceImpl({required SupabaseClient supabaseClient})
+      : _supabaseClient = supabaseClient ;
 
   @override
   Future<String> uploadImage(File image, String path) async {

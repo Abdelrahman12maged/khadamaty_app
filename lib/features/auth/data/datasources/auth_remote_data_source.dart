@@ -35,8 +35,8 @@ abstract class AuthRemoteDataSource {
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final FirebaseAuth _firebaseAuth;
 
-  AuthRemoteDataSourceImpl({FirebaseAuth? firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+  AuthRemoteDataSourceImpl({required FirebaseAuth firebaseAuth})
+      : _firebaseAuth = firebaseAuth ;
 
   @override
   Future<UserModel> register({

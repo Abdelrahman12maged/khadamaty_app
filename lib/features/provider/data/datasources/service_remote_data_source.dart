@@ -21,8 +21,8 @@ abstract class ServiceRemoteDataSource {
 class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
   final FirebaseFirestore _firestore;
 
-  ServiceRemoteDataSourceImpl({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+  ServiceRemoteDataSourceImpl({required  FirebaseFirestore firestore})
+      : _firestore = firestore;
 
   CollectionReference<Map<String, dynamic>> get _servicesCollection =>
       _firestore.collection('services');
