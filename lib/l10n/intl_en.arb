@@ -230,5 +230,11 @@
   "categoryCarpentry": "Carpentry",
   "categoryPainting": "Painting",
   "categoryAcRepair": "AC Repair",
-  "servicesCount": "{count} services"
+  "servicesCount": "{count} services",
+  "providerBookings": "Incoming Bookings",
+  "accept": "Accept",
+  "decline": "Decline",
+  "customer": "Customer",
+  "payNow": "Pay Now",
+  "paid": "Paid"
 }

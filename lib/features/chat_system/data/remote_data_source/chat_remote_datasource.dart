@@ -30,12 +30,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
 
   @override
   Future<ChatModel> getOrCreateChat(BookingEntity booking) async {
-   
-   
-
-
-
-   
+  
     try {
       // Check if a chat already exists for this booking
       final query = await _chatsCol

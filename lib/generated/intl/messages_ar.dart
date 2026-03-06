@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutService": MessageLookupByLibrary.simpleMessage("عن الخدمة"),
+        "accept": MessageLookupByLibrary.simpleMessage("قبول"),
         "accountSettings":
             MessageLookupByLibrary.simpleMessage("إعدادات الحساب"),
         "active": MessageLookupByLibrary.simpleMessage("نشطة"),
@@ -82,7 +83,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmed": MessageLookupByLibrary.simpleMessage("مؤكد"),
         "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "currency": MessageLookupByLibrary.simpleMessage("جنيه"),
+        "customer": MessageLookupByLibrary.simpleMessage("العميل"),
         "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+        "decline": MessageLookupByLibrary.simpleMessage("رفض"),
         "declined": MessageLookupByLibrary.simpleMessage("تم الرفض"),
         "delete": MessageLookupByLibrary.simpleMessage("حذف"),
         "deleteService": MessageLookupByLibrary.simpleMessage("حذف الخدمة"),
@@ -226,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اعثر على خدمات محلية"),
         "onboardingTitle2": MessageLookupByLibrary.simpleMessage("حجز سهل"),
         "onboardingTitle3": MessageLookupByLibrary.simpleMessage("دفع آمن"),
+        "paid": MessageLookupByLibrary.simpleMessage("مدفوع"),
         "paidVia": m1,
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMinLength": MessageLookupByLibrary.simpleMessage(
@@ -233,6 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("كلمات المرور غير متطابقة"),
         "past": MessageLookupByLibrary.simpleMessage("السابقة"),
+        "payNow": MessageLookupByLibrary.simpleMessage("ادفع الآن"),
         "payWithPaymob":
             MessageLookupByLibrary.simpleMessage("الدفع عبر Paymob"),
         "payWithPaypal":
@@ -296,6 +301,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("جاري معالجة الدفع..."),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "provider": MessageLookupByLibrary.simpleMessage("مزود الخدمة"),
+        "providerBookings":
+            MessageLookupByLibrary.simpleMessage("الحجوزات الواردة"),
         "quickActions": MessageLookupByLibrary.simpleMessage("إجراءات سريعة"),
         "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
         "resendEmail": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),

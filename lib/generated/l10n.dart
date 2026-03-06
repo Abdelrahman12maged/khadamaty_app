@@ -2349,6 +2349,66 @@ class S {
       args: [count],
     );
   }
+
+  /// `Incoming Bookings`
+  String get providerBookings {
+    return Intl.message(
+      'Incoming Bookings',
+      name: 'providerBookings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message(
+      'Accept',
+      name: 'accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Decline`
+  String get decline {
+    return Intl.message(
+      'Decline',
+      name: 'decline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer`
+  String get customer {
+    return Intl.message(
+      'Customer',
+      name: 'customer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay Now`
+  String get payNow {
+    return Intl.message(
+      'Pay Now',
+      name: 'payNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paid`
+  String get paid {
+    return Intl.message(
+      'Paid',
+      name: 'paid',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

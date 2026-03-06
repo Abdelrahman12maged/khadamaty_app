@@ -28,13 +28,14 @@ class StripeServiceImp implements PaymentService {
   final FirebaseFirestore _firestore;
   final FirebaseAuth _auth;
 
-  // ─── Constants ─────────────────────────────────────────────
+  // ─── Constants 
 
   static const _baseUrl = 'https://api.stripe.com/v1';
   static const _stripeVersion = '2024-06-20';
   static const _merchantName = 'Khadamaty';
 
-  // ─── Config ────────────────────────────────────────────────
+//___________________________________________________
+//___________________________________________________
 
   String get _secretKey => dotenv.env['STRIPE_SECRET_KEY'] ?? '';
 
@@ -93,6 +94,7 @@ class StripeServiceImp implements PaymentService {
   /// 2. Create new → save to Firestore
   /// 3. null if no authenticated user
   Future<String?> _resolveCustomerId(PaymentParams params) async {
+
     final user = _auth.currentUser;
     if (user == null) return null;
 

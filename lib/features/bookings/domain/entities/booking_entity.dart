@@ -1,26 +1,27 @@
 import 'package:equatable/equatable.dart';
 
 enum BookingStatus {
-  pending, 
+  pending,
   confirmed,
-  completed, 
-  cancelled, 
-  declined, 
+  completed,
+  cancelled,
+  declined,
 }
 
 class BookingEntity extends Equatable {
   final String id;
   final String serviceId;
-  final String serviceName; 
+  final String serviceName;
   final String providerId;
-  final String providerName; 
-  final String customerId; 
-  final DateTime bookingDate; 
+  final String providerName;
+  final String customerId;
+  final DateTime bookingDate;
   final DateTime createdAt;
   final BookingStatus status;
   final double totalPrice;
+  final bool isPaid;
   final String? notes;
-  final String? address; 
+  final String? address;
 
   const BookingEntity({
     required this.id,
@@ -33,6 +34,7 @@ class BookingEntity extends Equatable {
     required this.createdAt,
     required this.status,
     required this.totalPrice,
+    this.isPaid = false,
     this.notes,
     this.address,
   });
@@ -46,6 +48,7 @@ class BookingEntity extends Equatable {
         bookingDate,
         status,
         totalPrice,
+        isPaid,
       ];
 
   /// CopyWith for modifying state
@@ -60,6 +63,7 @@ class BookingEntity extends Equatable {
     DateTime? createdAt,
     BookingStatus? status,
     double? totalPrice,
+    bool? isPaid,
     String? notes,
     String? address,
   }) {
@@ -74,6 +78,7 @@ class BookingEntity extends Equatable {
       createdAt: createdAt ?? this.createdAt,
       status: status ?? this.status,
       totalPrice: totalPrice ?? this.totalPrice,
+      isPaid: isPaid ?? this.isPaid,
       notes: notes ?? this.notes,
       address: address ?? this.address,
     );

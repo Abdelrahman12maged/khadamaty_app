@@ -62,4 +62,16 @@ class FirebaseBookingRepositoryImp implements BookingRepository {
       return Left(DatabaseFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> markBookingAsPaid(String bookingId) async {
+    try {
+      await _remoteDataSource.markBookingAsPaid(bookingId);
+      return const Right(null);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(message: e.message, code: e.code));
+    } catch (e) {
+      return Left(DatabaseFailure(message: e.toString()));
+    }
+  }
 }

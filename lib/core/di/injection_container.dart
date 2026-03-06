@@ -74,6 +74,8 @@ import '../../features/chat_system/domain/usecases/mark_as_read_usecase.dart';
 import '../../features/chat_system/presentation/cubits/chat_list_cubit/chat_list_cubit.dart';
 import '../../features/chat_system/presentation/cubits/chat_cubit/chat_cubit.dart';
 import '../../features/chat_system/presentation/cubits/open_chat_cubit/open_chat_cubit.dart';
+import '../../features/bookings/domain/usecases/get_provider_bookings_usecase.dart';
+import '../../features/bookings/presentation/cubits/provider_bookings_cubit/provider_bookings_cubit.dart';
 
 /// Service Locator instance
 final sl = GetIt.instance;
@@ -222,6 +224,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => CreateBookingUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetUserBookingsUseCase(repository: sl()));
   sl.registerLazySingleton(() => UpdateBookingStatusUseCase(repository: sl()));
+  sl.registerLazySingleton(() => GetProviderBookingsUseCase(repository: sl()));
 
   // ============ CHAT USECASES ============
   sl.registerLazySingleton(() => GetOrCreateChatUseCase(repository: sl()));
@@ -255,6 +258,11 @@ Future<void> initDependencies() async {
       ));
   sl.registerFactory(() => OpenChatCubit(
         getOrCreateChatUseCase: sl(),
+      ));
+  sl.registerFactory(() => ProviderBookingsCubit(
+        getProviderBookingsUseCase: sl(),
+        updateBookingStatusUseCase: sl(),
+        authRepository: sl(),
       ));
 }
 

@@ -9,4 +9,5 @@ abstract class BookingRepository {
       String providerId);
   Future<Either<Failure, void>> updateBookingStatus(
       String bookingId, BookingStatus status);
+  Future<Either<Failure, void>> markBookingAsPaid(String bookingId);
 }

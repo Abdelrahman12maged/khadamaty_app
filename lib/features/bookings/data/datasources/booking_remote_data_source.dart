@@ -8,21 +8,22 @@ abstract class BookingRemoteDataSource {
   Future<List<BookingModel>> getUserBookings(String userId);
   Future<List<BookingModel>> getProviderBookings(String providerId);
   Future<void> updateBookingStatus(String bookingId, BookingStatus status);
+  Future<void> markBookingAsPaid(String bookingId);
 }
 
 class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
   final FirebaseFirestore _firestore;
 
   BookingRemoteDataSourceImpl({required FirebaseFirestore firestore})
-      : _firestore = firestore ;
+      : _firestore = firestore;
 
   @override
   Future<void> createBooking(BookingEntity booking) async {
     try {
       final model = BookingModel.fromEntity(booking);
       final _bookingCollection = _firestore.collection('bookings');
-        await _bookingCollection.add(model.toFirestore());
-   
+      await _bookingCollection.add(model.toFirestore());
+
       // await _firestore
       //     .collection('bookings')
       //     .doc(model.id)
@@ -87,6 +88,19 @@ class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
       });
     } on FirebaseException catch (e) {
       throw DatabaseException(e.message ?? 'فشل تحديث حالة الحجز', e.code);
+    } catch (e) {
+      throw DatabaseException(e.toString());
+    }
+  }
+
+  @override
+  Future<void> markBookingAsPaid(String bookingId) async {
+    try {
+      await _firestore.collection('bookings').doc(bookingId).update({
+        'isPaid': true,
+      });
+    } on FirebaseException catch (e) {
+      throw DatabaseException(e.message ?? 'فشل تحديث حالة الدفع', e.code);
     } catch (e) {
       throw DatabaseException(e.toString());
     }

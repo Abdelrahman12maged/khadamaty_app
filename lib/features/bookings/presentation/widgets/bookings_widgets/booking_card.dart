@@ -12,6 +12,8 @@ import 'package:khadamaty_app/features/chat_system/presentation/pages/chat_page.
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:intl/intl.dart';
 import '../../../domain/entities/booking_entity.dart';
+import '../../cubits/provider_bookings_cubit/provider_bookings_cubit.dart';
+import 'package:khadamaty_app/features/Payment/presentation/pages/payment_screen.dart';
 import 'booking_status_badge.dart';
 import 'placeholder_image.dart';
 
@@ -19,11 +21,13 @@ import 'placeholder_image.dart';
 class BookingCard extends StatelessWidget {
   final BookingEntity booking;
   final VoidCallback? onTap;
+  final bool isProviderView;
 
   const BookingCard({
     super.key,
     required this.booking,
     this.onTap,
+    this.isProviderView = false,
   });
 
   @override
@@ -102,7 +106,7 @@ class BookingCard extends StatelessWidget {
                       ),
                       SizedBox(height: AppSpacing.xs(context)),
 
-                      // Provider
+                      // Provider or Customer name
                       Row(
                         children: [
                           Icon(
@@ -113,7 +117,9 @@ class BookingCard extends StatelessWidget {
                           const SizedBox(width: 4),
                           Expanded(
                             child: Text(
-                              booking.providerName,
+                              isProviderView
+                                  ? '${S.of(context).customer}: ${booking.customerId}'
+                                  : booking.providerName,
                               style: Theme.of(context).textTheme.bodySmall,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -161,10 +167,104 @@ class BookingCard extends StatelessWidget {
                           ),
                           // Status Badge
                           BookingStatusBadge(status: booking.status),
+                          if (booking.isPaid)
+                            Container(
+                              margin: const EdgeInsets.only(left: 6),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.green.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                S.of(context).paid,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall
+                                    ?.copyWith(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
                         ],
                       ),
 
-                      // Chat Button (only for active bookings)
+                      // Pay Now button (customer + confirmed + not paid)
+                      if (!isProviderView &&
+                          booking.status == BookingStatus.confirmed &&
+                          !booking.isPaid) ...[
+                        SizedBox(height: AppSpacing.sm(context)),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton.icon(
+                            onPressed: () => _navigateToPayment(context),
+                            icon: const Icon(Icons.payment, size: 18),
+                            label: Text(S.of(context).payNow),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primaryBlue,
+                              foregroundColor: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                vertical: AppSpacing.sm(context),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+
+                      // Accept/Decline buttons (provider + pending only)
+                      if (isProviderView &&
+                          booking.status == BookingStatus.pending) ...[
+                        SizedBox(height: AppSpacing.sm(context)),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () => context
+                                    .read<ProviderBookingsCubit>()
+                                    .acceptBooking(booking.id),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.green,
+                                  foregroundColor: Colors.white,
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: AppSpacing.sm(context),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Text(S.of(context).accept),
+                              ),
+                            ),
+                            SizedBox(width: AppSpacing.sm(context)),
+                            Expanded(
+                              child: OutlinedButton(
+                                onPressed: () => context
+                                    .read<ProviderBookingsCubit>()
+                                    .declineBooking(booking.id),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.red,
+                                  side: const BorderSide(color: Colors.red),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: AppSpacing.sm(context),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Text(S.of(context).decline),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+
+                      // Chat button (for both provider and customer on active bookings)
                       if (booking.status == BookingStatus.pending ||
                           booking.status == BookingStatus.confirmed) ...[
                         SizedBox(height: AppSpacing.sm(context)),
@@ -181,8 +281,21 @@ class BookingCard extends StatelessWidget {
     );
   }
 
+  void _navigateToPayment(BuildContext context) {
+    // Convert price to piasters for Stripe (EGP smallest unit: 1 EGP = 100 piasters)
+    final amountInPiasters = (booking.totalPrice *100).toInt();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => PaymentScreen(
+          amount: amountInPiasters,
+          currency: 'egp',
+          description: booking.serviceName,
+        ),
+      ),
+    );
+  }
+
   String _formatDateTime(DateTime dateTime) {
     return DateFormat('MMM dd, yyyy • hh:mm a').format(dateTime);
   }
 }
-

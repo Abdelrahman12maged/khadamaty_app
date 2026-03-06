@@ -230,5 +230,11 @@
   "categoryCarpentry": "نجارة",
   "categoryPainting": "دهان",
   "categoryAcRepair": "تصليح تكييف",
-  "servicesCount": "{count} خدمة"
+  "servicesCount": "{count} خدمة",
+  "providerBookings": "الحجوزات الواردة",
+  "accept": "قبول",
+  "decline": "رفض",
+  "customer": "العميل",
+  "payNow": "ادفع الآن",
+  "paid": "مدفوع"
 }

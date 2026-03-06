@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutService":
             MessageLookupByLibrary.simpleMessage("About this service"),
+        "accept": MessageLookupByLibrary.simpleMessage("Accept"),
         "accountSettings":
             MessageLookupByLibrary.simpleMessage("Account Settings"),
         "active": MessageLookupByLibrary.simpleMessage("Active"),
@@ -86,7 +87,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmed": MessageLookupByLibrary.simpleMessage("Confirmed"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
         "currency": MessageLookupByLibrary.simpleMessage("EGP"),
+        "customer": MessageLookupByLibrary.simpleMessage("Customer"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+        "decline": MessageLookupByLibrary.simpleMessage("Decline"),
         "declined": MessageLookupByLibrary.simpleMessage("Declined"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteService": MessageLookupByLibrary.simpleMessage("Delete Service"),
@@ -231,6 +234,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboardingTitle2": MessageLookupByLibrary.simpleMessage("Book Easily"),
         "onboardingTitle3":
             MessageLookupByLibrary.simpleMessage("Secure Payments"),
+        "paid": MessageLookupByLibrary.simpleMessage("Paid"),
         "paidVia": m1,
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordMinLength": MessageLookupByLibrary.simpleMessage(
@@ -238,6 +242,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("Passwords don\'t match"),
         "past": MessageLookupByLibrary.simpleMessage("Past"),
+        "payNow": MessageLookupByLibrary.simpleMessage("Pay Now"),
         "payWithPaymob":
             MessageLookupByLibrary.simpleMessage("Pay with Paymob"),
         "payWithPaypal":
@@ -302,6 +307,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Processing payment..."),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "provider": MessageLookupByLibrary.simpleMessage("Provider"),
+        "providerBookings":
+            MessageLookupByLibrary.simpleMessage("Incoming Bookings"),
         "quickActions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
         "rating": MessageLookupByLibrary.simpleMessage("Rating"),
         "resendEmail": MessageLookupByLibrary.simpleMessage("Resend Email"),

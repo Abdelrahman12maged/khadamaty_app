@@ -11,6 +11,7 @@ import 'package:khadamaty_app/features/bookings/domain/usecases/create_booking_u
 import 'package:khadamaty_app/features/provider/data/repositories/firebase_service_repository.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'core/theme/app_theme.dart';
+import 'core/theme/theme_cubit.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -60,33 +61,42 @@ class KhadamatyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(
-        registerUseCase: sl(),
-        loginUseCase: sl(),
-        logoutUseCase: sl(),
-        verifyEmailUseCase: sl(),
-        resetPasswordUseCase: sl(),
-      ),
-      child: MaterialApp.router(
-        // DevicePreview package to test app in mobile,tablet and dektop
-        useInheritedMediaQuery: true,
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(
+            registerUseCase: sl(),
+            loginUseCase: sl(),
+            logoutUseCase: sl(),
+            verifyEmailUseCase: sl(),
+            resetPasswordUseCase: sl(),
+          ),
+        ),
+        BlocProvider(create: (_) => ThemeCubit()),
+      ],
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, themeMode) {
+          return MaterialApp.router(
+            // DevicePreview package to test app in mobile,tablet and dektop
+            useInheritedMediaQuery: true,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
 
-        title: 'Khadamaty',
-        theme: AppTheme.lightTheme(context),
-        darkTheme: AppTheme.darkTheme(context),
-        themeMode: ThemeMode.system,
-        debugShowCheckedModeBanner: false,
-        routerConfig: appRouter,
-        localizationsDelegates: [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
+            title: 'Khadamaty',
+            theme: AppTheme.lightTheme(context),
+            darkTheme: AppTheme.darkTheme(context),
+            themeMode: themeMode,
+            debugShowCheckedModeBanner: false,
+            routerConfig: appRouter,
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+          );
+        },
       ),
     );
   }

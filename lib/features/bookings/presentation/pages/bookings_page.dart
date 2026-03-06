@@ -1,70 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:khadamaty_app/core/di/injection_container.dart';
-import 'package:khadamaty_app/core/utils/ui_helpers.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import '../cubits/bookings_cubit/bookings_cubit.dart';
-import '../cubits/bookings_cubit/bookings_state.dart';
-import '../widgets/bookings_widgets/bookings_tab_content.dart';
+import '../cubits/provider_bookings_cubit/provider_bookings_cubit.dart';
+import '../widgets/bookings_widgets/my_bookings_tab.dart';
+import '../widgets/bookings_widgets/provider_bookings_tab.dart';
 
-/// Bookings page with tab navigation
+/// Unified bookings page with two top-level tabs:
+/// - حجوزاتي (My Bookings) — bookings I made as a customer
+/// - الحجوزات الواردة (Incoming) — bookings others made for my services
 class BookingsPage extends StatelessWidget {
   const BookingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<BookingsCubit>()..loadBookings(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<BookingsCubit>()..loadBookings()),
+        BlocProvider(
+            create: (_) => sl<ProviderBookingsCubit>()..loadBookings()),
+      ],
       child: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             title: Text(S.of(context).bookings),
             bottom: TabBar(
+              indicatorWeight: 3,
+              labelStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
               tabs: [
-                Tab(text: S.of(context).upcoming),
-                Tab(text: S.of(context).past),
-                Tab(text: S.of(context).cancelled),
+                Tab(text: S.of(context).myBookings),
+                Tab(text: S.of(context).providerBookings),
               ],
             ),
           ),
-          body: BlocConsumer<BookingsCubit, BookingsState>(
-            listener: (context, state) {
-              // Show error snackbar
-              if (state.error != null) {
-                UIHelpers.showErrorSnackbar(
-                  context: context,
-                  message: state.error!,
-                );
-              }
-            },
-            builder: (context, state) {
-              return TabBarView(
-                children: [
-                  // Upcoming Tab
-                  BookingsTabContent(
-                    state: state,
-                    bookings: state.upcomingBookings,
-                    emptyMessage: S.of(context).noUpcomingBookings,
-                    emptyIcon: Icons.event_available,
-                  ),
-                  // Past Tab
-                  BookingsTabContent(
-                    state: state,
-                    bookings: state.pastBookings,
-                    emptyMessage: S.of(context).noPastBookings,
-                    emptyIcon: Icons.history,
-                  ),
-                  // Cancelled Tab
-                  BookingsTabContent(
-                    state: state,
-                    bookings: state.cancelledBookings,
-                    emptyMessage: S.of(context).noCancelledBookings,
-                    emptyIcon: Icons.event_busy,
-                  ),
-                ],
-              );
-            },
+          body: const TabBarView(
+            children: [
+              MyBookingsTab(),
+              ProviderBookingsTab(),
+            ],
           ),
         ),
       ),

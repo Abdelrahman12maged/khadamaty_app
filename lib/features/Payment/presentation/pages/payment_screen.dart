@@ -25,7 +25,7 @@ class PaymentScreen extends StatelessWidget {
   const PaymentScreen({
     super.key,
     required this.amount,
-    this.currency = 'usd',
+    this.currency = 'egp',
     this.description = 'Khadamaty Service Payment',
   });
 
@@ -80,7 +80,7 @@ class _PaymentScreenContent extends StatelessWidget {
             //   amount: amount,
             //   currency: currency,
             //   paymentType: PaymentType.strip,
-             
+
             // ));
           }
         },
@@ -160,7 +160,14 @@ class _PaymentScreenContent extends StatelessWidget {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => Center(child: Text("goooood"),)
+      builder: (ctx) => PaymentSuccessDialog(
+        transactionId: state.paymentResultEntity.clientSecret,
+        paymentMethod: 'Stripe',
+        onDone: () {
+          Navigator.of(ctx).pop(); // close dialog
+          Navigator.of(context).pop(); // close PaymentScreen
+        },
+      ),
     );
   }
 }

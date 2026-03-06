@@ -12,11 +12,13 @@ import 'booking_card.dart';
 class BookingsListView extends StatelessWidget {
   final List<BookingEntity> bookings;
   final VoidCallback? onBookingTap;
+  final bool isProviderView;
 
   const BookingsListView({
     super.key,
     required this.bookings,
     this.onBookingTap,
+    this.isProviderView = false,
   });
 
   @override
@@ -59,6 +61,7 @@ class BookingsListView extends StatelessWidget {
               return BookingCard(
                 booking: booking,
                 onTap: onBookingTap,
+                isProviderView: isProviderView,
               );
             },
           ),
@@ -82,6 +85,7 @@ class BookingsListView extends StatelessWidget {
           child: BookingCard(
             booking: booking,
             onTap: onBookingTap,
+            isProviderView: isProviderView,
           ),
         );
       },

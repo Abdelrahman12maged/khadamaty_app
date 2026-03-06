@@ -13,6 +13,7 @@ class BookingModel extends BookingEntity {
     required super.createdAt,
     required super.status,
     required super.totalPrice,
+    super.isPaid,
     super.notes,
     super.address,
   });
@@ -33,6 +34,7 @@ class BookingModel extends BookingEntity {
         orElse: () => BookingStatus.pending,
       ),
       totalPrice: (data['totalPrice'] ?? 0).toDouble(),
+      isPaid: data['isPaid'] ?? false,
       notes: data['notes'],
       address: data['address'],
     );
@@ -50,6 +52,7 @@ class BookingModel extends BookingEntity {
       createdAt: entity.createdAt,
       status: entity.status,
       totalPrice: entity.totalPrice,
+      isPaid: entity.isPaid,
       notes: entity.notes,
       address: entity.address,
     );
@@ -66,6 +69,7 @@ class BookingModel extends BookingEntity {
       'createdAt': Timestamp.fromDate(createdAt),
       'status': status.name,
       'totalPrice': totalPrice,
+      'isPaid': isPaid,
       'notes': notes,
       'address': address,
     };

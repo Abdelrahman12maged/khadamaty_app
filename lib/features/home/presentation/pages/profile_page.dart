@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:khadamaty_app/core/theme/theme_cubit.dart';
+import 'package:khadamaty_app/features/bookings/presentation/pages/bookings_page.dart';
 import 'package:khadamaty_app/generated/l10n.dart';
 import 'package:khadamaty_app/core/utils/app_spacing.dart';
 import 'package:khadamaty_app/core/utils/responsive_value.dart';
@@ -14,6 +16,8 @@ import '../widgets/profile_widgets/profile_action_item.dart';
 import '../widgets/profile_widgets/profile_setting_item.dart';
 import '../widgets/profile_widgets/profile_section.dart';
 import '../../../provider/presentation/pages/my_services_page.dart';
+import '../../../bookings/presentation/pages/provider_bookings_page.dart';
+import 'package:khadamaty_app/core/theme/theme_cubit.dart';
 
 /// Profile page with user information and settings
 class ProfilePage extends StatelessWidget {
@@ -93,6 +97,19 @@ class ProfilePage extends StatelessWidget {
                         ),
                         Divider(height: 1, color: AppColors.divider(context)),
                         ProfileActionItem(
+                          icon: Icons.assignment_outlined,
+                          title: S.of(context).providerBookings,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const BookingsPage(),
+                              ),
+                            );
+                          },
+                        ),
+                        Divider(height: 1, color: AppColors.divider(context)),
+                        ProfileActionItem(
                           icon: Icons.favorite_outline,
                           title: S.of(context).favoriteServices,
                           onTap: () {
@@ -143,10 +160,10 @@ class ProfilePage extends StatelessWidget {
                         ProfileSettingItem(
                           icon: Icons.dark_mode_outlined,
                           title: S.of(context).darkMode,
-                          value:
-                              Theme.of(context).brightness == Brightness.dark,
-                          onChanged: (value) {
-                            // TODO: Toggle theme
+                          value: context.watch<ThemeCubit>().state ==
+                              ThemeMode.dark,
+                          onChanged: (_) {
+                            context.read<ThemeCubit>().toggleTheme();
                           },
                         ),
                       ],

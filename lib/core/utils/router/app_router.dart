@@ -2,7 +2,9 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:khadamaty_app/features/bookings/presentation/pages/bookings_page.dart';
 import 'package:khadamaty_app/features/chat_system/presentation/pages/chat_list_page.dart';
+import 'package:khadamaty_app/features/bookings/presentation/pages/provider_bookings_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:khadamaty_app/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:khadamaty_app/features/auth/presentation/pages/login_screen.dart';
@@ -123,6 +125,11 @@ final GoRouter appRouter = GoRouter(
       path: '/chats',
       name: 'chats',
       builder: (context, state) => const ChatListPage(),
+    ),
+    GoRoute(
+      path: '/provider-bookings',
+      name: 'providerBookings',
+      builder: (context, state) => const BookingsPage(),
     ),
   ],
 );
