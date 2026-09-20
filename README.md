@@ -1,32 +1,73 @@
-# 🔧 Khadamaty - خدماتي
+<div align="center">
 
-> **Local Services Marketplace Platform** - Connecting customers with service providers in Egypt
+# 🔧 Khadamaty — خدماتي
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.2+-blue?logo=flutter)](https://flutter.dev)
-[![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange?logo=firebase)](https://firebase.google.com)
-[![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-green)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-[![Status](https://img.shields.io/badge/Status-In%20Development-yellow)]()
+**Local Services Marketplace Platform** — connecting customers with trusted service providers in Egypt
+
+[![Flutter](https://img.shields.io/badge/Flutter-3.2+-02569B?style=flat&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white)](https://dart.dev)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth%20%7C%20Firestore%20%7C%20Storage-FFCA28?style=flat&logo=firebase&logoColor=black)](https://firebase.google.com)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com)
+[![Stripe](https://img.shields.io/badge/Stripe-Payments-635BFF?style=flat&logo=stripe&logoColor=white)](https://stripe.com)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-4CAF50?style=flat)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+[![Status](https://img.shields.io/badge/Status-Active%20Development-yellow)]()
+
+</div>
+
+---
+
+## 🎬 Video Demo
+
+<div align="center">
+
+[![Watch the demo](https://img.youtube.com/vi/x2vV20UIjq4/hqdefault.jpg)](https://youtu.be/x2vV20UIjq4)
+
+**▶ Click the thumbnail above to watch the full demo on YouTube**
+
+</div>
 
 ---
 
 ## 📱 Overview
 
-**Khadamaty** is a mobile marketplace connecting customers with local service providers. The platform supports both **on-demand services** (plumbing, electrical) and **appointment-based services** (doctors, salons).
+**Khadamaty** is a mobile marketplace connecting customers with local service providers, supporting both **on-demand services** (plumbing, electrical, car repair) and **appointment-based services** (doctors, salons, education).
 
-### Target Market
-- 📍 Asyut Governorate, Egypt (Deirout Center)
-- 🏠 Home services, Car repair, Medical, Beauty, Education
+| | |
+|---|---|
+| 📍 **Target Market** | Asyut Governorate, Egypt (Deirout Center) |
+| 🏠 **Categories** | Home Services · Car Repair · Medical · Beauty · Education |
+| 💳 **Payments** | Stripe (EGP) |
+| 🌐 **Languages** | Arabic & English (full RTL support) |
 
+---
 
-Video Demo  : https://www.linkedin.com/posts/abdelrahman-abdelmaged-b09356249_flutter-firebase-cleanarchitecture-activity-7436423630420606976-5wvS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD10N7kBYbb7nGtHH7isxEiKSLfyj9eQ1WU
+## ✨ What It Does
+
+- 🔐 **Full Authentication Flow** — Register, Login, Email Verification
+- 🔍 **Browse, Search & Filter** services by category and location
+- 📅 **Complete Booking Lifecycle** — Pending → Confirmed → Paid → Completed
+- 🧑‍🔧 **Provider Dashboard** — Accept / Decline bookings in real time
+- 💳 **Stripe Payment Integration** (EGP)
+- 💬 **Real-Time Chat** between customers and providers
+- 🗺️ **Interactive Map** for service location (OpenStreetMap)
+- 🌐 **Arabic & English** with instant language switching
+- 🌙 **Dark Mode**
+- 📱 **Responsive Design** — Mobile, Tablet, and Desktop layouts
+
 ---
 
 ## 🏗️ Architecture
 
+Clean Architecture with full separation of concerns across **8 modular features**:
+
+```
+Auth │ Bookings │ Chat │ Explore │ Home │ Onboarding │ Payment │ Provider
+```
+
 ```
 ┌─────────────────────────────────────────────────┐
 │                  Presentation                    │
-│         (Pages, Widgets, Cubits/States)         │
+│         (Pages, Widgets, Cubits/States)          │
 ├─────────────────────────────────────────────────┤
 │                    Domain                        │
 │         (Entities, Repositories, UseCases)       │
@@ -36,42 +77,30 @@ Video Demo  : https://www.linkedin.com/posts/abdelrahman-abdelmaged-b09356249_fl
 └─────────────────────────────────────────────────┘
 ```
 
-**Key Patterns:**
-- 🎯 **Clean Architecture** - Separation of concerns
-- 🔄 **Repository Pattern** - Abstracted data sources
-- 💉 **Dependency Injection** - GetIt service locator
-- 📦 **BLoC/Cubit** - State management
+**Key Patterns**
 
----
-
-## ✨ Features
-
-### ✅ Implemented
-- 🔐 **Authentication** - Email registration, login, password reset
-- ➕ **Add Service** - Create services with category, price, location
-- 📋 **My Services** - View, edit, delete provider services
-- 🔥 **Real-time Updates** - Firestore live synchronization
-- 🌍 **Localization** - Arabic & English (RTL support)
-- 📱 **Responsive Design** - Mobile, Tablet, Desktop layouts
-
-### 🔜 In Progress
-- 📅 **Booking System** - On-demand & appointment booking
-- 🔍 **Explore Services** - Browse and search all services
-- 🖼️ **Image Upload** - Service photos
-- ⭐ **Reviews & Ratings**
+- 🎯 **Clean Architecture** — Data, Domain & Presentation layers, fully decoupled
+- 🔄 **Repository Pattern** — Abstracted data sources
+- 💉 **Dependency Injection** — GetIt service locator
+- 📦 **BLoC / Cubit** — Predictable state management
+- ⚖️ **Functional Error Handling** — `dartz` (Either)
 
 ---
 
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
-|-------|------------|
-| **UI** | Flutter 3.2+ |
-| **State** | flutter_bloc / Cubit |
-| **Backend** | Firebase (Auth, Firestore) |
-| **DI** | GetIt |
+|---|---|
+| **UI** | Flutter, Dart |
+| **State Management** | flutter_bloc / Cubit |
+| **Backend** | Firebase (Auth, Firestore, Storage), Supabase |
+| **Payments** | Stripe |
+| **Maps** | OpenStreetMap |
+| **Dependency Injection** | GetIt |
 | **Navigation** | go_router |
-| **Error Handling** | dartz (Either/Functional) |
+| **Local Storage** | Hive |
+| **Networking** | Dio |
+| **Error Handling** | dartz (Either / Functional) |
 
 ---
 
@@ -81,26 +110,22 @@ Video Demo  : https://www.linkedin.com/posts/abdelrahman-abdelmaged-b09356249_fl
 lib/
 ├── core/
 │   ├── di/                 # Dependency Injection
-│   ├── error/              # Failure classes
-│   ├── theme/              # Colors, Themes
-│   ├── utils/              # Spacing, Validators
-│   └── widgets/            # Reusable widgets
+│   ├── error/               # Failure classes
+│   ├── theme/                # Colors, Themes, Dark Mode
+│   ├── utils/                # Spacing, Validators
+│   └── widgets/              # Reusable widgets
 │
 ├── features/
-│   ├── auth/               # Authentication
-│   │   ├── data/           # Firebase implementation
-│   │   ├── domain/         # Entities, Repository interfaces
-│   │   └── presentation/   # Pages, Cubits
-│   │
-│   ├── provider/           # Service Provider features
-│   │   ├── data/           # FirebaseServiceRepository
-│   │   ├── domain/         # ServiceEntity, UseCases
-│   │   └── presentation/   # AddService, MyServices
-│   │
-│   ├── home/               # Home & Explore
-│   └── bookings/           # Booking management
+│   ├── auth/                 # Register, Login, Email Verification
+│   ├── onboarding/           # First-run experience
+│   ├── home/                 # Home & category navigation
+│   ├── explore/               # Browse, search & filter services
+│   ├── provider/              # Add/manage services, provider dashboard
+│   ├── bookings/              # Full booking lifecycle
+│   ├── payment/                # Stripe integration
+│   └── chat/                   # Real-time customer ↔ provider chat
 │
-└── l10n/                   # Localization (AR/EN)
+└── l10n/                      # Localization (AR/EN)
 ```
 
 ---
@@ -125,15 +150,18 @@ flutter run
 
 ## 📸 Screenshots
 
-<img width="500" height="600" alt="Gemini_Generated_Image_dnatsqdnatsqdnat" src="https://github.com/user-attachments/assets/eaa94b93-ffcf-4e4a-a525-5b246a873921" />
-
-
+<div align="center">
+<img width="500" alt="Khadamaty App Preview" src="https://github.com/user-attachments/assets/eaa94b93-ffcf-4e4a-a525-5b246a873921" />
+</div>
 
 ---
 
 ## 👨‍💻 Developer
 
 **Abdelrahman Maged**
+
+- 💻 GitHub: [@Abdelrahman12maged](https://github.com/Abdelrahman12maged)
+- ✉️ Email: [abdomaged01206@gmail.com](mailto:abdomaged01206@gmail.com)
 
 ---
 
